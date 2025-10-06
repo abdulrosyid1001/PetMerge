@@ -1,0 +1,110 @@
+{
+	"name": "charFaceStore",
+	"plugin-id": "Sprite",
+	"sid": 744493830307295,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 967395318905703
+		},
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 147409578307664
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 363,
+						"height": 342,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3681197,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 210698110629061,
+				"name": "charFace1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 222,
+						"height": 222,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8661396,
+						"collisionPoly": {
+							"points": [
+								0.46396396396396394,
+								0.0045045045045045045,
+								0.545045045045045,
+								0.0045045045045045045,
+								0.9234234234234234,
+								0.0945945945945946,
+								0.9864864864864865,
+								0.44594594594594594,
+								0.9864864864864865,
+								0.5765765765765766,
+								0.8828828828828829,
+								0.8288288288288288,
+								0.8423423423423423,
+								0.8693693693693694,
+								0.5315315315315315,
+								0.990990990990991,
+								0.46396396396396394,
+								0.990990990990991,
+								0.23873873873873874,
+								0.918918918918919,
+								0.18018018018018017,
+								0.8783783783783784,
+								0.12162162162162163,
+								0.8198198198198198,
+								0.009009009009009009,
+								0.5540540540540541,
+								0.009009009009009009,
+								0.44144144144144143,
+								0.12612612612612611,
+								0.04954954954954955
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 650265116090364,
+				"name": "charFace2",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

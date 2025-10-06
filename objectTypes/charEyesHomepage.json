@@ -1,0 +1,220 @@
+{
+	"name": "charEyesHomepage",
+	"plugin-id": "Sprite",
+	"sid": 984638934892043,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 904777925098394
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 177,
+						"height": 66,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3762509,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 162,
+						"height": 69,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6372669,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 531326156248825,
+				"name": "CanaryEyes",
+				"isLooping": false,
+				"isPingPong": true,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 252,
+						"height": 159,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4084309,
+						"collisionPoly": {
+							"points": [
+								0.15079365079365079,
+								0.07547169811320754,
+								0.8611111111111112,
+								0.10062893081761007,
+								0.9007936507936508,
+								0.1509433962264151,
+								0.9206349206349206,
+								0.1949685534591195,
+								0.9365079365079365,
+								0.2578616352201258,
+								0.9523809523809523,
+								0.6981132075471698,
+								0.8611111111111112,
+								0.8742138364779874,
+								0.1388888888888889,
+								0.8742138364779874,
+								0.047619047619047616,
+								0.6918238993710691,
+								0.03571428571428571,
+								0.27044025157232704,
+								0.06349206349206349,
+								0.16981132075471697,
+								0.0992063492063492,
+								0.11320754716981132
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 252,
+						"height": 120,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1808499,
+						"collisionPoly": {
+							"points": [
+								0.15079365079365079,
+								0.016666666666666666,
+								0.8809523809523809,
+								0.06666666666666667,
+								0.9206349206349206,
+								0.15833333333333333,
+								0.9523809523809523,
+								0.625,
+								0.8611111111111112,
+								0.8583333333333333,
+								0.4523809523809524,
+								0.9916666666666667,
+								0.1388888888888889,
+								0.8583333333333333,
+								0.047619047619047616,
+								0.6166666666666667,
+								0.07936507936507936,
+								0.11666666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 158219259842447,
+				"name": "FerretEyes",
+				"isLooping": false,
+				"isPingPong": true,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 372,
+						"height": 195,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2910228,
+						"collisionPoly": {
+							"points": [
+								0.20698924731182797,
+								0.07179487179487179,
+								0.8413978494623656,
+								0.15384615384615385,
+								0.9946236559139785,
+								0.8256410256410256,
+								0.9032258064516129,
+								0.9948717948717949,
+								0.08333333333333333,
+								0.9897435897435898,
+								0.005376344086021506,
+								0.7794871794871795
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 405,
+						"height": 219,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4210354,
+						"collisionPoly": {
+							"points": [
+								0.20698924731182797,
+								0.07179487179487179,
+								0.8413978494623656,
+								0.15384615384615385,
+								0.9946236559139785,
+								0.8256410256410256,
+								0.9032258064516129,
+								0.9948717948717949,
+								0.08333333333333333,
+								0.9897435897435898,
+								0.005376344086021506,
+								0.7794871794871795
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 172838807392742,
+				"name": "CatEyes",
+				"isLooping": false,
+				"isPingPong": true,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

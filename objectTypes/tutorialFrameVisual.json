@@ -1,0 +1,89 @@
+{
+	"name": "tutorialFrameVisual",
+	"plugin-id": "Sprite",
+	"sid": 607977066175025,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 1074,
+						"height": 501,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6399260,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.505586592178771,
+								"y": 0.17764471057884232
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 1074,
+						"height": 633,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2838052,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.5093109869646183,
+								"y": 0.16903633491311215
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 1074,
+						"height": 702,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9879909,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.5018621973929237,
+								"y": 0.10968660968660969
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 900235774683524,
+				"name": "Default",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}
