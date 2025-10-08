@@ -1574,55 +1574,55 @@
 						{
 							"id": "set-at-x",
 							"objectClass": "levelProgress",
-							"sid": 295924567493040,
+							"sid": 914905680178171,
 							"parameters": {
 								"x": "1",
+								"value": "400"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "levelProgress",
+							"sid": 972837134274218,
+							"parameters": {
+								"x": "2",
 								"value": "800"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "levelProgress",
-							"sid": 750575105498759,
-							"parameters": {
-								"x": "2",
-								"value": "1200"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "levelProgress",
-							"sid": 669933197030241,
+							"sid": 610773818477733,
 							"parameters": {
 								"x": "3",
-								"value": "1100"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "levelProgress",
-							"sid": 273332758480879,
-							"parameters": {
-								"x": "4",
 								"value": "1000"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "levelProgress",
-							"sid": 928915612017166,
+							"sid": 219700479228746,
 							"parameters": {
-								"x": "5",
-								"value": "2000"
+								"x": "4",
+								"value": "1200"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "levelProgress",
-							"sid": 239732299984393,
+							"sid": 220828057496427,
+							"parameters": {
+								"x": "5",
+								"value": "1000"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "levelProgress",
+							"sid": 710863411917437,
 							"parameters": {
 								"x": "6",
-								"value": "2700"
+								"value": "2000"
 							}
 						},
 						{
