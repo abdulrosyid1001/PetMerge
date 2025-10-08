@@ -501,35 +501,11 @@
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "tween-one-property",
-									"objectClass": "charFaceStore",
-									"sid": 694185799341968,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"jump\"",
-										"property": "offsetY",
-										"end-value": "Self.Y-20",
-										"time": "0.3",
-										"ease": "easeoutexpo",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "yes",
-										"repeat-count": "1"
-									}
-								}
-							],
-							"sid": 676896173480023
-						},
-						{
-							"eventType": "block",
 							"conditions": [
 								{
 									"id": "pick-children",
 									"objectClass": "charFaceStore",
-									"sid": 979039320341850,
+									"sid": 234588041868134,
 									"parameters": {
 										"child": "charEyeStore",
 										"which": "own"
@@ -540,13 +516,59 @@
 								{
 									"id": "start-animation",
 									"objectClass": "charEyeStore",
-									"sid": 210796131401546,
+									"sid": 313219144649366,
 									"parameters": {
 										"from": "beginning"
 									}
 								}
 							],
-							"sid": 185624135340648
+							"sid": 581136531195554
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "charFaceStore",
+									"sid": 137792247594301,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"jump\"",
+										"property": "offsetY",
+										"end-value": "Self.Y-30",
+										"time": "0.2",
+										"ease": "easeoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 112506778368658
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "charFaceStore",
+									"sid": 326400633609664,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"fall\"",
+										"property": "offsetY",
+										"end-value": "Self.Y+30",
+										"time": "0.5",
+										"ease": "easeoutbounce",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
+							"sid": 676896173480023
 						}
 					]
 				}

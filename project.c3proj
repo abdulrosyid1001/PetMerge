@@ -966,7 +966,7 @@
 	},
 	"properties": {
 		"description": "Merge the Animals",
-		"version": "1.0.0.0",
+		"version": "1.0.0.2",
 		"autoIncrementVersion": false,
 		"author": "Master",
 		"authorEmail": "",

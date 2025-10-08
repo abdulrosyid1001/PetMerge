@@ -189,8 +189,14 @@ function createAdBanner() {
 
     ///CRAZY GAMES BANNER
 
+    // const banner_container = document.createElement("div");
+    // banner_container.id = "banner-container";
+    // banner_anchor.appendChild(banner_container);
+
+    //AZERION / GAME DISTRIBUTION BANNER
     const banner_container = document.createElement("div");
-    banner_container.id = "banner-container";
+    banner_container.id = "bannerDiv";
+    banner_container.display = "block";
     banner_anchor.appendChild(banner_container);
 
     // masukkan ke halaman
@@ -209,6 +215,19 @@ function createAdBanner() {
 			console.log("Banner request error", e);
 			}
 		}
+        if(platform_ad == "Azerion"){
+            window.addEventListener("gdsdk_initialized", () => {
+                try {
+                window.gdsdk.showBanner({
+                    id: "bannerDiv",
+                    width : 320,
+                    height : 50,
+                });
+                } catch (err) {
+                    console.error("Gagal memunculkan banner:", err);
+                }
+                });
+        }
     }
 
      // panggil setelah SDK siap
@@ -216,7 +235,7 @@ function createAdBanner() {
 }
 
 function showAdBanner() {
-    if(platform_ad == "Xiaomi"){
+    if(platform_ad == "Xiaomi" || platform_ad == "Azerion"){
         const banner_anchor = document.querySelector(".ad-banner");
         if (banner_anchor) {
             banner_anchor.style.display = "flex";
@@ -233,7 +252,7 @@ function showAdBanner() {
 }
 
 function hideAdBanner() {
-   if(platform_ad == "Xiaomi"){
+   if(platform_ad == "Xiaomi" || platform_ad == "Azerion"){
         const banner_anchor = document.querySelector(".ad-banner");
         if (banner_anchor) {
             banner_anchor.style.display = "none";

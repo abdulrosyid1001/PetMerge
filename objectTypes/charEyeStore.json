@@ -12,29 +12,53 @@
 			{
 				"frames": [
 					{
-						"width": 309,
-						"height": 168,
-						"originX": 0.5,
+						"width": 337,
+						"height": 187,
+						"originX": 0.5059347181008901,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9503966,
+						"imageSpriteId": 2064293,
+						"collisionPoly": {
+							"points": [
+								0.04747774480712166,
+								0.05080213903743316,
+								0.9643916913946587,
+								0.05080213903743316,
+								0.9643916913946587,
+								0.9491978609625669,
+								0.04747774480712166,
+								0.9491978609625669
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					},
 					{
-						"width": 267,
-						"height": 189,
+						"width": 270,
+						"height": 200,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3855874,
+						"imageSpriteId": 7711808,
+						"collisionPoly": {
+							"points": [
+								0.005555555555555556,
+								0.0275,
+								0.9944444444444445,
+								0.0275,
+								0.9944444444444445,
+								0.9725,
+								0.005555555555555556,
+								0.9725
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
@@ -44,7 +68,7 @@
 				"name": "charEye1",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			},
@@ -53,13 +77,13 @@
 					{
 						"width": 168,
 						"height": 96,
-						"originX": 0.5,
+						"originX": 0.4642857142857143,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 2831244,
+						"imageSpriteId": 4738980,
 						"collisionPoly": {
 							"points": [
 								0.13690476190476192,
@@ -99,33 +123,33 @@
 						"tag": ""
 					},
 					{
-						"width": 141,
-						"height": 87,
-						"originX": 0.5,
-						"originY": 0.5,
+						"width": 161,
+						"height": 101,
+						"originX": 0.515527950310559,
+						"originY": 0.3564356435643564,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8522247,
+						"imageSpriteId": 2124907,
 						"collisionPoly": {
 							"points": [
-								0.10638297872340426,
-								0.022988505747126436,
-								0.9574468085106383,
-								0.06896551724137931,
-								1,
-								0.13793103448275862,
-								1,
-								0.1839080459770115,
-								0.5319148936170213,
-								1,
-								0.45390070921985815,
-								0.9770114942528736,
-								0.014184397163120567,
-								0.21839080459770116,
-								0.02127659574468085,
-								0.13793103448275862
+								0.15527950310559005,
+								0.0891089108910891,
+								0.9006211180124224,
+								0.12871287128712872,
+								0.937888198757764,
+								0.18811881188118812,
+								0.937888198757764,
+								0.22772277227722773,
+								0.5279503105590062,
+								0.9306930693069307,
+								0.45962732919254656,
+								0.9108910891089109,
+								0.07453416149068323,
+								0.25742574257425743,
+								0.08074534161490683,
+								0.18811881188118812
 							]
 						},
 						"useCollisionPoly": true,
@@ -137,7 +161,7 @@
 				"name": "charEye2",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			}

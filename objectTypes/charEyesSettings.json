@@ -50,7 +50,7 @@
 				"name": "char_1",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			},
@@ -129,7 +129,7 @@
 				"name": "char_2",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			}

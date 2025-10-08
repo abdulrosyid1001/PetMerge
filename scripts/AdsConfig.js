@@ -38,6 +38,7 @@ var reward_ad = null;
 function init_config_ad() {
     switch (platform_ad) {
         case "Azerion":
+            is_have_ad = true;
             break;
         case "Gameloft":
             is_fullscreen = true;
@@ -99,7 +100,7 @@ export function init_ad() {
             const analyticsKeys = {
                 Glance: { game_key: "8ad2240137c6836d8352e4ced5020990", secret_key: "9543332977347ba142231b8e349fc9ec048a64c4" },
                 Lagged: { game_key: "0a85c98b9a4e162221699115b6761210", secret_key: "b80cf876404c869678d4665ec7cf3f0cb07a0148" },
-                Xiaomi_Deploy: { game_key: "0c5fe6ae9dcbd4c596d4b40737f4ecca", secret_key: "0fcc10df34a1fe95b6b7b5597fa4273b4d2fe390" },
+                Xiaomi_Deploy: { game_key: "35034979b0d180bc1bfa50153a9ad62e", secret_key: "a9d75776dad21d296f0b5a7b1f631578d2950fc4" },
                 Xiaomi: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" },
                 Test: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" }
             };
@@ -112,6 +113,65 @@ export function init_ad() {
                 // document.head.appendChild(script_tag);
                 setTimeout(() => LaggedAPI.init('lagdev_14489', 'ca-pub-2609959643441983'), 100);
             }
+            break;
+        case "Azerion":
+            window["GD_OPTIONS"] = {
+                "gameId": "7367d124b8ba4e71b56912555d149cb7",     //sample ad 7367d124b8ba4e71b56912555d149cb7 //deploy id_snakemaxx d5a03822f6cd4807a9f8d1d65212efe2
+                "onEvent": function(event) {
+                    console.log(event.name);
+                    switch (event.name) {
+                        case "SDK_GAME_START":
+                            // advertisement done, resume game logic and unmute audio
+                            break;
+                        case "SDK_GAME_PAUSE":
+                            if(is_done_ad){
+                                tracking_ad_status = "started";
+                            }
+                            else{
+                                window.c3_callFunction("start_ad");
+                            };
+                            // pause game logic / mute audio
+                            break;
+                        case "SDK_GDPR_TRACKING":
+                            // this event is triggered when your user doesn't want to be tracked
+                            break;
+                        case "SDK_GDPR_TARGETING":
+                            // this event is triggered when your user doesn't want personalised targeting of ads and such
+                            break;
+                        case "SDK_REWARDED_WATCH_COMPLETE":
+                            if(is_done_ad){
+                                 is_done_ad = false;
+                                tracking_ad_status = "completed";
+                            }
+                            else{
+                                window.c3_callFunction("end_ad");
+                            };
+                            // this event is triggered when your user completely watched rewarded ad
+                            break;
+                        case "SDK_ERROR":
+                        case "AD_ERROR":
+                        case "ALL_ADS_COMPLETED":
+                            if(is_done_ad){
+                                is_done_ad = false;
+                                tracking_ad_status = "skipped";
+                            }
+                            else{
+                                window.c3_callFunction("end_ad");
+                            };
+                            break;
+                    }
+                },
+            };
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://html5.api.gamedistribution.com/main.min.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'gamedistribution-jssdk'));
+
+            show_ad("interstitial");
             break;
         case "PlayDeck":
             parent.postMessage({ playdeck: { method: 'getUserProfile' } }, '*');
@@ -620,6 +680,16 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
     else if (ad_format == "rewarded") ad_event_GA("Clicked", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
     
     switch (platform_ad) {
+        case "Azerion":
+            if (_ad_format === "start_session") ad_format = "interstitial";
+            if (typeof gdsdk !== 'undefined' && gdsdk.showAd !== 'undefined') {
+                    is_done_ad = true;
+                    gdsdk.showAd(ad_format);
+            }
+            else{
+                tracking_ad_status = "skipped";
+            }
+            break;
         case "Glance":
             if (_ad_format === "start_session") ad_format = "interstitial";
             if (ad_format === "interstitial") {

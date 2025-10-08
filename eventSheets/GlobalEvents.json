@@ -4668,6 +4668,14 @@
 							],
 							"actions": [
 								{
+									"id": "set-scale",
+									"objectClass": "charEyesSettings",
+									"sid": 135824231488412,
+									"parameters": {
+										"scale": "0.1"
+									}
+								},
+								{
 									"id": "start-timer",
 									"objectClass": "charEyesSettings",
 									"sid": 787101736357407,
@@ -4694,6 +4702,14 @@
 								}
 							],
 							"actions": [
+								{
+									"id": "set-scale",
+									"objectClass": "charEyesSettings",
+									"sid": 618189221030983,
+									"parameters": {
+										"scale": "0.1"
+									}
+								},
 								{
 									"id": "start-timer",
 									"objectClass": "charEyesSettings",
@@ -10701,11 +10717,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 961280796012761,
+											"sid": 795770957771081,
 											"parameters": {
 												"variable": "level_select",
 												"comparison": 1,
-												"value": "1"
+												"value": "3"
 											}
 										}
 									],

@@ -50,7 +50,7 @@
 				"name": "CanaryEyes",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			},
@@ -139,14 +139,14 @@
 				"name": "FerretEyes",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			},
 			{
 				"frames": [
 					{
-						"width": 372,
+						"width": 395,
 						"height": 195,
 						"originX": 0.5,
 						"originY": 0.5,
@@ -154,20 +154,20 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 2910228,
+						"imageSpriteId": 2622867,
 						"collisionPoly": {
 							"points": [
-								0.20698924731182797,
+								0.2240506329113924,
 								0.07179487179487179,
-								0.8413978494623656,
+								0.8215189873417722,
 								0.15384615384615385,
-								0.9946236559139785,
+								0.9658227848101266,
 								0.8256410256410256,
-								0.9032258064516129,
+								0.879746835443038,
 								0.9948717948717949,
-								0.08333333333333333,
+								0.10759493670886076,
 								0.9897435897435898,
-								0.005376344086021506,
+								0.03417721518987342,
 								0.7794871794871795
 							]
 						},
@@ -210,7 +210,7 @@
 				"name": "CatEyes",
 				"isLooping": false,
 				"isPingPong": true,
-				"repeatCount": 1,
+				"repeatCount": 2,
 				"repeatTo": 0,
 				"speed": 5
 			}

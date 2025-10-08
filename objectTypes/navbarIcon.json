@@ -26,43 +26,79 @@
 			{
 				"frames": [
 					{
-						"width": 250,
-						"height": 250,
-						"originX": 0.488,
-						"originY": 0.736,
+						"width": 253,
+						"height": 251,
+						"originX": 0.4881422924901186,
+						"originY": 0.7350597609561753,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9627579,
+						"imageSpriteId": 2299003,
+						"collisionPoly": {
+							"points": [
+								0.005928853754940711,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.99800796812749,
+								0.005928853754940711,
+								0.99800796812749
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					},
 					{
-						"width": 250,
-						"height": 250,
-						"originX": 0.488,
-						"originY": 0.736,
+						"width": 253,
+						"height": 251,
+						"originX": 0.4881422924901186,
+						"originY": 0.7350597609561753,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9811915,
+						"imageSpriteId": 8981595,
+						"collisionPoly": {
+							"points": [
+								0.005928853754940711,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.99800796812749,
+								0.005928853754940711,
+								0.99800796812749
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					},
 					{
-						"width": 250,
-						"height": 250,
-						"originX": 0.488,
-						"originY": 0.736,
+						"width": 253,
+						"height": 251,
+						"originX": 0.4881422924901186,
+						"originY": 0.7350597609561753,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1243056,
+						"imageSpriteId": 7233829,
+						"collisionPoly": {
+							"points": [
+								0.005928853754940711,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.00199203187250996,
+								0.9940711462450593,
+								0.99800796812749,
+								0.005928853754940711,
+								0.99800796812749
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
