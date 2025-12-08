@@ -19,7 +19,7 @@
 			"eventType": "variable",
 			"name": "level_stage_max",
 			"type": "number",
-			"initialValue": "60",
+			"initialValue": "80",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
