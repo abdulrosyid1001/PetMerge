@@ -36,14 +36,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "GameAnalytics",
-			"name": "GameAnalytics",
-			"author": "GameAnalytics",
-			"bundled": false,
-			"version": "3.0.13"
-		},
-		{
-			"type": "plugin",
 			"id": "Json",
 			"name": "JSON",
 			"author": "Scirra",
@@ -394,7 +386,6 @@
 			"cat_Icon",
 			"boosters_value",
 			"Gamepad",
-			"GameAnalytics",
 			"goalsTracer",
 			"canopyTiled2",
 			"PopupDetailInfoDailyLogin",
