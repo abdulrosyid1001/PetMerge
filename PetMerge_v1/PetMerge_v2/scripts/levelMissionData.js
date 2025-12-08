@@ -784,6 +784,266 @@ export const levelMissionDataArr =
         ],
         "moves": 25,
         "probabilities" :[0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
+    },
+    {
+        "level": 61,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 62,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 63,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 64,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 65,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 66,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 67,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 68,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 69,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 70,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 71,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 72,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 73,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 74,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 75,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 76,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level":77,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 78,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 79,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+    },
+    {
+        "level": 80,
+        "goals": [
+            {
+                "goalsID": 5,
+                "qty": 2
+            }
+        ],
+        "moves": 50,
+        "isprobabilites" : false,
+        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
     }
 ]
 
