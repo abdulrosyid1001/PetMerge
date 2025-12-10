@@ -163,7 +163,7 @@ export const translations = {
         tuto_shake_unlocked: ["Shake Booster", "Didapatkan!", "Ketuk Tombol Shake"],
         shake: "Shake",
         shake_info_1: "Goyangkan Semua\nHewan dan Objek",
-        shake_info_2: "Goyang Kotak untuk Satukan Lebih Banyak Hewan!",
+        shake_info_2: "Goyang Kotak dan Satukan Lebih Banyak Hewan!",
         shake_info_3: "Tidak Ada Hewan dalam Kotak",
         tuto_rainbow_unlocked: ["Rainbow Booster", "Didapatkan!", "Ketuk Tombol Rainbow"],
         rainbow: "Rainbow",
