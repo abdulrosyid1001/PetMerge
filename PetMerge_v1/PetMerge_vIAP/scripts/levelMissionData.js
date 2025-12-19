@@ -1,6 +1,4 @@
-//v1.9
-export const levelMissionDataArr = 
-[
+export const levelMissionDataArr = [
     {
         "level": 1,
         "goals": [
@@ -10,9 +8,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 2,
@@ -23,9 +21,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.20, 0.20, 0.20, 0.00, 0.40, 0.00],
-        "nexttileseq" : [3,3,4,3,2,2,3,4,2,4,2,3,2,1,3,5,2,1,3,2,4,3,1,5,1,3,3,2,3,3]
+        "isprobabilites": false,
+        "probabilities": [0.20, 0.20, 0.20, 0.00, 0.40, 0.00],
+        "nexttileseq": [3, 3, 4, 3, 2, 2, 3, 4, 2, 4, 2, 3, 2, 1, 3, 5, 2, 1, 3, 2, 4, 3, 1, 5, 1, 3, 3, 2, 3, 3]
     },
     {
         "level": 3,
@@ -34,11 +32,11 @@ export const levelMissionDataArr =
                 "goalsID": 7,
                 "qty": 1,
             }
-          ],  
+        ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.20, 0.20, 0.30, 0.10, 0.00, 0.00],
-        "nexttileseq" : [4,3,4,2,4,4,0,2,4,4,3,2,4,1,2,3,4,3,0,1,2,3,4,2,0,1,2,3,4,3]
+        "isprobabilites": false,
+        "probabilities": [0.20, 0.20, 0.30, 0.10, 0.00, 0.00],
+        "nexttileseq": [4, 3, 4, 2, 4, 4, 0, 2, 4, 4, 3, 2, 4, 1, 2, 3, 4, 3, 0, 1, 2, 3, 4, 2, 0, 1, 2, 3, 4, 3]
     },
     {
         "level": 4,
@@ -47,11 +45,11 @@ export const levelMissionDataArr =
                 "goalsID": 7,
                 "qty": 2,
             }
-          ],  
+        ],
         "moves": 90,
-        "isprobabilites" : true,
-        "probabilities" :[0.30, 0.30, 0.20, 0.10, 0.10, 0.00],
-        "nexttileseq" : [4,3,4,2,4,4,0,2,4,4,3,2,4,1,2,3,4,3,0,1,2,3,4,2,0,1,2,3,4,3]
+        "isprobabilites": true,
+        "probabilities": [0.30, 0.30, 0.20, 0.10, 0.10, 0.00],
+        "nexttileseq": [4, 3, 4, 2, 4, 4, 0, 2, 4, 4, 3, 2, 4, 1, 2, 3, 4, 3, 0, 1, 2, 3, 4, 2, 0, 1, 2, 3, 4, 3]
     },
     {
         "level": 5,
@@ -62,9 +60,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.20, 0.20, 0.20, 0.00, 0.00],
-        "nexttileseq" : [0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.20, 0.20, 0.20, 0.00, 0.00],
+        "nexttileseq": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
     },
     {
         "level": 6,
@@ -75,9 +73,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-         "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00],
-        "nexttileseq" : [0,0,0,1,2,1,1,0,0,0,0,1,2,0,2,0,0,0,0,1,1,2,0,0,2,1,2,0,2,1]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00],
+        "nexttileseq": [0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 0, 1, 2, 0, 2, 0, 0, 0, 0, 1, 1, 2, 0, 0, 2, 1, 2, 0, 2, 1]
     },
     {
         "level": 7,
@@ -88,9 +86,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "isprobabilites" : false,
-        "probabilities" :[0.20, 0.40, 0.30, 0.10, 0.00, 0.00],
-        "nexttileseq" : [0,2,1,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5]
+        "isprobabilites": false,
+        "probabilities": [0.20, 0.40, 0.30, 0.10, 0.00, 0.00],
+        "nexttileseq": [0, 2, 1, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
     },
     {
         "level": 8,
@@ -101,9 +99,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-         "isprobabilites" : true,
-         "probabilities" :[0.40, 0.20, 0.20, 0.10, 0.10, 0.00],
-         "nexttileseq" : [0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.20, 0.20, 0.10, 0.10, 0.00],
+        "nexttileseq": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
     },
     {
         "level": 9,
@@ -114,9 +112,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 30,
-        "isprobabilites" : true,
-        "probabilities" :[0.50, 0.15, 0.20, 0.00, 0.15, 0.00],
-        "nexttileseq" : [0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5]
+        "isprobabilites": true,
+        "probabilities": [0.50, 0.15, 0.20, 0.00, 0.15, 0.00],
+        "nexttileseq": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
     },
     {
         "level": 10,
@@ -127,9 +125,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 30,
-        "isprobabilites" : true,
-        "probabilities" :[0.60, 0.15, 0.10, 0.00, 0.15, 0.00],
-        "nexttileseq" : [0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5]
+        "isprobabilites": true,
+        "probabilities": [0.60, 0.15, 0.10, 0.00, 0.15, 0.00],
+        "nexttileseq": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
     },
     {
         "level": 11,
@@ -140,18 +138,18 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.30, 0.20, 0.00, 0.30, 0.20, 0.00]
+        "probabilities": [0.30, 0.20, 0.00, 0.30, 0.20, 0.00]
     },
     {
         "level": 12,
         "goals": [
             {
-                "goalsID":9,
+                "goalsID": 9,
                 "qty": 1,
             }
         ],
         "moves": 50,
-        "probabilities" :[0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
     },
     {
         "level": 13,
@@ -162,7 +160,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.30, 0.10, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.30, 0.10, 0.30, 0.30, 0.00, 0.00]
     },
     {
         "level": 14,
@@ -177,7 +175,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
     },
     {
         "level": 15,
@@ -188,7 +186,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 16,
@@ -199,7 +197,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 17,
@@ -208,13 +206,13 @@ export const levelMissionDataArr =
                 "goalsID": 13,
                 "qty": 6,
             },
-             {
+            {
                 "goalsID": 6,
                 "qty": 1,
             }
         ],
         "moves": 25,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 18,
@@ -229,7 +227,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 19,
@@ -240,7 +238,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.45, 0.40, 0.15, 0.00, 0.00, 0.00]
+        "probabilities": [0.45, 0.40, 0.15, 0.00, 0.00, 0.00]
     },
     {
         "level": 20,
@@ -255,7 +253,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 25,
-        "probabilities" :[0.45, 0.40, 0.10, 0.05, 0.00, 0.00]
+        "probabilities": [0.45, 0.40, 0.10, 0.05, 0.00, 0.00]
     },
     {
         "level": 21,
@@ -270,7 +268,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 45,
-        "probabilities" :[0.30, 0.20, 0.25, 0.10, 0.15, 0.00]
+        "probabilities": [0.30, 0.20, 0.25, 0.10, 0.15, 0.00]
     },
     {
         "level": 22,
@@ -281,7 +279,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 25,
-        "probabilities" :[0.50, 0.20, 0.20, 0.10, 0.00, 0.00]
+        "probabilities": [0.50, 0.20, 0.20, 0.10, 0.00, 0.00]
     },
     {
         "level": 23,
@@ -292,7 +290,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.20, 0.30, 0.20, 0.10, 0.10, 0.10]
+        "probabilities": [0.20, 0.30, 0.20, 0.10, 0.10, 0.10]
     },
     {
         "level": 24,
@@ -303,7 +301,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.30, 0.25, 0.20, 0.10, 0.10, 0.00]
+        "probabilities": [0.30, 0.25, 0.20, 0.10, 0.10, 0.00]
     },
     {
         "level": 25,
@@ -318,7 +316,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.30, 0.20, 0.15, 0.10, 0.10, 0.05]
+        "probabilities": [0.30, 0.20, 0.15, 0.10, 0.10, 0.05]
     },
     {
         "level": 26,
@@ -329,7 +327,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 45,
-        "probabilities" :[0.30, 0.30, 0.20, 0.20, 0.00, 0.00]
+        "probabilities": [0.30, 0.30, 0.20, 0.20, 0.00, 0.00]
     },
     {
         "level": 27,
@@ -348,7 +346,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.40, 0.40, 0.10, 0.05, 0.05, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.05, 0.05, 0.00]
     },
     {
         "level": 28,
@@ -363,7 +361,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 55,
-        "probabilities" :[0.30, 0.30, 0.20, 0.10, 0.00, 0.00]
+        "probabilities": [0.30, 0.30, 0.20, 0.10, 0.00, 0.00]
     },
     {
         "level": 29,
@@ -374,7 +372,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 30,
-        "probabilities" :[0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
     },
     {
         "level": 30,
@@ -393,7 +391,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 31,
@@ -408,7 +406,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 32,
@@ -419,7 +417,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.50, 0.30, 0.20, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.30, 0.20, 0.00, 0.00, 0.00]
     },
     {
         "level": 33,
@@ -430,7 +428,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 34,
@@ -445,9 +443,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
     },
-{
+    {
         "level": 35,
         "goals": [
             {
@@ -456,7 +454,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.20, 0.20, 0.30, 0.30, 0.00, 0.00]
     },
     {
         "level": 36,
@@ -471,7 +469,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 37,
@@ -490,7 +488,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.45, 0.40, 0.15, 0.05, 0.00, 0.00]
+        "probabilities": [0.45, 0.40, 0.15, 0.05, 0.00, 0.00]
     },
     {
         "level": 38,
@@ -501,7 +499,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.30, 0.10, 0.30, 0.30, 0.00, 0.00]
+        "probabilities": [0.30, 0.10, 0.30, 0.30, 0.00, 0.00]
     },
     {
         "level": 39,
@@ -512,7 +510,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 70,
-        "probabilities" :[0.25, 0.20, 0.10, 0.20, 0.15, 0.10]
+        "probabilities": [0.25, 0.20, 0.10, 0.20, 0.15, 0.10]
     },
     {
         "level": 40,
@@ -523,7 +521,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 60,
-        "probabilities" :[0.45, 0.40, 0.10, 0.05, 0.00, 0.00]
+        "probabilities": [0.45, 0.40, 0.10, 0.05, 0.00, 0.00]
     },
     {
         "level": 41,
@@ -538,18 +536,18 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 45,
-        "probabilities" :[0.10, 0.20, 0.35, 0.10, 0.20, 0.15]
+        "probabilities": [0.10, 0.20, 0.35, 0.10, 0.20, 0.15]
     },
     {
         "level": 42,
-         "goals": [
+        "goals": [
             {
                 "goalsID": 6,
                 "qty": 1,
             }
         ],
         "moves": 25,
-        "probabilities" :[0.50, 0.20, 0.20, 0.10, 0.00, 0.00]
+        "probabilities": [0.50, 0.20, 0.20, 0.10, 0.00, 0.00]
     },
     {
         "level": 43,
@@ -560,7 +558,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.30, 0.40, 0.30, 0.00, 0.00, 0.00]
+        "probabilities": [0.30, 0.40, 0.30, 0.00, 0.00, 0.00]
     },
     {
         "level": 44,
@@ -571,9 +569,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.20, 0.20, 0.40, 0.20, 0.00, 0.00]
+        "probabilities": [0.20, 0.20, 0.40, 0.20, 0.00, 0.00]
     },
-        {
+    {
         "level": 45,
         "goals": [
             {
@@ -582,7 +580,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 60,
-        "probabilities" :[0.55, 0.40, 0.05, 0.00, 0.00, 0.00]
+        "probabilities": [0.55, 0.40, 0.05, 0.00, 0.00, 0.00]
     },
     {
         "level": 46,
@@ -597,7 +595,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.30, 0.30, 0.20, 0.20, 0.00, 0.00]
+        "probabilities": [0.30, 0.30, 0.20, 0.20, 0.00, 0.00]
     },
     {
         "level": 47,
@@ -612,7 +610,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.30, 0.40, 0.20, 0.05, 0.05, 0.00]
+        "probabilities": [0.30, 0.40, 0.20, 0.05, 0.05, 0.00]
     },
     {
         "level": 48,
@@ -623,7 +621,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 25,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
     },
     {
         "level": 49,
@@ -638,7 +636,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 20,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 50,
@@ -649,7 +647,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
     },
     {
         "level": 51,
@@ -658,13 +656,13 @@ export const levelMissionDataArr =
                 "goalsID": 6,
                 "qty": 2,
             },
-             {
+            {
                 "goalsID": 7,
                 "qty": 1,
             }
         ],
         "moves": 20,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
     },
     {
         "level": 52,
@@ -675,7 +673,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 45,
-        "probabilities" :[0.40, 0.35, 0.25, 0.00, 0.00, 0.00]
+        "probabilities": [0.40, 0.35, 0.25, 0.00, 0.00, 0.00]
     },
     {
         "level": 53,
@@ -690,7 +688,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 54,
@@ -701,9 +699,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.10, 0.10, 0.25, 0.30, 0.10, 0.15]
+        "probabilities": [0.10, 0.10, 0.25, 0.30, 0.10, 0.15]
     },
-{
+    {
         "level": 55,
         "goals": [
             {
@@ -716,7 +714,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 45,
-        "probabilities" :[0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
     },
     {
         "level": 56,
@@ -727,7 +725,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 25,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
     },
     {
         "level": 57,
@@ -738,7 +736,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 40,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00]
     },
     {
         "level": 58,
@@ -747,7 +745,7 @@ export const levelMissionDataArr =
                 "goalsID": 14,
                 "qty": 1,
             },
-                       {
+            {
                 "goalsID": 13,
                 "qty": 3,
             },
@@ -757,7 +755,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 35,
-        "probabilities" :[0.30, 0.30, 0.30, 0.10, 0.00, 0.00]
+        "probabilities": [0.30, 0.30, 0.30, 0.10, 0.00, 0.00]
     },
     {
         "level": 59,
@@ -772,7 +770,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 20,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00]
     },
     {
         "level": 60,
@@ -783,7 +781,7 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 25,
-        "probabilities" :[0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
+        "probabilities": [0.50, 0.40, 0.10, 0.00, 0.00, 0.00]
     },
     {
         "level": 61,
@@ -794,9 +792,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.10, 0.10, 0.20, 0.20, 0.20, 0.20],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.10, 0.10, 0.20, 0.20, 0.20, 0.20],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 62,
@@ -807,9 +805,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 63,
@@ -824,9 +822,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 64,
@@ -841,9 +839,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 65,
@@ -854,9 +852,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 66,
@@ -867,9 +865,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 67,
@@ -880,9 +878,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 68,
@@ -893,9 +891,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.00, 0.00, 0.40, 0.50, 0.10, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.00, 0.00, 0.40, 0.50, 0.10, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 69,
@@ -906,9 +904,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 70,
@@ -919,9 +917,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 71,
@@ -932,9 +930,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : true,
-        "probabilities" :[0.50, 0.50, 0.00, 0.00, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": true,
+        "probabilities": [0.50, 0.50, 0.00, 0.00, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 72,
@@ -945,9 +943,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 73,
@@ -958,9 +956,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 74,
@@ -971,9 +969,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 75,
@@ -984,9 +982,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 76,
@@ -997,12 +995,12 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
-        "level":77,
+        "level": 77,
         "goals": [
             {
                 "goalsID": 5,
@@ -1010,9 +1008,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 78,
@@ -1023,9 +1021,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 79,
@@ -1036,9 +1034,9 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     },
     {
         "level": 80,
@@ -1049,27 +1047,8 @@ export const levelMissionDataArr =
             }
         ],
         "moves": 50,
-        "isprobabilites" : false,
-        "probabilities" :[0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
-        "nexttileseq" : [1,0,1,2,2,3,1,0,1,0,3,4,1,0,1,2,3,4,1,0,1,2,3,4,1,0,1,2,3,4]
+        "isprobabilites": false,
+        "probabilities": [0.40, 0.40, 0.10, 0.10, 0.00, 0.00],
+        "nexttileseq": [1, 0, 1, 2, 2, 3, 1, 0, 1, 0, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4]
     }
-]
-
-//index of GoalsID
-// 0 = Betta Fish
-// 1 = Hamster
-// 2 = Canary
-// 3 = Hedgehog
-// 4 = Sugar Glider
-// 5 = Owl
-// 6 = Ferret
-// 7 = Rabbit
-// 8 = Racoon
-// 9 = Cat
-// 10 = Dog
-// 11 = Alpaca
-// 12 = Albino Lion
-// 13 = Wood Box
-// 14 = Jam Box
-// 15 = Ice Box
-// 16 = Mystery Box
+];

@@ -623,17 +623,17 @@
 					}
 				},
 				{
-					"name": "languanges.js",
+					"name": "IAP.js",
 					"type": "application/javascript",
-					"sid": 367443694923898,
+					"sid": 544569986103574,
 					"script-info": {
 						"purpose": "none"
 					}
 				},
 				{
-					"name": "IAP.js",
+					"name": "languages.js",
 					"type": "application/javascript",
-					"sid": 544569986103574,
+					"sid": 807393116871064,
 					"script-info": {
 						"purpose": "none"
 					}

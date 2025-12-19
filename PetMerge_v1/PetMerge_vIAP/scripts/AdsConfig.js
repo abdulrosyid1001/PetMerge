@@ -1,41 +1,66 @@
+// Platform ad constants
+const PLATFORM_AZERION_GAME_ID = "35799317c8454449b2ecb58536664069";
+const PLATFORM_AZERION_PREFIX = "petmerge_sample";
+const TIMEOUT_GA = 5000;
+const MS_24_HOURS = 86400000;
+const RETRY_DELAY = 100;
+const MAX_RETRIES = 20;
+
+// Analytics keys configuration
+const ANALYTICS_KEYS = {
+    Glance: { game_key: "8ad2240137c6836d8352e4ced5020990", secret_key: "9543332977347ba142231b8e349fc9ec048a64c4" },
+    Lagged: { game_key: "0a85c98b9a4e162221699115b6761210", secret_key: "b80cf876404c869678d4665ec7cf3f0cb07a0148" },
+    Xiaomi_Deploy: { game_key: "49a4f0e87b93b5b6c35676a2ee5a1090", secret_key: "1505e964159429e596e440b7298a735e87d3ce37" },
+    Xiaomi: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" },
+    Test: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" },
+    Gopay: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" }
+};
+
+// Facebook ad placement IDs
+const FB_AD_PLACEMENT_ID = "1036071814995688_403800600388584";
+
 // Configuration and state variables
 export let platform_ad = "Stagging";
 export let parent = window.parent.window;
-export let get_lang = new URLSearchParams(window.location.search).get('lang') || "en"; // Default to English ("en")
-export let god_mode = new URLSearchParams(window.location.search).get('gm') || "on"; // Default to "off"
-export let tracking_ad_status = "none"; // Tracks ad status (e.g., started, completed, skipped)
-export let is_done_ad = false; // Prevents multiple ad calls on single button click
-export let is_have_ad = false; // True: use platform ads, False: use sample ads
-export let is_game_analytics = false; // Enables/disables game analytics
-export let is_bottom_banner = false; // Controls bottom banner display
-export let is_label_showed = false; // Controls label visibility
-export let is_top_margin = false; // Controls top margin for banner
-export let bottom_height = 120; // Banner height when active
-export let is_fullscreen = false; // Fullscreen mode status
+export let get_lang = new URLSearchParams(window.location.search).get('lang') || "en";
+export let god_mode = new URLSearchParams(window.location.search).get('gm') || "on";
+export let tracking_ad_status = "none";
+export let is_done_ad = false;
+export let is_have_ad = false;
+export let is_game_analytics = false;
+export let is_bottom_banner = false;
+export let is_label_showed = false;
+export let is_top_margin = false;
+export let bottom_height = 120;
+export let is_fullscreen = false;
 export let init_success = false;
-export var userName = "";
-export var storagePlatform = "";
-export var remaining_ad = 10;
+export let userName = "";
+export let storagePlatform = "";
+export let remaining_ad = 10;
+export const timeout_GA = TIMEOUT_GA;
+export let is_loaded_banner_ad = false;
 
-let is_start_init = false; // Tracks initial game start
-let initialization_ad = false; // Tracks ad initialization
-let count_ad_reward = 0; // Tracks rewarded ad count
-let count_ad_interstitial = 0; // Tracks interstitial ad count
-let count_ad_reset = false; // Tracks ad reset state
-let ad_format; // Current ad format (e.g., interstitial, rewarded)
-let ad_reward_state; // State for rewarded ads
-let is_grant_reward = false; // Tracks reward grant status
-let once_preload = false; // Tracks ad preload status
+let is_start_init = false;
+let initialization_ad = false;
+let count_ad_reward = 0;
+let count_ad_interstitial = 0;
+let count_ad_reset = false;
+let ad_format;
+let ad_reward_state;
+let is_grant_reward = false;
+let once_preload = false;
 let ad_placement = "null";
-export const timeout_GA = 5000;
 let is_loaded_interstitial_ad = false;
 let is_loaded_rewarded_ad = false;
-export let is_loaded_banner_ad = false;
-var interst_ad = null;
-var reward_ad = null;
+let interst_ad = null;
+let reward_ad = null;
+let gameplay_status_global = "none";
 
-
-function init_config_ad() {
+/**
+ * Initializes ad configuration based on the current platform
+ * Sets platform-specific flags like fullscreen, bottom banner, etc.
+ */
+const init_config_ad = () => {
     switch (platform_ad) {
         case "Azerion":
             is_have_ad = true;
@@ -97,10 +122,13 @@ function init_config_ad() {
             is_fullscreen = true;
             break;
     }
-}
+};
 
-// Initialize ad system
-export function init_ad() {
+/**
+ * Initializes the ad SDK for the current platform
+ * Loads platform-specific SDKs and sets up event listeners
+ */
+export const init_ad = () => {
     switch (platform_ad) {
         case "Glance":
         case "Lagged":
@@ -108,79 +136,49 @@ export function init_ad() {
         case "Xiaomi":
         case "Gopay":
             is_game_analytics = true;
-            const analyticsKeys = {
-                Glance: { game_key: "8ad2240137c6836d8352e4ced5020990", secret_key: "9543332977347ba142231b8e349fc9ec048a64c4" },
-                Lagged: { game_key: "0a85c98b9a4e162221699115b6761210", secret_key: "b80cf876404c869678d4665ec7cf3f0cb07a0148" },
-                Xiaomi_Deploy: { game_key: "49a4f0e87b93b5b6c35676a2ee5a1090", secret_key: "1505e964159429e596e440b7298a735e87d3ce37" },
-                Xiaomi: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" },
-                Test: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" },
-                Gopay: { game_key: "0d76c889ecc5d264114c0560d6d1c5ee", secret_key: "b624637ee346ddda537d7def9a54bcb6e50d87a8" }
-            };
-            const { game_key, secret_key } = analyticsKeys[platform_ad] || {};
+            const { game_key, secret_key } = ANALYTICS_KEYS[platform_ad] || {};
             game_analytics("initialize", game_key, secret_key);
             if (platform_ad === "Lagged") {
                 preventDefaultNavigation();
-                // const script_tag = document.createElement('script');
-                // script_tag.src = 'https://lagged.com/api/rev-share/lagged.js';
-                // document.head.appendChild(script_tag);
                 setTimeout(() => LaggedAPI.init('lagdev_14489', 'ca-pub-2609959643441983'), 100);
             }
             break;
         case "Azerion":
             window["GD_OPTIONS"] = {
-                "gameId": "35799317c8454449b2ecb58536664069",     //sample ad 35799317c8454449b2ecb58536664069 //deployid 3592b08b0e944ff1b45c09d8f3b06d64
-                "prefix": "petmerge_sample",
-                "onEvent": function(event) {
-                    console.log(event.name);
+                "gameId": PLATFORM_AZERION_GAME_ID,
+                "prefix": PLATFORM_AZERION_PREFIX,
+                "onEvent": (event) => {
                     switch (event.name) {
                         case "SDK_GAME_START":
-                            // advertisement done, resume game logic and unmute audio
                             break;
                         case "SDK_GAME_PAUSE":
-                            console.log("is_done_ad_pause", is_done_ad);
-                            if(is_done_ad){
+                            if (is_done_ad) {
                                 tracking_ad_status = "started";
-                            }
-                            else{
+                            } else {
                                 window.c3_callFunction("start_ad");
-                            };
-                            // pause game logic / mute audio
+                            }
                             break;
                         case "SDK_GDPR_TRACKING":
-                            // this event is triggered when your user doesn't want to be tracked
                             break;
                         case "SDK_GDPR_TARGETING":
-                            // this event is triggered when your user doesn't want personalised targeting of ads and such
                             break;
                         case "SDK_REWARDED_WATCH_COMPLETE":
-                            console.log("is_done_ad_watch_completed", is_done_ad);
-                            // if(is_done_ad){
-                            //      is_done_ad = false;
-                            //     tracking_ad_status = "completed";
-                            // }
-                            // else{
-                            //     window.c3_callFunction("end_ad");
-                            // };
-                            // this event is triggered when your user completely watched rewarded ad
                             break;
                         case "SDK_ERROR":
                         case "AD_ERROR":
                         case "ALL_ADS_COMPLETED":
-                            console.log("is_done_all_ads", is_done_ad);
-                            if(is_done_ad){
+                            if (is_done_ad) {
                                 is_done_ad = false;
-                                if(ad_format == "interstitial"){
+                                if (ad_format === "interstitial") {
                                     is_loaded_interstitial_ad = false;
                                     tracking_ad_status = "skipped";
-                                }
-                                else if(ad_format == "rewarded"){
+                                } else if (ad_format === "rewarded") {
                                     is_loaded_rewarded_ad = false;
                                     tracking_ad_status = "completed";
                                 }
-                            }
-                            else{
+                            } else {
                                 window.c3_callFunction("end_ad");
-                            };
+                            }
                             break;
                         case "DISPLAYAD_IMPRESSION":
                             is_loaded_banner_ad = true;
@@ -188,36 +186,28 @@ export function init_ad() {
                     }
                 },
             };
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
+            ((d, s, id) => {
+                const fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
-                js = d.createElement(s);
+                const js = d.createElement(s);
                 js.id = id;
                 js.src = 'https://html5.api.gamedistribution.com/main.min.js';
                 fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'gamedistribution-jssdk'));
-
+            })(document, 'script', 'gamedistribution-jssdk');
             break;
         case "PlayDeck":
             parent.postMessage({ playdeck: { method: 'getUserProfile' } }, '*');
             window.addEventListener('message', handlePlayDeckMessages);
             break;
         case "Poki":
-            //  is_game_analytics = true;
-            // game_analytics("initialize", "0d76c889ecc5d264114c0560d6d1c5ee", "b624637ee346ddda537d7def9a54bcb6e50d87a8");
-
             preventDefaultNavigation();
-            // const script_tag = document.createElement('script');
-            // script_tag.src = 'https://game-cdn.poki.com/scripts/v2/poki-sdk.js';
-            // document.head.appendChild(script_tag);
             setTimeout(() => {
                 if (window.PokiSDK) {
                     PokiSDK.init()
                         .then(() => {
-                            console.log("Poki SDK successfully initialized");
-                            PokiSDK.setDebug(true);
+                            PokiSDK.setDebug(false);
                         })
-                        .catch(() => console.log("Poki SDK failed, loading game anyway"));
+                        .catch(() => {});
                 }
             }, 150);
             break;
@@ -225,109 +215,71 @@ export function init_ad() {
             YaGames
             .init()
             .then(ysdk => {
-                console.log('Yandex SDK initialized');
                 window.ysdk = ysdk;
             });
             YaGames.init()
             .then(ysdk => ysdk.getFlags())
             .then(flags => {
-                if (flags.difficulty === 'hard'){
-                
-                }
+                if (flags.difficulty === 'hard') {}
             });
             break;
         case "Facebook":
-            // const script_tag = document.createElement('script');
-            // script_tag.src = 'https://connect.facebook.net/en_US/fbinstant.7.1.js';
-            // document.head.appendChild(script_tag);
             setTimeout(() => {
                  FBInstant.initializeAsync()
-                .then(function() {
-                    return FBInstant.startGameAsync();
-                })
-                .then(function() {
+                .then(() => FBInstant.startGameAsync())
+                .then(() => {
                     const playerName = FBInstant.player.getName();
                     const playerId = FBInstant.player.getID();
-                    
-                    console.log("Player Name:", playerName);
-                    console.log("Player ID:", playerId);
-                    console.log("Player Locale:", FBInstant.getLocale());
                 });
             }, 300);
             break;
         case "Huawei":
-            // const script_tag = document.createElement('script');
-            // script_tag.src = 'https://h5hosting.dbankcdn.com/cch5/pps-jssdk/mobile/ppsads.js';
-            // document.head.appendChild(script_tag);
             break;
         case "CrazyGames":
-            function waitForUserName(retries = 20, delay = 100) {
+            const waitForUserName = (retries = MAX_RETRIES, delay = RETRY_DELAY) => {
                 if (typeof window.CrazyGames !== undefined && typeof window.CrazyGames.SDK !== undefined) {
-                    if (window.userName != undefined && window.userName != "Guest") {
+                    if (window.userName !== undefined && window.userName !== "Guest") {
                         userName = window.userName;
                         storagePlatform = "crazygames_storage";
-                    }
-                    else{
-                        if (retries > 0) {
-                            setTimeout(() => waitForUserName(retries - 1, delay), delay);
-                        } else {
-                            storagePlatform = "local";
-                        } 
-                    }
-                } else {
-                    if (retries > 0) {
+                    } else if (retries > 0) {
                         setTimeout(() => waitForUserName(retries - 1, delay), delay);
                     } else {
                         storagePlatform = "local";
                     }
+                } else if (retries > 0) {
+                    setTimeout(() => waitForUserName(retries - 1, delay), delay);
+                } else {
+                    storagePlatform = "local";
                 }
-            }
-            // waitForUserName();
+            };
             const script_tag = document.createElement('script');
             script_tag.src = 'https://sdk.crazygames.com/crazygames-sdk-v3.js';
             document.head.appendChild(script_tag);
-            
+
             setTimeout(() => {
                 if (window.CrazyGames) {
-                    console.log("start init");
                     window.CrazyGames.SDK.init()
                         .then(() => {
-                            // window.CrazyGames.SDK.user.getUser()
-                            // .then(user => {
-                            //     if (user) {
-                            //     console.log("Username:", user.username); 
-                            //     userName = user.username;   // simpan ke global var
-                            //     } else {
-                            //     console.log("User not logged in");
-                            //     }
-                            // })
-                            // .catch(err => {
-                            //     console.error("Failed to get user", err);
-                            // });
                             waitForUserName();
-                        })  
-                        .catch(() => console.log("SDK failed, loading game anyway"));
+                        })
+                        .catch(() => {});
                 }
             }, 500);
-            
-
             break;
     }
-    console.log("init_success");
-}
+};
 
-// Prevent default navigation for specific platforms
-function preventDefaultNavigation() {
-    // window.addEventListener('keydown', ev => {
-    //     if (['ArrowDown', 'ArrowUp', ' '].includes(ev.key)) {
-    //         ev.preventDefault();
-    //     }
-    // });
-    // window.addEventListener('wheel', ev => ev.preventDefault(), { passive: false });
-}
+/**
+ * Prevents default navigation behavior for certain platforms
+ * Currently disabled but can be used to prevent scrolling/key events
+ */
+const preventDefaultNavigation = () => {};
 
-// Handle PlayDeck messages
-function handlePlayDeckMessages({ data }) {
+/**
+ * Handles messages from PlayDeck platform
+ * @param {Object} data - Message data from PlayDeck
+ */
+const handlePlayDeckMessages = ({ data }) => {
     const playdeck = data?.playdeck;
     if (!playdeck) return;
 
@@ -351,34 +303,50 @@ function handlePlayDeckMessages({ data }) {
             tracking_ad_status = "started";
             break;
     }
-}
+};
 
-// Initialize ad system on first run
 if (!initialization_ad) {
     initialization_ad = true;
     init_config_ad();
     init_ad();
 }
 
-// Ad tracking functions
-export function set_tracking_ad_status(status) {
+/**
+ * Sets the ad tracking status
+ * @param {string} status - Status to set (e.g., "started", "completed", "skipped", "error")
+ */
+export const set_tracking_ad_status = (status) => {
     tracking_ad_status = status;
-}
+};
 
-export function none_tracking_ad_status() {
+/**
+ * Resets ad tracking status to "none"
+ */
+export const none_tracking_ad_status = () => {
     tracking_ad_status = "none";
-}
+};
 
-export function set_ad_placement(ap = "") {
+/**
+ * Sets the ad placement identifier for analytics
+ * @param {string} ap - Ad placement identifier
+ */
+export const set_ad_placement = (ap = "") => {
     ad_placement = ap;
-}
+};
 
-export function no_ad_show() {
+/**
+ * Resets the ad done flag
+ */
+export const no_ad_show = () => {
     is_done_ad = false;
-}
+};
 
-// Handle game loading completion
-export function game_loading_completed(loading_pg) {
+/**
+ * Called when game loading is completed
+ * Notifies the platform SDK that the game is ready to play
+ * @param {number} loading_pg - Loading progress percentage (0-100)
+ */
+export const game_loading_completed = (loading_pg) => {
     switch (platform_ad) {
         case "Glance":
             window.progressBar(loading_pg);
@@ -404,46 +372,37 @@ export function game_loading_completed(loading_pg) {
         case "Xiaomi":
             try {
                 if (window.funmax && window.funmax.loadReady) {
-                window.funmax.loadReady()
+                    window.funmax.loadReady();
                 }
             } catch (e) {
-                console.error(e)
+                console.error(e);
             }
-            console.log('loadReady')
             break;
         case "Yandex":
             ysdk.features.LoadingAPI.ready();
             break;
         case "Facebook":
-            // Informs the SDK of loading progress
             FBInstant.setLoadingProgress(100);
-            // FBInstant.startGameAsync()
-		    // .then(function() {
-            // console.log("start_Game");
-		    // });
             break;
         case "CrazyGames":
-            // window.CrazyGames.SDK.game.loadingStop();
             break;
         case "Azerion":
-            // if (typeof gdsdk !== 'undefined' && gdsdk.showAd !== 'undefined') {
-            //     console.log("start_preroll");
-            //     gdsdk.showAd("interstitial");
-            // }
             break;
     }
-}
+};
 
-// Handle gameplay events
-var gameplay_status_global = "none";
-export function gameplay(gameplay_status, days = 0) {
+/**
+ * Tracks gameplay events for analytics
+ * @param {string} gameplay_status - Status: "start", "stop", "replay", "days", "homepage", "game_life_end", "completed_transactions"
+ * @param {number} days - Number of days (used for return tracking)
+ */
+export const gameplay = (gameplay_status, days = 0) => {
     gameplay_status_global = gameplay_status;
     switch (platform_ad) {
         case "Glance":
             const glanceEvents = {
                 start: () => {
                     if (!is_start_init) {
-                        console.log("start_gameplay");
                         is_start_init = true;
                         window.sendCustomAnalyticsEvent("game_start", {});
                     } else {
@@ -451,19 +410,15 @@ export function gameplay(gameplay_status, days = 0) {
                     }
                 },
                 replay: () => {
-                    console.log("replay_gameplay");
                     window.sendCustomAnalyticsEvent("game_replay", {});
                 },
                 stop: () => {
-                    console.log("end_gameplay");
                     window.sendCustomAnalyticsEvent("game_end", {});
                 },
                 game_life_end: () => {
-                    console.log("game_life_end");
                     window.sendCustomAnalyticsEvent("game_life_end", {});
                 },
                 completed_transactions: () => {
-                    console.log("completed_transactions");
                     window.sendCustomAnalyticsEvent("ingame_transactions", {});
                 }
             };
@@ -497,10 +452,8 @@ export function gameplay(gameplay_status, days = 0) {
             break;
         case "Yandex":
             if (gameplay_status === "start") {
-                console.log("start_gameplay");
                 ysdk.features.GameplayAPI.start();
             } else if (gameplay_status === "stop") {
-                console.log("stop_gameplay");
                 ysdk.features.GameplayAPI.stop();
             }
             break;
@@ -511,36 +464,33 @@ export function gameplay(gameplay_status, days = 0) {
             }
             break;
     }
-}
+};
 
-// Track ad completion
-export function tracking_is_done_ad(_is_done_ad) {
+/**
+ * Sets whether an ad is currently being processed
+ * @param {boolean} _is_done_ad - True if ad is done/being processed
+ */
+export const tracking_is_done_ad = (_is_done_ad) => {
     is_done_ad = _is_done_ad;
-}
+};
 
-//for majamojo
-// function isJsonString(str) {       
-// 	try {
-// 		var data = JSON.parse(str);
-// 		return data;
-// 	} catch (e) {
-// 		return false;
-// 	}
-// }
-
-// Game analytics initialization and events
-export function game_analytics(ga, game_key, secret_key) {
+/**
+ * Manages game analytics initialization and session tracking
+ * @param {string} ga - Analytics action: "initialize", "start_session", "end_session"
+ * @param {string} game_key - Game analytics key
+ * @param {string} secret_key - Game analytics secret key
+ */
+export const game_analytics = (ga, game_key, secret_key) => {
     if (!is_game_analytics) return;
 
     switch (ga) {
         case "initialize":
-            //NEW RULE FOR INIT GA, set this event to index html after load the JS.
             gameanalytics.GameAnalytics.configureAvailableResourceCurrencies(["coins", "hammer", "shake", "brush", "rainbow"]);
             gameanalytics.GameAnalytics.configureAvailableResourceItemTypes(["shop", "star_jar", "daily_login", "weekly_login", "add_booster_pop", "buy_booster_pop", "use_booster", "tutorial", "insufficient_pop_up", "initial", "buy_moves"]);
             gameanalytics.GameAnalytics.configureAvailableCustomDimensions01(["new_user", "returning_user", "old_user"]);
             gameanalytics.GameAnalytics.initialize(game_key, secret_key);
             gameanalytics.GameAnalytics.setEnabledInfoLog(true);
-            setTimeout(() => progression_event("start", "loading"), timeout_GA);
+            setTimeout(() => progression_event("start", "loading"), TIMEOUT_GA);
             break;
         case "start_session":
             gameanalytics.GameAnalytics.startSession();
@@ -549,10 +499,17 @@ export function game_analytics(ga, game_key, secret_key) {
             gameanalytics.GameAnalytics.endSession();
             break;
     }
-}
+};
 
-// Progression event tracking
-export function progression_event(pe = "null", prog_1 = "null", prog_2 = "null", prog_3 = "null", game_score = 0) {
+/**
+ * Tracks game progression events for analytics
+ * @param {string} pe - Event type: "start", "completed", "failed"
+ * @param {string} prog_1 - Primary progression identifier (e.g., "level_1", "loading")
+ * @param {string} prog_2 - Secondary progression identifier
+ * @param {string} prog_3 - Tertiary progression identifier
+ * @param {number} game_score - Score achieved in this progression
+ */
+export const progression_event = (pe = "null", prog_1 = "null", prog_2 = "null", prog_3 = "null", game_score = 0) => {
     if (is_game_analytics) {
         const progression = gameanalytics.EGAProgressionStatus;
         if (pe === "start") {
@@ -575,47 +532,49 @@ export function progression_event(pe = "null", prog_1 = "null", prog_2 = "null",
             parent.postMessage({ playdeck: { method: 'sendAnalytics', value: event_progress } }, '*');
         }
     }
-}
-//Design event tracking
-export function design_event(de_parent = "null", de_child = "null", de_value = 0){
+};
+
+/**
+ * Tracks custom design events for analytics
+ * @param {string} de_parent - Parent event category
+ * @param {string} de_child - Child event name
+ * @param {number} de_value - Event value
+ */
+export const design_event = (de_parent = "null", de_child = "null", de_value = 0) => {
     if (is_game_analytics) {
         gameanalytics.GameAnalytics.addDesignEvent(`${de_parent}:${de_child}`, de_value);
     }
-}
-//Resouce event tracking
-export function resource_event(re = "null", item_type = "null", item_id = "null", currency_re = "null", amount_re = 0){
+};
+
+export const resource_event = (re = "null", item_type = "null", item_id = "null", currency_re = "null", amount_re = 0) => {
     if (is_game_analytics) {
         const resource = gameanalytics.EGAResourceFlowType;
-        if(re === "source"){
+        if (re === "source") {
             gameanalytics.GameAnalytics.addResourceEvent(resource.Source, currency_re, amount_re, item_type, item_id, "");
-        }
-        else if(re === "sink"){
+        } else if (re === "sink") {
             gameanalytics.GameAnalytics.addResourceEvent(resource.Sink, currency_re, amount_re, item_type, item_id, "");
         }
     }
-}
-//Dimension event tracking
-export function dimension_event_GA(de_value = ""){
+};
+
+export const dimension_event_GA = (de_value = "") => {
     if (is_game_analytics) {
-        if(de_value === "new_user"){
+        if (de_value === "new_user") {
             gameanalytics.GameAnalytics.setCustomDimension01("new_user");
-        }
-        else if(de_value === "returning_user"){
+        } else if (de_value === "returning_user") {
             gameanalytics.GameAnalytics.setCustomDimension01("returning_user");
-        }
-         else if(de_value === "old_user"){
+        } else if (de_value === "old_user") {
             gameanalytics.GameAnalytics.setCustomDimension01("old_user");
         }
     }
-}
-//Ads event tracking
-export function ad_event_GA(ad_action = "Clicked", ad_type = "RewardedVideo", ad_sdk_name = "xiaomi", ad_placement = "ad_for_coins", custom_field = "", merge_field = ""){
+};
+
+export const ad_event_GA = (ad_action = "Clicked", ad_type = "RewardedVideo", ad_sdk_name = "xiaomi", ad_placement = "ad_for_coins", custom_field = "", merge_field = "") => {
     if (is_game_analytics) {
         gameanalytics.GameAnalytics.addAdEvent(gameanalytics.EGAAdAction[ad_action], gameanalytics.EGAAdType[ad_type], ad_sdk_name, ad_placement);
     }
-}
+};
 
-// Analytics beforeunload listener
 if (is_game_analytics) {
     gameanalytics.GameAnalytics.addOnBeforeUnloadListener({
         onBeforeUnload: () => {
@@ -625,28 +584,20 @@ if (is_game_analytics) {
     });
 }
 
-// Load ad (placeholder for preload logic)
-export function load_ad(_ad_format, _ad_reward_state = -1) {
-     //placement-id facebook list
-    //403800600388584  //petmod
-    //2487129365389020
-    //1196456724956425
-    //1196456948289736
-    //1196456841623080  //petcafe '1287995509583488_1196456841623080'
+export const load_ad = (_ad_format, _ad_reward_state = -1) => {
     ad_format = _ad_format;
     ad_reward_state = _ad_reward_state;
-    console.log(`load_ad: ${_ad_format}`);
-    if(ad_format == "interstitial"){
-        if(!is_loaded_interstitial_ad){
-            switch (platform_ad){
+    if (ad_format === "interstitial") {
+        if (!is_loaded_interstitial_ad) {
+            switch (platform_ad) {
                 case "Facebook":
-                    FBInstant.getInterstitialAdAsync('1036071814995688_403800600388584',)
-                    .then(function(interstitial) {
+                    FBInstant.getInterstitialAdAsync(FB_AD_PLACEMENT_ID)
+                    .then((interstitial) => {
                         interst_ad = interstitial;
                         return interst_ad.loadAsync();
-                    }).then(function() {
+                    }).then(() => {
                         is_loaded_interstitial_ad = true;
-                    }).catch(function(err){
+                    }).catch(() => {
                         is_loaded_interstitial_ad = false;
                     });
                     break;
@@ -655,43 +606,38 @@ export function load_ad(_ad_format, _ad_reward_state = -1) {
                         slotId: "testb4znbuh3n2"
                     });
                     interst_ad.load();
-                    interst_ad.onLoad((interstitial)=>{
-                        console.log(interstitial);
-                         is_loaded_interstitial_ad = true;
+                    interst_ad.onLoad(() => {
+                        is_loaded_interstitial_ad = true;
                     });
-                    interst_ad.onError((interstitial)=>{
-                        console.log(interstitial);
-                         is_loaded_interstitial_ad = false;
+                    interst_ad.onError(() => {
+                        is_loaded_interstitial_ad = false;
                     });
                     break;
                 case "Azerion":
                     if (typeof gdsdk !== 'undefined' && typeof gdsdk.preloadAd !== 'undefined') {
                         gdsdk
                         .preloadAd('interstitial')
-                        .then(response => {
+                        .then(() => {
                             is_loaded_interstitial_ad = true;
-                         // A rewarded ad can be shown to user when he/she clicked it.
                         })
-                        .catch(error => {
+                        .catch(() => {
                             is_loaded_interstitial_ad = false;
-                         // Any Rewarded ad is not available to user.
                         });
                     }
                     break;
             }
         }
-    }
-    else{
-         if(!is_loaded_rewarded_ad){
-            switch (platform_ad){
+    } else {
+        if (!is_loaded_rewarded_ad) {
+            switch (platform_ad) {
                 case "Facebook":
-                    FBInstant.getRewardedVideoAsync('1036071814995688_403800600388584',)
-                .then(function(rewardedVideo) {
-                    reward_ad = rewardedVideo;
-                    return reward_ad.loadAsync();
-                    }).then(function() {
+                    FBInstant.getRewardedVideoAsync(FB_AD_PLACEMENT_ID)
+                    .then((rewardedVideo) => {
+                        reward_ad = rewardedVideo;
+                        return reward_ad.loadAsync();
+                    }).then(() => {
                         is_loaded_rewarded_ad = true;
-                    }).catch(function(err){
+                    }).catch(() => {
                         is_loaded_rewarded_ad = false;
                     });
                     break;
@@ -699,54 +645,44 @@ export function load_ad(_ad_format, _ad_reward_state = -1) {
                     reward_ad = ppsads.createRewardAd({
                         slotId: "testx9dtjw8hp"
                     });
-                    console.log("reward_ad", reward_ad);
-                    reward_ad.load(()=>{
-                        console.log("load success");
-                    })
-                    reward_ad.onLoad((rewardedVideo)=>{
-                        console.log(rewardedVideo);
-                         is_loaded_rewarded_ad = true;
+                    reward_ad.load(() => {});
+                    reward_ad.onLoad(() => {
+                        is_loaded_rewarded_ad = true;
                     });
-                    reward_ad.onError((rewardedVideo)=>{
-                        console.log("error");
-                         is_loaded_rewarded_ad = false;
+                    reward_ad.onError(() => {
+                        is_loaded_rewarded_ad = false;
                     });
                     break;
                 case "Azerion":
                     if (typeof gdsdk !== 'undefined' && typeof gdsdk.preloadAd !== 'undefined') {
                         gdsdk
                         .preloadAd('rewarded')
-                        .then(response => {
+                        .then(() => {
                             is_loaded_rewarded_ad = true;
-                         // A rewarded ad can be shown to user when he/she clicked it.
                         })
-                        .catch(error => {
+                        .catch(() => {
                             is_loaded_rewarded_ad = false;
-                         // Any Rewarded ad is not available to user.
                         });
                     }
                     break;
             }
         }
     }
-}
+};
 
-// Show ad based on platform and format
-export function show_ad(_ad_format, _ad_reward_state = -1) {
+export const show_ad = (_ad_format, _ad_reward_state = -1) => {
     ad_format = _ad_format;
     ad_reward_state = _ad_reward_state;
-    if(ad_format == "interstitial") ad_event_GA("Clicked", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-    else if (ad_format == "rewarded") ad_event_GA("Clicked", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-    
+    if (ad_format === "interstitial") ad_event_GA("Clicked", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+    else if (ad_format === "rewarded") ad_event_GA("Clicked", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+
     switch (platform_ad) {
         case "Azerion":
             if (_ad_format === "start_session") ad_format = "interstitial";
             if (typeof gdsdk !== 'undefined' && gdsdk.showAd !== 'undefined') {
-                    is_done_ad = true;
-                    console.log("is_done_ad_show", is_done_ad);
-                    gdsdk.showAd(ad_format);
-            }
-            else{
+                is_done_ad = true;
+                gdsdk.showAd(ad_format);
+            } else {
                 tracking_ad_status = "skipped";
             }
             break;
@@ -763,16 +699,13 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
             if (ad_format === "interstitial") {
                 tracking_ad_status = "started";
                 LaggedAPI.APIAds.show(() => {
-                        tracking_ad_status = "skipped";
-                        ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-                        console.log("ad completed");
-                    },
-                    (error) => {
-                        tracking_ad_status = "skipped";
-                         ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-                        console.error("Ad error:", error);
-                    }
-                );
+                    tracking_ad_status = "skipped";
+                    ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                },
+                (error) => {
+                    tracking_ad_status = "skipped";
+                    ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                });
             } else if (ad_format === "rewarded") {
                 LaggedAPI.GEvents.reward(
                     (success, showAdFn) => {
@@ -783,7 +716,6 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                         } else {
                             ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
                             tracking_ad_status = "error";
-                            console.log("NOTviewed");
                         }
                     },
                     success => {
@@ -797,10 +729,8 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
             window.addEventListener("gl_ads_state_change", ({ detail }) => {
                 if (detail.newState === window.AdsState.STARTED) {
                     tracking_ad_status = "started";
-                    console.log("handle ads closed: resume game, sound...");
                 } else if (detail.newState === window.AdsState.COMPLETE) {
                     tracking_ad_status = "completed";
-                    console.log("handle ads closed: resume game, sound...");
                 }
             });
             break;
@@ -811,13 +741,11 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
             if (window.PokiSDK) {
                 if (_ad_format === "start_session") ad_format = "interstitial";
                 if (ad_format === "interstitial") {
-                    //PokiSDK.gameplayStop();
                     PokiSDK.commercialBreak(() => {
                         tracking_ad_status = "started";
-                        console.log("started_interstitial");
                     }).then(() => tracking_ad_status = "skipped");
                 } else if (ad_format === "rewarded") {
-                     if(gameplay_status_global === "start") PokiSDK.gameplayStop();
+                    if (gameplay_status_global === "start") PokiSDK.gameplayStop();
                     PokiSDK.rewardedBreak(() => {
                         tracking_ad_status = "started";
                     }).then(withReward => {
@@ -827,352 +755,259 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
             }
             break;
         case "Gopay":
-			switch(ad_format){
-				case "start_session":
-					ad_format = "interstitial";
-                    tracking_ad_status = "skipped"; 
-				  	break;
-				case "interstitial":
-					window.adBreak({
-							type: "start",
-							name: "my_interstitial",
-					beforeAd: (result_ad) => {
-                        console.log("result_ad", result_ad)
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-                        ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "skipped";
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						console.log("dismissed");
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "skipped";
-                        ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-
-					}
-					else{
-							//NOTE: grant reward here
-							tracking_ad_status = "skipped";
-					} 
-					},
-					});
-				  	break;
-				case "rewarded":
-					window.adBreak({
-					type: "reward",
-					name: "my_reward",
-					beforeAd: () => {
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "completed";
-					},
-					adDismissed: () => {
-					console.log("adDismissed");
-					},
-					adViewed: () => {
-					console.log("adViewed");
-                    ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-					tracking_ad_status = "started";
-
-					},
-					beforeReward: (showAdFn) => {
-					console.log("beforeReward");
-					showAdFn();
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "error";
-                        ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-						return;
-					}
-					else{
-						tracking_ad_status = "completed";
-					} 
-					},
-					});
-					break;	
-			}
+            switch (ad_format) {
+                case "start_session":
+                    ad_format = "interstitial";
+                    tracking_ad_status = "skipped";
+                    break;
+                case "interstitial":
+                    window.adBreak({
+                        type: "start",
+                        name: "my_interstitial",
+                        beforeAd: (result_ad) => {
+                            is_done_ad = false;
+                            tracking_ad_status = "started";
+                            ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                        },
+                        afterAd: () => {
+                            tracking_ad_status = "skipped";
+                        },
+                        adBreakDone: (placementInfo) => {
+                            if (placementInfo.breakStatus === "dismissed") {
+                                tracking_ad_status = "skipped";
+                            } else if (placementInfo.breakStatus !== "viewed") {
+                                tracking_ad_status = "skipped";
+                                ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                            } else {
+                                tracking_ad_status = "skipped";
+                            }
+                        },
+                    });
+                    break;
+                case "rewarded":
+                    window.adBreak({
+                        type: "reward",
+                        name: "my_reward",
+                        beforeAd: () => {
+                            is_done_ad = false;
+                            tracking_ad_status = "started";
+                        },
+                        afterAd: () => {
+                            tracking_ad_status = "completed";
+                        },
+                        adDismissed: () => {},
+                        adViewed: () => {
+                            ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                            tracking_ad_status = "started";
+                        },
+                        beforeReward: (showAdFn) => {
+                            showAdFn();
+                        },
+                        adBreakDone: (placementInfo) => {
+                            if (placementInfo.breakStatus === "dismissed") {
+                                tracking_ad_status = "skipped";
+                            } else if (placementInfo.breakStatus !== "viewed") {
+                                tracking_ad_status = "error";
+                                ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                                return;
+                            } else {
+                                tracking_ad_status = "completed";
+                            }
+                        },
+                    });
+                    break;
+            }
             break;
         case "OldXiaomi":
-			switch(ad_format){
-				case "start_session":
-					ad_format = "interstitial";
-					window.adBreak({
-							type: "preroll",
-							name: "my_interstitial",
-					beforeAd: () => {
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-                        ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						console.log("dismissed");
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "skipped";
-                        ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed");
-
-					}
-					else{
-							//NOTE: grant reward here
-							tracking_ad_status = "skipped";
-					} 
-					},
-					});
-				  	break;
-				case "interstitial":
-					window.adBreak({
-							type: "start",
-							name: "my_interstitial",
-					beforeAd: (result_ad) => {
-                        console.log("result_ad", result_ad)
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-                        ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "skipped";
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						console.log("dismissed");
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "skipped";
-                        ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-
-					}
-					else{
-							//NOTE: grant reward here
-							tracking_ad_status = "skipped";
-					} 
-					},
-					});
-				  	break;
-				case "rewarded":
-					window.adBreak({
-					type: "reward",
-					name: "my_reward",
-					beforeAd: () => {
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "completed";
-					},
-					adDismissed: () => {
-					console.log("adDismissed");
-					},
-					adViewed: () => {
-					console.log("adViewed");
-                    ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-					tracking_ad_status = "started";
-
-					},
-					beforeReward: (showAdFn) => {
-					console.log("beforeReward");
-					showAdFn();
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "error";
-                        ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-						return;
-					}
-					else{
-						tracking_ad_status = "completed";
-					} 
-					},
-					});
-					break;	
-			}
+            switch (ad_format) {
+                case "start_session":
+                    ad_format = "interstitial";
+                    window.adBreak({
+                        type: "preroll",
+                        name: "my_interstitial",
+                        beforeAd: () => {
+                            is_done_ad = false;
+                            tracking_ad_status = "started";
+                            ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                        },
+                        adBreakDone: (placementInfo) => {
+                            if (placementInfo.breakStatus === "dismissed") {
+                                tracking_ad_status = "skipped";
+                            } else if (placementInfo.breakStatus !== "viewed") {
+                                tracking_ad_status = "skipped";
+                                ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                            } else {
+                                tracking_ad_status = "skipped";
+                            }
+                        },
+                    });
+                    break;
+                case "interstitial":
+                    window.adBreak({
+                        type: "start",
+                        name: "my_interstitial",
+                        beforeAd: (result_ad) => {
+                            is_done_ad = false;
+                            tracking_ad_status = "started";
+                            ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                        },
+                        afterAd: () => {
+                            tracking_ad_status = "skipped";
+                        },
+                        adBreakDone: (placementInfo) => {
+                            if (placementInfo.breakStatus === "dismissed") {
+                                tracking_ad_status = "skipped";
+                            } else if (placementInfo.breakStatus !== "viewed") {
+                                tracking_ad_status = "skipped";
+                                ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
+                            } else {
+                                tracking_ad_status = "skipped";
+                            }
+                        },
+                    });
+                    break;
+                case "rewarded":
+                    window.adBreak({
+                        type: "reward",
+                        name: "my_reward",
+                        beforeAd: () => {
+                            is_done_ad = false;
+                            tracking_ad_status = "started";
+                        },
+                        afterAd: () => {
+                            tracking_ad_status = "completed";
+                        },
+                        adDismissed: () => {},
+                        adViewed: () => {
+                            ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                            tracking_ad_status = "started";
+                        },
+                        beforeReward: (showAdFn) => {
+                            showAdFn();
+                        },
+                        adBreakDone: (placementInfo) => {
+                            if (placementInfo.breakStatus === "dismissed") {
+                                tracking_ad_status = "skipped";
+                            } else if (placementInfo.breakStatus !== "viewed") {
+                                tracking_ad_status = "error";
+                                ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                                return;
+                            } else {
+                                tracking_ad_status = "completed";
+                            }
+                        },
+                    });
+                    break;
+            }
             break;
         case "Xiaomi":
-			switch(ad_format){
-				case "interstitial":
-					if(window.MiGames != undefined && window.MiGames.SDK != undefined){
+            switch (ad_format) {
+                case "interstitial":
+                    if (window.MiGames !== undefined && window.MiGames.SDK !== undefined) {
                         window.MiGames.SDK.ad.requestAd(
                         'start',
                         {
-                            // 广告请求成功，展示前
-                            beforeAd: function () {
+                            beforeAd: () => {
                                 is_done_ad = false;
                                 tracking_ad_status = "started";
                                 ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
                             },
-                            // 广告请求成功，展示完成&已关闭
-                            afterAd: function () {
-                                // tracking_ad_status = "skipped";
-                            },
-                            // 始终都会在最后触发，当breakStatus==='viewed'表示请求成功&展示完成
-                            adBreakDone: function ({ breakStatus }) {
-                                console.info("adBrreakDone", breakStatus);
+                            afterAd: () => {},
+                            adBreakDone: ({ breakStatus }) => {
                                 tracking_ad_status = "skipped";
-                                if(breakStatus !== "viewed"){
+                                if (breakStatus !== "viewed") {
                                     ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
                                 }
                             },
                         }
                         );
-                    }
-                    else{
+                    } else {
                         tracking_ad_status = "skipped";
                     }
-				  	break;
-				case "rewarded":
-					if(window.MiGames != undefined && window.MiGames.SDK != undefined){
+                    break;
+                case "rewarded":
+                    if (window.MiGames !== undefined && window.MiGames.SDK !== undefined) {
                         window.MiGames.SDK.ad.requestAd(
                         'reward',
                         {
-                            // 广告请求成功，展示前
-                            beforeAd: function () {
+                            beforeAd: () => {
                                 is_done_ad = false;
                                 tracking_ad_status = "started";
                             },
-                            // 广告请求成功，展示完成&已关闭
-                            afterAd: function () {
-                                // tracking_ad_status = "completed";
-                                // ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-                            },
-                            // 始终都会在最后触发
-                            adBreakDone: function ({ breakStatus }) {
-                            if (breakStatus === 'viewed') {
-                                tracking_ad_status = "completed";
-                                ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-                            // 奖励用户
-                            } else if (breakStatus === 'dismissed') {
-                                tracking_ad_status = "error";
-                                ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-                            // 不奖励用户
-                            }
-                            else{
-                                tracking_ad_status = "error";
-                                ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-                            }
+                            afterAd: () => {},
+                            adBreakDone: ({ breakStatus }) => {
+                                if (breakStatus === 'viewed') {
+                                    tracking_ad_status = "completed";
+                                    ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                                } else if (breakStatus === 'dismissed') {
+                                    tracking_ad_status = "error";
+                                    ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                                } else {
+                                    tracking_ad_status = "error";
+                                    ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
+                                }
                             }
                         }
                         );
-                    }
-                    else{
+                    } else {
                         tracking_ad_status = "error";
-                    };
-					break;	
-			}
-			break;
+                    }
+                    break;
+            }
+            break;
         case "Yandex":
-            switch(ad_format){
+            switch (ad_format) {
                 case "interstitial":
                     ysdk.adv.showFullscreenAdv({
                         callbacks: {
                             onOpen: () => {
                                 tracking_ad_status = "started";
-                                console.log('Video ad open.');
                             },
-                            onClose: function(wasShown) {
-                                // An action on ad closing.
+                            onClose: (wasShown) => {
                                 tracking_ad_status = "skipped";
                             },
-                            onError: function(error) {
-                                // An action in case of an error.
+                            onError: (error) => {
                                 tracking_ad_status = "skipped";
                             }
                         }
-                    })
+                    });
                     break;
                 case "rewarded":
                     ysdk.adv.showRewardedVideo({
                         callbacks: {
                             onOpen: () => {
                                 tracking_ad_status = "started";
-                                console.log('Video ad open.');
                             },
                             onRewarded: () => {
                                 is_grant_reward = true;
-                                console.log('Rewarded!');
                             },
                             onClose: () => {
-                                if(is_grant_reward == true){
+                                if (is_grant_reward === true) {
                                     tracking_ad_status = "completed";
                                     is_grant_reward = false;
-                                }
-                                else{
+                                } else {
                                     tracking_ad_status = "skipped";
-                                    }
-                                console.log('Video ad closed.');
+                                }
                             },
                             onError: (e) => {
                                 tracking_ad_status = "error";
-                                console.log('Error while open video ad:', e);
                             }
                         }
-                    })
+                    });
                     break;
             }
             break;
         case "Facebook":
-             switch(ad_format){
+            switch (ad_format) {
                 case "interstitial":
-                    //app-id_placement-id
-                    // FBInstant.getInterstitialAdAsync('1036071814995688_403800600388584',)
-                    // .then(function(interstitial) {
-                    //     interst_ad = interstitial;
-                    //     tracking_ad_status = "started";
-                    //     return interst_ad.loadAsync();
-                    // }).then(function() {
-                    //     return interst_ad.showAsync()
-                    //     .then(function() {
-                    //         tracking_ad_status = "skipped";
-                    //         // Ad completed 
-                    //     })
-                    //     .catch(function(error) {
-                    //         console.error('Ad error:', error);
-                    //         tracking_ad_status = "skipped";
-                    //     });
-                    // }).catch(function(err){
-                    //     setTimeout(() => {
-                    //     tracking_ad_status = "error";
-                    //     console.error('interstitial failed to preload: ' + err.message);
-                    //     }, 500);
-                    // });
                     tracking_ad_status = "started";
                     interst_ad.showAsync()
-                    .then(function() {
+                    .then(() => {
                         tracking_ad_status = "skipped";
                         is_loaded_interstitial_ad = false;
                         load_ad("interstitial");
-                        // Ad completed 
                     })
-                    .catch(function(error) {
+                    .catch((error) => {
                         console.error('Ad error:', error);
                         tracking_ad_status = "skipped";
                         is_loaded_interstitial_ad = false;
@@ -1180,37 +1015,14 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                     });
                     break;
                 case "rewarded":
-                     //app-id_placement-id
-                    //   FBInstant.getRewardedVideoAsync('1036071814995688_403800600388584',)
-                    // .then(function(rewardedVideo) {
-                    //       reward_ad = rewardedVideo;
-                    //       tracking_ad_status = "started";
-                    //     return reward_ad.loadAsync();
-                    // }).then(function() {
-                    //     return reward_ad.showAsync()
-                    //     .then(function() {
-                    //         tracking_ad_status = "completed";
-                    //         // Ad completed 
-                    //     })
-                    //     .catch(function(error) {
-                    //         console.error('Ad error:', error);
-                    //         tracking_ad_status = "error";
-                    //     });
-                    // }).catch(function(err){
-                    //     setTimeout(() => {
-                    //     tracking_ad_status = "error";
-                    //     console.error('rewarded failed to preload: ' + err.message);
-                    //     }, 500);
-                    // });
                     tracking_ad_status = "started";
                     reward_ad.showAsync()
-                    .then(function() {
+                    .then(() => {
                         tracking_ad_status = "completed";
                         is_loaded_rewarded_ad = false;
                         load_ad("rewarded");
-                            // Ad completed 
-                        })
-                    .catch(function(error) {
+                    })
+                    .catch((error) => {
                         console.error('Ad error:', error);
                         tracking_ad_status = "error";
                         is_loaded_rewarded_ad = false;
@@ -1220,18 +1032,11 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
             }
             break;
         case "Huawei":
-            switch (ad_format){
+            switch (ad_format) {
                 case "interstitial":
-                    console.log("call_show_interstitial");
-                    interst_ad.show(() => {
-                        console.log("show_interstitial");
-                    });
-                    interst_ad.onShow((e_ads) => {
-                        console.log(e_ads);
-                    })
+                    interst_ad.show(() => {});
+                    interst_ad.onShow((e_ads) => {});
                     interst_ad.onClose(() => {
-                        console.log("Interstitial ditutup.");
-                        // Hancurkan instance agar tidak menumpuk
                         interst_ad.destroy();
                         tracking_ad_status = "skipped";
                         is_loaded_interstitial_ad = false;
@@ -1239,37 +1044,24 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                     });
                     break;
                 case "rewarded":
-                    console.log("call_show_rewarded");
                     reward_ad.show({
                         callbacks: {
                             onShow: () => {
                                 tracking_ad_status = "started";
-                                console.log("Rewarded ad dibuka.");
                             },
-
                             onReward: (rewardData) => {
                                 is_grant_reward = true;
-                                console.log("Reward granted:", rewardData);
                             },
-
-                            onComplete: () => {
-                                console.log("Playback selesai ✅");
-                            },
-
+                            onComplete: () => {},
                             onClose: () => {
                                 if (is_grant_reward) {
                                     tracking_ad_status = "completed";
-                                    console.log("User menonton iklan full ✅");
-                                    // kasih reward di sini
-                                    is_grant_reward = false; // reset
+                                    is_grant_reward = false;
                                 } else {
                                     tracking_ad_status = "skipped";
-                                    console.log("User skip / tutup iklan ❌");
                                 }
-
                                 reward_ad.destroy();
                             },
-
                             onError: (err) => {
                                 tracking_ad_status = "error";
                                 console.error("Error saat tampilkan iklan:", err);
@@ -1278,22 +1070,19 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                     });
                     break;
             }
-        break;
+            break;
         case "CrazyGames":
-            switch(ad_format){
+            switch (ad_format) {
                 case "interstitial":
                     const cg_interstitial_callbacks = {
                         adFinished: () => {
                             tracking_ad_status = "skipped";
-                            console.log("End midgame ad")
                         },
                         adError: (error) => {
                             tracking_ad_status = "skipped";
-                            console.log("Error midgame ad", error);
                         },
                         adStarted: () => {
                             tracking_ad_status = "started";
-                            console.log("Start midgame ad");
                         },
                     };
                     window.CrazyGames.SDK.ad.requestAd("midgame", cg_interstitial_callbacks);
@@ -1302,20 +1091,17 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                     const cg_rewarded_callbacks = {
                         adFinished: () => {
                             tracking_ad_status = "completed";
-                            console.log("End rewarded ad")
                         },
                         adError: (error) => {
                             tracking_ad_status = "error";
-                            console.log("Error rewarded ad", error);
                         },
                         adStarted: () => {
                             tracking_ad_status = "started";
-                            console.log("Start rewarded ad");
                         },
                     };
                     window.CrazyGames.SDK.ad.requestAd("rewarded", cg_rewarded_callbacks);
                     break;
             }
-        break;
+            break;
     }
-}
+};
