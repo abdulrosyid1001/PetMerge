@@ -2772,39 +2772,171 @@
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 818422793625570,
+							"children": [
 								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 644627414017621,
-									"parameters": {
-										"object-to-create": "bannerBundle",
-										"layer": "\"UI_Banner_Slider\"",
-										"x": "LayoutWidth/2",
-										"y": "205",
-										"create-hierarchy": true,
-										"template-name": "\"slider_\"&1"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 648724518778336,
+											"parameters": {
+												"variable": "screenflow_version",
+												"comparison": 0,
+												"value": "\"ADS\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 385410712372850,
+											"parameters": {
+												"object-to-create": "bannerBundle",
+												"layer": "\"UI_Banner_Slider\"",
+												"x": "LayoutWidth/2",
+												"y": "205",
+												"create-hierarchy": true,
+												"template-name": "\"slider_\"&1"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "greenButton",
+											"sid": 855048137417445,
+											"parameters": {
+												"instance-variable": "ID_case",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-scale",
+											"objectClass": "bannerBundle",
+											"sid": 971775840385428,
+											"parameters": {
+												"scale": "1.2*scaleImage2"
+											}
+										}
+									],
+									"sid": 114341387682778
 								},
 								{
-									"id": "set-instvar-value",
-									"objectClass": "greenButton",
-									"sid": 138387175410534,
-									"parameters": {
-										"instance-variable": "ID_case",
-										"value": "1"
-									}
-								},
-								{
-									"id": "set-scale",
-									"objectClass": "bannerBundle",
-									"sid": 224171776257149,
-									"parameters": {
-										"scale": "1.2*scaleImage2"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 704356254167942
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"const bundleID = runtime.globalVars.banner_slider_nav;",
+												"const startCreateX = 1080/5;",
+												"const bannerBundle = runtime.objects.bannerBundle.createInstance(\"UI_Banner_Slider\", startCreateX, 205, true, \"slider_\"+bundleID);",
+												"bannerBundle.animationFrame = bundleID-1;",
+												"const subitems = bundleShopBanner[\"bundle\"+bundleID].subitems;",
+												"const price = bundleShopBanner[\"bundle\"+bundleID].price;",
+												"",
+												"const totalSubItem = Object.keys(subitems).length;",
+												"console.log(\"totalSubItem\", totalSubItem);",
+												"const center = startCreateX;",
+												"const spacing = 45;",
+												"const mid = (totalSubItem-1)/2;",
+												"for (let i = 0; i < totalSubItem; i++) {",
+												"\tconst key = \"sub00\"+String(i+1);",
+												"\tconst x_i = center + (i - mid) * spacing;",
+												"\tconst y = 175;",
+												"\t// const subPanel = runtime.objects.start_Pack_subpanel.createInstance(\"PopUp\", x_i, 640);",
+												"\tif(subitems[key].name == \"coins\"){",
+												"\t\tconst coinsIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+												"\t\tcoinsIcon.setAnimation(\"Coins\");",
+												"\t\tcoinsIcon.height = 40;",
+												"\t\tcoinsIcon.width = 40;",
+												"\t\tbannerBundle.addChild(coinsIcon,{transformX: true, transformY: true, transformScale : true});",
+												"",
+												"\t}",
+												"\telse if(subitems[key].name == \"skip\"){",
+												"\t\tconst skipIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+												"\t\tskipIcon.setAnimation(\"Tickets\");",
+												"\t\tskipIcon.height = 40;",
+												"\t\tskipIcon.width = 40;",
+												"\t\tbannerBundle.addChild(skipIcon,{transformX: true, transformY: true, transformScale : true});",
+												"\t}",
+												"\telse if(subitems[key].name == \"removeads\"){",
+												"\t\tconst removeAdsIcon = runtime.objects.noAdsIcon.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+												"\t\tremoveAdsIcon.height = 36;",
+												"\t\tremoveAdsIcon.width = 36;",
+												"\t\tbannerBundle.addChild(removeAdsIcon,{transformX: true, transformY: true, transformScale : true});",
+												"\t}",
+												"\telse{",
+												"\t\tconst missionIcon = runtime.objects.missionIconPack.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+												"\t\tmissionIcon.animationFrame = Number(subitems[key].id)-2;",
+												"\t\tmissionIcon.height = 36;",
+												"\t\tmissionIcon.width = 36;",
+												"\t\tbannerBundle.addChild(missionIcon,{transformX: true, transformY: true, transformScale : true});",
+												"\t}",
+												"\tconst lblBundleItem = runtime.objects.labelBundleItem.createInstance(\"UI_Banner_Slider\", x_i, y+15);",
+												"\tlblBundleItem.text = subitems[key].value;",
+												"\tlblBundleItem.sizePt = 14;",
+												"\tbannerBundle.addChild(lblBundleItem,{transformX: true, transformY: true, transformScale : true});",
+												"};",
+												"const lblButton = runtime.objects.labelBanner.createInstance(\"UI_Banner_Slider\", startCreateX, 240);",
+												"lblButton.text = formatRupiah(price);",
+												"bannerBundle.addChild(lblButton,{transformX: true, transformY: true, transformScale : true});",
+												""
+											]
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 277673326017426
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "bannerBundle",
+											"sid": 279142989378571,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"banner_anim\"",
+												"property": "offsetX",
+												"end-value": "LayoutWidth/2",
+												"time": "0.2",
+												"ease": "easeoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "bannerBundle",
+											"sid": 608557903072730,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"zoom_in\"",
+												"property": "scale",
+												"end-x": "1.2*scaleImage2",
+												"end-y": "1.2*scaleImage2",
+												"time": "0.2",
+												"ease": "default",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										}
+									],
+									"sid": 132143347263458
 								}
-							],
-							"sid": 818422793625570
+							]
 						},
 						{
 							"eventType": "block",
@@ -2822,17 +2954,64 @@
 							],
 							"actions": [
 								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 556188653949309,
-									"parameters": {
-										"object-to-create": "bannerBundle",
-										"layer": "\"UI_Banner_Slider\"",
-										"x": "LayoutWidth/2+((2-1)*1.5*LayoutWidth)",
-										"y": "205",
-										"create-hierarchy": true,
-										"template-name": "\"slider_\"&banner_slider_nav"
-									}
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"const bundleID = runtime.globalVars.banner_slider_nav;",
+										"const startCreateX = 1080*2;",
+										"const bannerBundle = runtime.objects.bannerBundle.createInstance(\"UI_Banner_Slider\", startCreateX, 205, true, \"slider_\"+bundleID);",
+										"bannerBundle.animationFrame = bundleID-1;",
+										"const subitems = bundleShopBanner[\"bundle\"+bundleID].subitems;",
+										"const price = bundleShopBanner[\"bundle\"+bundleID].price;",
+										"",
+										"const totalSubItem = Object.keys(subitems).length;",
+										"console.log(\"totalSubItem\", totalSubItem);",
+										"const center = startCreateX;",
+										"const spacing = 45;",
+										"const mid = (totalSubItem-1)/2;",
+										"for (let i = 0; i < totalSubItem; i++) {",
+										"\tconst key = \"sub00\"+String(i+1);",
+										"\tconst x_i = center + (i - mid) * spacing;",
+										"\tconst y = 175;",
+										"\t// const subPanel = runtime.objects.start_Pack_subpanel.createInstance(\"PopUp\", x_i, 640);",
+										"\tif(subitems[key].name == \"coins\"){",
+										"\t\tconst coinsIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+										"\t\tcoinsIcon.setAnimation(\"Coins\");",
+										"\t\tcoinsIcon.height = 40;",
+										"\t\tcoinsIcon.width = 40;",
+										"\t\tbannerBundle.addChild(coinsIcon,{transformX: true, transformY: true, transformScale : true});",
+										"",
+										"\t}",
+										"\telse if(subitems[key].name == \"skip\"){",
+										"\t\tconst skipIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+										"\t\tskipIcon.setAnimation(\"Tickets\");",
+										"\t\tskipIcon.height = 40;",
+										"\t\tskipIcon.width = 40;",
+										"\t\tbannerBundle.addChild(skipIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\telse if(subitems[key].name == \"removeads\"){",
+										"\t\tconst removeAdsIcon = runtime.objects.noAdsIcon.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+										"\t\tremoveAdsIcon.height = 36;",
+										"\t\tremoveAdsIcon.width = 36;",
+										"\t\tbannerBundle.addChild(removeAdsIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\telse{",
+										"\t\tconst missionIcon = runtime.objects.missionIconPack.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+										"\t\tmissionIcon.animationFrame = Number(subitems[key].id)-2;",
+										"\t\tmissionIcon.height = 36;",
+										"\t\tmissionIcon.width = 36;",
+										"\t\tbannerBundle.addChild(missionIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\tconst lblBundleItem = runtime.objects.labelBundleItem.createInstance(\"UI_Banner_Slider\", x_i, y+15);",
+										"\tlblBundleItem.text = subitems[key].value;",
+										"\tlblBundleItem.sizePt = 14;",
+										"\tbannerBundle.addChild(lblBundleItem,{transformX: true, transformY: true, transformScale : true});",
+										"};",
+										"const lblButton = runtime.objects.labelBanner.createInstance(\"UI_Banner_Slider\", startCreateX, 240);",
+										"lblButton.text = formatRupiah(price);",
+										"bannerBundle.addChild(lblButton,{transformX: true, transformY: true, transformScale : true});",
+										""
+									]
 								}
 							],
 							"sid": 532502075859564
@@ -2853,17 +3032,64 @@
 							],
 							"actions": [
 								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 622008037842461,
-									"parameters": {
-										"object-to-create": "bannerBundle",
-										"layer": "\"UI_Banner_Slider\"",
-										"x": "-LayoutWidth",
-										"y": "205",
-										"create-hierarchy": true,
-										"template-name": "\"slider_\"&banner_slider_nav"
-									}
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"const bundleID = runtime.globalVars.banner_slider_nav;",
+										"const startCreateX = -1080;",
+										"const bannerBundle = runtime.objects.bannerBundle.createInstance(\"UI_Banner_Slider\", startCreateX, 205, true, \"slider_\"+bundleID);",
+										"bannerBundle.animationFrame = bundleID-1;",
+										"const subitems = bundleShopBanner[\"bundle\"+bundleID].subitems;",
+										"const price = bundleShopBanner[\"bundle\"+bundleID].price;",
+										"",
+										"const totalSubItem = Object.keys(subitems).length;",
+										"console.log(\"totalSubItem\", totalSubItem);",
+										"const center = startCreateX;",
+										"const spacing = 45;",
+										"const mid = (totalSubItem-1)/2;",
+										"for (let i = 0; i < totalSubItem; i++) {",
+										"\tconst key = \"sub00\"+String(i+1);",
+										"\tconst x_i = center + (i - mid) * spacing;",
+										"\tconst y = 175;",
+										"\t// const subPanel = runtime.objects.start_Pack_subpanel.createInstance(\"PopUp\", x_i, 640);",
+										"\tif(subitems[key].name == \"coins\"){",
+										"\t\tconst coinsIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+										"\t\tcoinsIcon.setAnimation(\"Coins\");",
+										"\t\tcoinsIcon.height = 40;",
+										"\t\tcoinsIcon.width = 40;",
+										"\t\tbannerBundle.addChild(coinsIcon,{transformX: true, transformY: true, transformScale : true});",
+										"",
+										"\t}",
+										"\telse if(subitems[key].name == \"skip\"){",
+										"\t\tconst skipIcon = runtime.objects.subitemImage.createInstance(\"UI_Banner_Slider\", x_i, y-10);",
+										"\t\tskipIcon.setAnimation(\"Tickets\");",
+										"\t\tskipIcon.height = 40;",
+										"\t\tskipIcon.width = 40;",
+										"\t\tbannerBundle.addChild(skipIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\telse if(subitems[key].name == \"removeads\"){",
+										"\t\tconst removeAdsIcon = runtime.objects.noAdsIcon.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+										"\t\tremoveAdsIcon.height = 36;",
+										"\t\tremoveAdsIcon.width = 36;",
+										"\t\tbannerBundle.addChild(removeAdsIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\telse{",
+										"\t\tconst missionIcon = runtime.objects.missionIconPack.createInstance(\"UI_Banner_Slider\", x_i, y+5);",
+										"\t\tmissionIcon.animationFrame = Number(subitems[key].id)-2;",
+										"\t\tmissionIcon.height = 36;",
+										"\t\tmissionIcon.width = 36;",
+										"\t\tbannerBundle.addChild(missionIcon,{transformX: true, transformY: true, transformScale : true});",
+										"\t}",
+										"\tconst lblBundleItem = runtime.objects.labelBundleItem.createInstance(\"UI_Banner_Slider\", x_i, y+15);",
+										"\tlblBundleItem.text = subitems[key].value;",
+										"\tlblBundleItem.sizePt = 14;",
+										"\tbannerBundle.addChild(lblBundleItem,{transformX: true, transformY: true, transformScale : true});",
+										"};",
+										"const lblButton = runtime.objects.labelBanner.createInstance(\"UI_Banner_Slider\", startCreateX, 240);",
+										"lblButton.text = formatRupiah(price);",
+										"bannerBundle.addChild(lblButton,{transformX: true, transformY: true, transformScale : true});",
+										""
+									]
 								}
 							],
 							"sid": 763819809598117
@@ -2886,6 +3112,130 @@
 						}
 					],
 					"sid": 495955224928371
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-destroyed",
+							"objectClass": "bannerBundle",
+							"sid": 622387450479228
+						}
+					],
+					"actions": [],
+					"sid": 571197212595427,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "bannerBundle",
+									"sid": 667953191035144,
+									"parameters": {
+										"child": "missionIconPack",
+										"which": "all"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "missionIconPack",
+									"sid": 143370581010279
+								}
+							],
+							"sid": 904142591551031
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "bannerBundle",
+									"sid": 792603054812754,
+									"parameters": {
+										"child": "subitemImage",
+										"which": "all"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "subitemImage",
+									"sid": 121694344233389
+								}
+							],
+							"sid": 468969187847650
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "bannerBundle",
+									"sid": 407685523643459,
+									"parameters": {
+										"child": "noAdsIcon",
+										"which": "all"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "noAdsIcon",
+									"sid": 947716772553776
+								}
+							],
+							"sid": 215557776037200
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "bannerBundle",
+									"sid": 650655089405832,
+									"parameters": {
+										"child": "labelBanner",
+										"which": "all"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "labelBanner",
+									"sid": 655467399070075
+								}
+							],
+							"sid": 567679892466408
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "bannerBundle",
+									"sid": 935244249104302,
+									"parameters": {
+										"child": "labelBundleItem",
+										"which": "all"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "labelBundleItem",
+									"sid": 633897458589293
+								}
+							],
+							"sid": 920358725419700
+						}
+					]
 				},
 				{
 					"functionName": "slider_banner",
@@ -2944,12 +3294,12 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "bannerBundle",
-											"sid": 707619996078463,
+											"sid": 457576179147090,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"\"",
 												"property": "offsetX",
-												"end-value": "Self.X-(1.5*LayoutWidth)",
+												"end-value": "Self.X-(3*LayoutWidth)",
 												"time": "0.6",
 												"ease": "easeoutsine",
 												"destroy-on-complete": "yes",
@@ -3159,12 +3509,12 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "bannerBundle",
-											"sid": 396307941114185,
+											"sid": 979399610397504,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"\"",
 												"property": "offsetX",
-												"end-value": "Self.X+(1.5*LayoutWidth)",
+												"end-value": "Self.X+(3*LayoutWidth)",
 												"time": "0.6",
 												"ease": "easeoutsine",
 												"destroy-on-complete": "yes",
@@ -3472,42 +3822,42 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "for-each",
+									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 335167385061015,
+									"sid": 171667856559573,
 									"parameters": {
-										"object": "labelBanner"
+										"variable": "screenflow_version",
+										"comparison": 0,
+										"value": "\"ADS\""
 									}
 								}
 							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "labelBanner",
-									"sid": 669427009833811,
-									"parameters": {
-										"text": "bannerStoreData.At(2, Self.ID-1)"
-									}
-								}
-							],
-							"sid": 166887652869075,
+							"actions": [],
+							"sid": 408562651010155,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-two-values",
+											"id": "for-each",
 											"objectClass": "System",
-											"sid": 220050652572713,
+											"sid": 442369727312190,
 											"parameters": {
-												"first-value": "bannerStoreData.At(2, labelBanner.ID-1)",
-												"comparison": 0,
-												"second-value": "0"
+												"object": "labelBanner"
 											}
 										}
 									],
-									"actions": [],
-									"sid": 244293358919118,
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "labelBanner",
+											"sid": 634105016017652,
+											"parameters": {
+												"text": "bannerStoreData.At(2, Self.ID-1)"
+											}
+										}
+									],
+									"sid": 295305158898437,
 									"children": [
 										{
 											"eventType": "block",
@@ -3515,91 +3865,347 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 986733796749048,
+													"sid": 911150845827217,
 													"parameters": {
-														"first-value": "bannerStoreData.At(0, labelBanner.ID-1)",
-														"comparison": 4,
+														"first-value": "bannerStoreData.At(2, labelBanner.ID-1)",
+														"comparison": 0,
 														"second-value": "0"
 													}
 												}
 											],
-											"actions": [
-												{
-													"id": "set-visible",
-													"objectClass": "labelBanner",
-													"sid": 394548766120583,
-													"parameters": {
-														"visibility": "visible"
-													}
-												},
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 324342249689836,
-													"parameters": {
-														"text": "JSON.Get(curr_lang&\".open\")"
-													}
-												}
-											],
-											"sid": 349975045520558,
+											"actions": [],
+											"sid": 344753107521594,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-children",
-															"objectClass": "labelBanner",
-															"sid": 683817458466006,
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 997319959710450,
 															"parameters": {
-																"child": "adsIcon",
-																"which": "all"
+																"first-value": "bannerStoreData.At(0, labelBanner.ID-1)",
+																"comparison": 4,
+																"second-value": "0"
 															}
 														}
 													],
 													"actions": [
 														{
 															"id": "set-visible",
-															"objectClass": "adsIcon",
-															"sid": 136298482212127,
-															"parameters": {
-																"visibility": "visible"
-															}
-														}
-													],
-													"sid": 313403821203217
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-children",
 															"objectClass": "labelBanner",
-															"sid": 549298091429016,
-															"parameters": {
-																"child": "labelSubBannerStatus",
-																"which": "all"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-visible",
-															"objectClass": "labelSubBannerStatus",
-															"sid": 427853654154701,
+															"sid": 473247402168216,
 															"parameters": {
 																"visibility": "visible"
 															}
 														},
 														{
 															"id": "set-text",
-															"objectClass": "labelSubBannerStatus",
-															"sid": 623582130665449,
+															"objectClass": "labelBanner",
+															"sid": 613652851077077,
 															"parameters": {
-																"text": "\"\""
+																"text": "JSON.Get(curr_lang&\".open\")"
 															}
 														}
 													],
-													"sid": 969681868065153
+													"sid": 734480517525408,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-children",
+																	"objectClass": "labelBanner",
+																	"sid": 290341728232122,
+																	"parameters": {
+																		"child": "adsIcon",
+																		"which": "all"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-visible",
+																	"objectClass": "adsIcon",
+																	"sid": 289019995708556,
+																	"parameters": {
+																		"visibility": "visible"
+																	}
+																}
+															],
+															"sid": 917955936924582
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-children",
+																	"objectClass": "labelBanner",
+																	"sid": 637517140536438,
+																	"parameters": {
+																		"child": "labelSubBannerStatus",
+																		"which": "all"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-visible",
+																	"objectClass": "labelSubBannerStatus",
+																	"sid": 175496980542212,
+																	"parameters": {
+																		"visibility": "visible"
+																	}
+																},
+																{
+																	"id": "set-text",
+																	"objectClass": "labelSubBannerStatus",
+																	"sid": 383988813029754,
+																	"parameters": {
+																		"text": "\"\""
+																	}
+																}
+															],
+															"sid": 617540833905989
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 460989828774037
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "labelBanner",
+															"sid": 669820972799254,
+															"disabled": true,
+															"parameters": {
+																"text": "\"12h 45m\""
+															}
+														},
+														{
+															"id": "destroy",
+															"objectClass": "time_icon",
+															"sid": 874216049186595
+														},
+														{
+															"id": "set-text",
+															"objectClass": "labelBanner",
+															"sid": 381631139017620,
+															"parameters": {
+																"text": "floor((bannerStoreData.At(3, Self.ID-1)-now_time)/3600000)&\"h \"&floor(((bannerStoreData.At(3, Self.ID-1)-now_time)%3600000)/60000)&\"m\""
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 395409501425918,
+															"parameters": {
+																"object-to-create": "time_icon",
+																"layer": "labelBanner.LayerName",
+																"x": "labelBanner.X-45",
+																"y": "labelBanner.Y+4",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-animation-frame",
+															"objectClass": "time_icon",
+															"sid": 902557542963173,
+															"parameters": {
+																"frame-number": "1"
+															}
+														},
+														{
+															"id": "set-size",
+															"objectClass": "time_icon",
+															"sid": 125130178946358,
+															"parameters": {
+																"width": "18",
+																"height": "21"
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "labelBanner",
+															"sid": 730194148940995,
+															"parameters": {
+																"child": "time_icon",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": true,
+																"transform-h": true,
+																"transform-a": true,
+																"transform-o": false,
+																"transform-z-elevation": true,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														}
+													],
+													"sid": 204622998917803,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-children",
+																	"objectClass": "labelBanner",
+																	"sid": 673686440219900,
+																	"parameters": {
+																		"child": "adsIcon",
+																		"which": "all"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "destroy",
+																	"objectClass": "adsIcon",
+																	"sid": 557839232514014
+																}
+															],
+															"sid": 278455457345955
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-children",
+																	"objectClass": "labelBanner",
+																	"sid": 764604871922453,
+																	"parameters": {
+																		"child": "labelSubBannerStatus",
+																		"which": "all"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-visible",
+																	"objectClass": "labelSubBannerStatus",
+																	"sid": 834292779831022,
+																	"parameters": {
+																		"visibility": "visible"
+																	}
+																},
+																{
+																	"id": "set-text",
+																	"objectClass": "labelSubBannerStatus",
+																	"sid": 277862211913624,
+																	"parameters": {
+																		"text": "JSON.Get(curr_lang&\".ready_in\")"
+																	}
+																}
+															],
+															"sid": 785109154712498
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-parent",
+																	"objectClass": "labelBanner",
+																	"sid": 279026335338314,
+																	"parameters": {
+																		"parent": "greenButton",
+																		"which": "all"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-visible",
+																	"objectClass": "labelBanner",
+																	"sid": 677275525277988,
+																	"parameters": {
+																		"visibility": "visible"
+																	}
+																},
+																{
+																	"id": "set-y",
+																	"objectClass": "labelBanner",
+																	"sid": 725813338680519,
+																	"parameters": {
+																		"y": "greenButton.Y-5"
+																	}
+																}
+															],
+															"sid": 299903462677549
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-children",
+																	"objectClass": "bannerBundle",
+																	"sid": 974407619000947,
+																	"parameters": {
+																		"child": "orangeBoxClosed",
+																		"which": "own"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 230991913168459,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "trigger-once-while-true",
+																			"objectClass": "System",
+																			"sid": 703491121134679
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-active",
+																			"objectClass": "orangeBoxClosed",
+																			"sid": 916108675644364,
+																			"behaviorType": "Sine",
+																			"parameters": {
+																				"state": "inactive"
+																			}
+																		},
+																		{
+																			"id": "set-active",
+																			"objectClass": "orangeBoxClosed",
+																			"sid": 364163022497994,
+																			"behaviorType": "Sine2",
+																			"parameters": {
+																				"state": "inactive"
+																			}
+																		},
+																		{
+																			"id": "set-animation-frame",
+																			"objectClass": "orangeBoxClosed",
+																			"sid": 258836171166694,
+																			"parameters": {
+																				"frame-number": "1"
+																			}
+																		},
+																		{
+																			"id": "set-scale",
+																			"objectClass": "orangeBoxClosed",
+																			"sid": 979966441423057,
+																			"parameters": {
+																				"scale": "1*scaleImage"
+																			}
+																		}
+																	],
+																	"sid": 904448134496081
+																}
+															]
+														}
+													]
 												}
 											]
 										},
@@ -3609,326 +4215,89 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 896312946057994
+													"sid": 460390653352289
 												}
 											],
-											"actions": [
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 135698738680198,
-													"disabled": true,
-													"parameters": {
-														"text": "\"12h 45m\""
-													}
-												},
-												{
-													"id": "destroy",
-													"objectClass": "time_icon",
-													"sid": 916717625344819
-												},
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 789705698677594,
-													"parameters": {
-														"text": "floor((bannerStoreData.At(3, Self.ID-1)-now_time)/3600000)&\"h \"&floor(((bannerStoreData.At(3, Self.ID-1)-now_time)%3600000)/60000)&\"m\""
-													}
-												},
-												{
-													"id": "create-object",
-													"objectClass": "System",
-													"sid": 366242731600544,
-													"parameters": {
-														"object-to-create": "time_icon",
-														"layer": "labelBanner.LayerName",
-														"x": "labelBanner.X-45",
-														"y": "labelBanner.Y+4",
-														"create-hierarchy": false,
-														"template-name": "\"\""
-													}
-												},
-												{
-													"id": "set-animation-frame",
-													"objectClass": "time_icon",
-													"sid": 755113178706626,
-													"parameters": {
-														"frame-number": "1"
-													}
-												},
-												{
-													"id": "set-size",
-													"objectClass": "time_icon",
-													"sid": 895518854578701,
-													"parameters": {
-														"width": "18",
-														"height": "21"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "labelBanner",
-													"sid": 457543000769840,
-													"parameters": {
-														"child": "time_icon",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": true,
-														"transform-h": true,
-														"transform-a": true,
-														"transform-o": false,
-														"transform-z-elevation": true,
-														"transform-visibility": false,
-														"destroy-with-parent": true
-													}
-												}
-											],
-											"sid": 469415086841175,
+											"actions": [],
+											"sid": 754242177460665,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-children",
-															"objectClass": "labelBanner",
-															"sid": 836378544977437,
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 480666549201625,
 															"parameters": {
-																"child": "adsIcon",
-																"which": "all"
+																"first-value": "bannerStoreData.At(0, labelBanner.ID-1)",
+																"comparison": 0,
+																"second-value": "0"
 															}
 														}
 													],
 													"actions": [
 														{
-															"id": "destroy",
-															"objectClass": "adsIcon",
-															"sid": 879803630088527
-														}
-													],
-													"sid": 564117727729237
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-children",
+															"id": "set-text",
 															"objectClass": "labelBanner",
-															"sid": 225073241880752,
+															"sid": 336564671510557,
+															"disabled": true,
 															"parameters": {
-																"child": "labelSubBannerStatus",
-																"which": "all"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-visible",
-															"objectClass": "labelSubBannerStatus",
-															"sid": 489403870376005,
-															"parameters": {
-																"visibility": "visible"
+																"text": "\"12h 45m\""
 															}
 														},
 														{
 															"id": "set-text",
-															"objectClass": "labelSubBannerStatus",
-															"sid": 385513245605512,
-															"parameters": {
-																"text": "JSON.Get(curr_lang&\".ready_in\")"
-															}
-														}
-													],
-													"sid": 951594504181369
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-parent",
 															"objectClass": "labelBanner",
-															"sid": 967824772975334,
+															"sid": 248536420437881,
+															"disabled": true,
 															"parameters": {
-																"parent": "greenButton",
-																"which": "all"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-visible",
-															"objectClass": "labelBanner",
-															"sid": 819856677070494,
-															"parameters": {
-																"visibility": "visible"
+																"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h \"&floor((bannerStoreData.At(3, Self.ID-1)%3600000)/60000)&\"m\""
 															}
 														},
 														{
-															"id": "set-y",
+															"id": "set-text",
 															"objectClass": "labelBanner",
-															"sid": 507801752076327,
+															"sid": 803305682537553,
+															"disabled": true,
 															"parameters": {
-																"y": "greenButton.Y-5"
+																"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h \"&ceil(bannerStoreData.At(3, Self.ID-1)/60000)&\"m\""
 															}
-														}
-													],
-													"sid": 204533425110756
-												},
-												{
-													"eventType": "block",
-													"conditions": [
+														},
 														{
-															"id": "pick-children",
-															"objectClass": "bannerBundle",
-															"sid": 448634687225177,
+															"id": "set-text",
+															"objectClass": "labelBanner",
+															"sid": 791809911085478,
+															"disabled": true,
 															"parameters": {
-																"child": "orangeBoxClosed",
-																"which": "own"
+																"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h\"&ceil(bannerStoreData.At(3, Self.ID-1)/60000)-((floor(bannerStoreData.At(3, Self.ID-1)/3600000)))"
 															}
 														}
 													],
-													"actions": [],
-													"sid": 887572428313921,
+													"sid": 911184759230436,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "trigger-once-while-true",
-																	"objectClass": "System",
-																	"sid": 978711053881896
+																	"id": "pick-children",
+																	"objectClass": "labelBanner",
+																	"sid": 476409609415825,
+																	"parameters": {
+																		"child": "adsIcon",
+																		"which": "all"
+																	}
 																}
 															],
 															"actions": [
 																{
-																	"id": "set-active",
-																	"objectClass": "orangeBoxClosed",
-																	"sid": 223506437785711,
-																	"behaviorType": "Sine",
-																	"parameters": {
-																		"state": "inactive"
-																	}
-																},
-																{
-																	"id": "set-active",
-																	"objectClass": "orangeBoxClosed",
-																	"sid": 876866462602415,
-																	"behaviorType": "Sine2",
-																	"parameters": {
-																		"state": "inactive"
-																	}
-																},
-																{
-																	"id": "set-animation-frame",
-																	"objectClass": "orangeBoxClosed",
-																	"sid": 170648605993747,
-																	"parameters": {
-																		"frame-number": "1"
-																	}
-																},
-																{
-																	"id": "set-scale",
-																	"objectClass": "orangeBoxClosed",
-																	"sid": 514461390941416,
-																	"parameters": {
-																		"scale": "1*scaleImage"
-																	}
+																	"id": "destroy",
+																	"objectClass": "adsIcon",
+																	"sid": 622455884386017
 																}
 															],
-															"sid": 643629757527628
+															"sid": 855014723677292
 														}
 													]
-												}
-											]
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 356749354889911
-										}
-									],
-									"actions": [],
-									"sid": 352507011010080,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 959243594035416,
-													"parameters": {
-														"first-value": "bannerStoreData.At(0, labelBanner.ID-1)",
-														"comparison": 0,
-														"second-value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 699565170715706,
-													"disabled": true,
-													"parameters": {
-														"text": "\"12h 45m\""
-													}
-												},
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 824424969552160,
-													"disabled": true,
-													"parameters": {
-														"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h \"&floor((bannerStoreData.At(3, Self.ID-1)%3600000)/60000)&\"m\""
-													}
-												},
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 601520161042015,
-													"disabled": true,
-													"parameters": {
-														"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h \"&ceil(bannerStoreData.At(3, Self.ID-1)/60000)&\"m\""
-													}
-												},
-												{
-													"id": "set-text",
-													"objectClass": "labelBanner",
-													"sid": 315614551932452,
-													"disabled": true,
-													"parameters": {
-														"text": "floor(bannerStoreData.At(3, Self.ID-1)/3600000)&\"h\"&ceil(bannerStoreData.At(3, Self.ID-1)/60000)-((floor(bannerStoreData.At(3, Self.ID-1)/3600000)))"
-													}
-												}
-											],
-											"sid": 228430710125433,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-children",
-															"objectClass": "labelBanner",
-															"sid": 101693720284461,
-															"parameters": {
-																"child": "adsIcon",
-																"which": "all"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "destroy",
-															"objectClass": "adsIcon",
-															"sid": 266245749074373
-														}
-													],
-													"sid": 510835079095243
 												}
 											]
 										}
@@ -4012,6 +4381,425 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"functionName": "create_each_item_store",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "y_list",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 126515176530728
+						},
+						{
+							"name": "x_list",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 582027053552456
+						},
+						{
+							"name": "tag",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 720725245755027
+						},
+						{
+							"name": "price",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 644236582863909
+						},
+						{
+							"name": "value",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 402542133027474
+						},
+						{
+							"name": "ID",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 176861842727578
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 388414473621954,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 722304115084862,
+									"parameters": {
+										"variable": "ID",
+										"comparison": 0,
+										"value": "\"coins\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 821458969355020,
+									"parameters": {
+										"object-to-create": "subPanelItemStore",
+										"layer": "\"UI_BottomStore\"",
+										"x": "(LayoutWidth/2)-280+(140*x_list-1)",
+										"y": "devider_plane.Y+(devider_plane.Height/2)+50+(160*y_list)",
+										"create-hierarchy": true,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "subPanelItemStore",
+									"sid": 936048245719273,
+									"parameters": {
+										"frame-number": "0"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemRibbons",
+									"sid": 169952334972181,
+									"parameters": {
+										"text": "tag"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemStatus",
+									"sid": 318178814283907,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemValue",
+									"sid": 743504215952526,
+									"parameters": {
+										"text": "value"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelButton",
+									"sid": 564014059130942,
+									"parameters": {
+										"text": "price\n"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "subitemImage",
+									"sid": 589727127096681,
+									"parameters": {
+										"animation": "\"Coins\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "subitemImage",
+									"sid": 678329344810830,
+									"parameters": {
+										"frame-number": "len(labelSubItemValue.Text)-1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelSubItemStatus",
+									"sid": 751935325124695,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelButton",
+									"sid": 451281952738334,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 358821372881821,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 412564759382132,
+									"parameters": {
+										"instance-variable": "ID",
+										"value": "\"item_store\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 752365411639386,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelSubItemStatus",
+									"sid": 218625184576903,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelButton",
+									"sid": 195194224054252,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 705938560168369,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 798436268758310,
+											"parameters": {
+												"variable": "tag",
+												"comparison": 0,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "redRibbonItem",
+											"sid": 329514017652171
+										}
+									],
+									"sid": 496824968777937
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 695339407781601,
+									"parameters": {
+										"variable": "ID",
+										"comparison": 0,
+										"value": "\"skip\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 522205415848728,
+									"parameters": {
+										"object-to-create": "subPanelItemStore",
+										"layer": "\"UI_BottomStore\"",
+										"x": "(LayoutWidth/2)-280+(140*x_list-1)",
+										"y": "devider_plane.Y+(devider_plane.Height/2)+50+(160*2)+50+(160*y_list)",
+										"create-hierarchy": true,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "subPanelItemStore",
+									"sid": 273983790129397,
+									"parameters": {
+										"frame-number": "1"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemRibbons",
+									"sid": 774752031872767,
+									"parameters": {
+										"text": "tag"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemStatus",
+									"sid": 691772119510992,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelSubItemValue",
+									"sid": 733799159972829,
+									"parameters": {
+										"text": "value"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "labelButton",
+									"sid": 393337236320804,
+									"parameters": {
+										"text": "price"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "subitemImage",
+									"sid": 493488389251916,
+									"parameters": {
+										"animation": "\"Tickets\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "subitemImage",
+									"sid": 122405015491752,
+									"parameters": {
+										"frame-number": "len(labelSubItemValue.Text)-1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelSubItemStatus",
+									"sid": 747450276503619,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelButton",
+									"sid": 241726106403053,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 409671698240497,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "3*(y_list)+x_list"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 247725655467502,
+									"parameters": {
+										"instance-variable": "ID",
+										"value": "\"item_store\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 542524112428130,
+									"parameters": {
+										"instance-variable": "ID",
+										"value": "\"item_store\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 280494057802393,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "2"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelSubItemStatus",
+									"sid": 136317126530645,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "2"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "labelButton",
+									"sid": 230506815711492,
+									"parameters": {
+										"instance-variable": "ID_case",
+										"value": "2"
+									}
+								}
+							],
+							"sid": 242998850341002,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 230472571374753,
+											"parameters": {
+												"variable": "tag",
+												"comparison": 0,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "redRibbonItem",
+											"sid": 459507146898824
+										}
+									],
+									"sid": 490148597994904
+								}
+							]
+						}
+					]
+				},
 				{
 					"functionName": "create_list_item_store",
 					"functionDescription": "",
@@ -6687,6 +7475,133 @@
 													]
 												}
 											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 967318877841385,
+											"parameters": {
+												"variable": "screenflow_version",
+												"comparison": 0,
+												"value": "\"NEW_SYSTEM\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 522910715492283,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 194308373266047,
+													"parameters": {
+														"object-to-create": "labelSubMenuStore",
+														"layer": "\"UI_BottomStore\"",
+														"x": "LayoutWidth/2",
+														"y": "devider_plane.Y+(devider_plane.Height/2)+10",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-text",
+													"objectClass": "labelSubMenuStore",
+													"sid": 549854534118430,
+													"parameters": {
+														"text": "JSON.Get(curr_lang&\".\"&\"coins\")"
+													}
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"var z=0;",
+														"for (var y=0; y<=1; y++){",
+														"\tfor (var x=1; x<=3; x++){",
+														"\t\tconsole.log(\"shoplength\", Object.keys(shopItems.coins).length);",
+														"\t\tif(z<Object.keys(shopItems.coins).length){",
+														"\t\t\tz++",
+														"\t\t\tvar coins_data = shopItems.coins[\"item00\"+String(z)];",
+														"\t\t\tconsole.log(\"SHOPITEM\",shopItems.coins[\"item00\"+String(z)]);",
+														"\t\t\truntime.callFunction(\"create_each_item_store\", y, x, coins_data.tag, formatRupiah(coins_data.price), coins_data.value, \"coins\")",
+														"\t\t}",
+														"\t}",
+														"}"
+													]
+												}
+											],
+											"sid": 344347446480015
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 237975335848338,
+													"parameters": {
+														"object-to-create": "labelSubMenuStore",
+														"layer": "\"UI_BottomStore\"",
+														"x": "LayoutWidth/2",
+														"y": "devider_plane.Y+(devider_plane.Height/2)+60+(160*2)",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-text",
+													"objectClass": "labelSubMenuStore",
+													"sid": 389021574044976,
+													"parameters": {
+														"text": "\"Skip 'Its\""
+													}
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"var z=0;",
+														"for (var y=0; y<=1; y++){",
+														"\tfor (var x=1; x<=3; x++){",
+														"\t\tconsole.log(\"shoplength\", Object.keys(shopItems.skip).length);",
+														"\t\tif(z<Object.keys(shopItems.skip).length){",
+														"\t\t\tz++",
+														"\t\t\tvar skip_data = shopItems.skip[\"item00\"+String(z)];",
+														"\t\t\tconsole.log(\"SHOPITEM\",shopItems.skip[\"item00\"+String(z)]);",
+														"\t\t\truntime.callFunction(\"create_each_item_store\", y, x, skip_data.tag, formatRupiah(skip_data.price), skip_data.value, \"skip\")",
+														"\t\t}",
+														"\t}",
+														"}"
+													]
+												}
+											],
+											"sid": 482384529427989
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 975059856412995
+												},
+												{
+													"callFunction": "locked_dragging",
+													"sid": 176141057102132
+												}
+											],
+											"sid": 597156133917081
 										}
 									]
 								}

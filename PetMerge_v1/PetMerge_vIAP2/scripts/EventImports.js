@@ -9,7 +9,9 @@ import{
 import{
     limitedOffer,
     getNextAvailableSubitems,
-    itemPriority
+    itemPriority,
+    shopItems,
+    bundleShopBanner
 } from './IAP.js'
 
 import{

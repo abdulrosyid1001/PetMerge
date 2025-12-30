@@ -49,7 +49,7 @@
 			"eventType": "variable",
 			"name": "no_purchase_day",
 			"type": "number",
-			"initialValue": "8",
+			"initialValue": "22",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -2612,6 +2612,15 @@
 										"instance-variable": "IDNumber",
 										"value": "IDNumber"
 									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "greenButton",
+									"sid": 565875161334733,
+									"parameters": {
+										"instance-variable": "ID_number",
+										"value": "IDNumber"
+									}
 								}
 							],
 							"sid": 881850375173387,
@@ -4950,6 +4959,7 @@
 									"id": "set-scale",
 									"objectClass": "charEyesSettings",
 									"sid": 135824231488412,
+									"disabled": true,
 									"parameters": {
 										"scale": "0.1"
 									}
@@ -4985,6 +4995,7 @@
 									"id": "set-scale",
 									"objectClass": "charEyesSettings",
 									"sid": 618189221030983,
+									"disabled": true,
 									"parameters": {
 										"scale": "0.1"
 									}
@@ -6134,9 +6145,9 @@
 						{
 							"id": "set-scale",
 							"objectClass": "frameSettings",
-							"sid": 542073903605093,
+							"sid": 228965491193012,
 							"parameters": {
-								"scale": "0"
+								"scale": "0.2"
 							}
 						},
 						{
@@ -6886,13 +6897,13 @@
 										{
 											"id": "tween-two-properties",
 											"objectClass": "frameSettings",
-											"sid": 578515093828731,
+											"sid": 222563763963829,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"frame_settings\"",
 												"property": "scale",
-												"end-x": "0",
-												"end-y": "0",
+												"end-x": "0.1",
+												"end-y": "0.1",
 												"time": "0.2",
 												"ease": "easeinback",
 												"destroy-on-complete": "no",
@@ -11305,13 +11316,13 @@
 								{
 									"id": "tween-two-properties",
 									"objectClass": "frameSettings",
-									"sid": 622832777064375,
+									"sid": 253613612775847,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "\"frame_settings\"",
 										"property": "scale",
-										"end-x": "0",
-										"end-y": "0",
+										"end-x": "0.1",
+										"end-y": "0.1",
 										"time": "0.2",
 										"ease": "easeinback",
 										"destroy-on-complete": "no",
@@ -11707,6 +11718,13 @@
 									"language": "javascript",
 									"script": [
 										"ad_event_GA(\"RewardReceived\", \"RewardedVideo\", platform_ad.toLowerCase(), \"shop_gift\");"
+									]
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"bundleShopBanner.bundle1;"
 									]
 								}
 							],
@@ -13998,6 +14016,114 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "refreshLimitedOffer",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 843005709543555,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-all",
+									"objectClass": "System",
+									"sid": 793087714780398,
+									"parameters": {
+										"object": "packIcon"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 432487980856324,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "packIcon",
+											"sid": 506526355108806,
+											"parameters": {
+												"animation": "\"limited_offer\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "packIcon",
+											"sid": 445909731674852
+										}
+									],
+									"sid": 336948772610048
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"let itemID = \"whale\";",
+										"let itemNumber = \"item001\";",
+										"var limitedOfferID = \"\";",
+										"var foundAmount = 0;",
+										"var found = false;",
+										"tempDataLimitedOffer = [];",
+										"console.log(\"limitedOfferID\", limitedOfferID);",
+										"for (var i = 0; i < itemPriority.length; i++){",
+										"\titemID = itemPriority[i];",
+										"\tfor (var j = 1; j <= 5; j++){",
+										"\t\titemNumber = \"item00\"+String(j);",
+										"\t\tvar collStatus = limitedOffer[itemID][itemNumber].collected;",
+										"\t\tconsole.log(\"itempriority\", itemID, itemNumber, collStatus);",
+										"\t\tif(!collStatus){",
+										"\t\t\tconsole.log(\"itemID\", itemID);",
+										"\t\t\tconsole.log(\"itemNumber\", itemNumber);",
+										"\t\t\tvar rightitemPriority = runtime.callFunction(\"checkedLimitedOffer\", itemID, itemNumber);",
+										"\t\t\tconsole.log(\"rightitemPriority\", rightitemPriority);",
+										"\t\t\tif(rightitemPriority == \"true\"){",
+										"\t\t\t\ttempDataLimitedOffer[foundAmount] = [itemID, itemNumber, limitedOffer[itemID][itemNumber].subitems, limitedOffer[itemID][itemNumber].countdown];",
+										"\t\t\t\tfoundAmount++;",
+										"\t\t\t\tconsole.log(\"tempdatalimitedoffer\", tempDataLimitedOffer);",
+										"\t\t\t\truntime.callFunction(\"createLimitedOfferIcon\", i, foundAmount);",
+										"\t\t\t\tfound = true;",
+										"\t\t\t\tif(foundAmount >= 2){",
+										"\t\t\t\t\treturn;",
+										"\t\t\t\t}",
+										"\t\t\t\t\t",
+										"\t\t\t}",
+										"\t\t\telse{",
+										"\t\t\t\tconsole.log(\"not priority\");",
+										"\t\t\t}",
+										"\t\t}",
+										"\t}\t",
+										"}",
+										"if (!found) {",
+										"    console.log(\"nothing limited offer\");",
+										"}",
+										"console.log(\"limitedOfferID\", limitedOfferID);",
+										"",
+										"// var limitedOfferID = runtime.callFunction(\"checkedLimitedOffer\", \"coins\");",
+										""
+									]
+								}
+							],
+							"sid": 130105857772028
+						}
+					]
+				},
+				{
 					"functionName": "setExpLimitedOffter",
 					"functionDescription": "",
 					"functionCategory": "",
@@ -14228,7 +14354,7 @@
 							"script": [
 								"var startExpTimeLimitedOffer = tempExpTimeLimitedOffer[localVars.IDNumber];",
 								"if(startExpTimeLimitedOffer < Date.now()){",
-								"\tvar expireMs = Date.now() + tempDataLimitedOffer[localVars.IDNumber][3] * 1000; // 3600 detik = 3600*1000 ms",
+								"\tvar expireMs = Date.now() + tempDataLimitedOffer[localVars.IDNumber][3] * 60 * 1000; // 3600 detik = 3600*1000 ms",
 								"\ttempExpTimeLimitedOffer[localVars.IDNumber] = expireMs;",
 								"\truntime.callFunction(\"setRemainingLimitedOffer\", localVars.IDNumber);",
 								"\tconsole.log(expireMs);",
@@ -14295,8 +14421,7 @@
 									"language": "javascript",
 									"script": [
 										"var idNumber = localVars.value;",
-										"localVars.value = tempExpTimeLimitedOffer[idNumber];",
-										"console.log(\"LOCAL VALUE\", tempExpTimeLimitedOffer);"
+										"localVars.value = tempExpTimeLimitedOffer[idNumber];"
 									]
 								},
 								{
@@ -14369,21 +14494,20 @@
 							}
 						},
 						{
-							"id": "set-active",
-							"objectClass": "packIcon",
-							"sid": 695718254697884,
-							"behaviorType": "Sine",
-							"parameters": {
-								"state": "active"
-							}
-						},
-						{
 							"id": "set-instvar-value",
 							"objectClass": "labelOfferTime",
 							"sid": 913622380314618,
 							"parameters": {
 								"instance-variable": "IDNumber",
 								"value": "amount-1"
+							}
+						},
+						{
+							"id": "set-scale",
+							"objectClass": "packIcon",
+							"sid": 566586275643270,
+							"parameters": {
+								"scale": "0.8*scaleImage"
 							}
 						},
 						{
@@ -14424,12 +14548,14 @@
 								"var limitedOfferID = \"\";",
 								"var foundAmount = 0;",
 								"var found = false;",
+								"tempDataLimitedOffer = [];",
 								"console.log(\"limitedOfferID\", limitedOfferID);",
 								"for (var i = 0; i < itemPriority.length; i++){",
 								"\titemID = itemPriority[i];",
-								"\tfor (var j = 1; j < 5; j++){",
+								"\tfor (var j = 1; j <= 5; j++){",
 								"\t\titemNumber = \"item00\"+String(j);",
 								"\t\tvar collStatus = limitedOffer[itemID][itemNumber].collected;",
+								"\t\tconsole.log(\"itempriority\", itemID, itemNumber, collStatus);",
 								"\t\tif(!collStatus){",
 								"\t\t\tconsole.log(\"itemID\", itemID);",
 								"\t\t\tconsole.log(\"itemNumber\", itemNumber);",
@@ -15608,13 +15734,6 @@
 													"parameters": {
 														"value": "\"true\""
 													}
-												},
-												{
-													"type": "script",
-													"language": "javascript",
-													"script": [
-														"console.log(localVars.itemPriority, localVars.itemNumber);"
-													]
 												}
 											],
 											"sid": 687723162872924

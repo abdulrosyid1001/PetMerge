@@ -931,6 +931,16 @@
 			"sid": 372437347030544,
 			"children": [
 				{
+					"eventType": "variable",
+					"name": "IDNumber",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 553890175385295
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -993,6 +1003,15 @@
 								"effect": "\"Brightness\"",
 								"parameter-index": "0",
 								"value": "75"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 847328007550735,
+							"parameters": {
+								"variable": "IDNumber",
+								"value": "greenButton.ID_number"
 							}
 						}
 					],
@@ -1128,18 +1147,39 @@
 									"type": "script",
 									"language": "javascript",
 									"script": [
-										"for (const sub of Object.values(data.tempDataLimitedOffer)) {",
-										"    const name = sub.name;",
-										"    const value = Number(sub.value);",
-										"    if (name === \"coins\") runtime.globalVars.coin += value;",
-										"    if (name === \"skip\")  runtime.globalVars.ticket  += value;",
-										"    if (name === \"hammer\") boosterDataArr[name] += value;",
-										"\tif (name === \"shake\") boosterDataArr[name] += value;",
-										"\tif (name === \"brush\") boosterDataArr[name] += value;",
-										"\tif (name === \"rainbow\") boosterDataArr[name] += value;",
+										"const subItems = tempDataLimitedOffer[localVars.IDNumber][2];",
+										"const itemID = tempDataLimitedOffer[localVars.IDNumber][0];",
+										"const itemNumber = tempDataLimitedOffer[localVars.IDNumber][1];",
+										"console.log(\"itemID\", itemID, \"itemNumber\", itemNumber);",
+										"console.log(\"TEMPLIMITEDOFFER\", tempDataLimitedOffer);",
+										"if (!subItems) {",
+										"\tconsole.log(\"❌ Sub item TIDAK terdeteksi\");",
+										"\tconsole.log(tempDataLimitedOffer);",
+										"return;",
+										"}",
+										"else{",
+										"\tconsole.log(limitedOffer);",
+										"\tconsole.log(limitedOffer[itemID][itemNumber].collected);",
+										"\tlimitedOffer[itemID][itemNumber].collected = true;",
+										"\tconsole.log(limitedOffer[itemID][itemNumber].collected);",
 										"}",
 										"",
-										"runtime.callFunction(\"save_storage\", storageType, \"boosters_data\", JSON.stringify(boosterDataArr));"
+										"for (const sub of Object.values(subItems)) {",
+										"    if (!sub?.name || !sub?.value) continue;",
+										"",
+										"    const name = sub.name;",
+										"    const value = Number(sub.value);",
+										"",
+										"    if (name === \"coins\") runtime.globalVars.coin += value;",
+										"    else if (name === \"skip\") runtime.globalVars.ticket += value;",
+										"    else if (boosterDataArr[name] !== undefined) {",
+										"        boosterDataArr[name] += value;",
+										"    }",
+										"}",
+										"await runtime.callFunction(\"save_storage\", storageType, \"boosters_data\", JSON.stringify(boosterDataArr));",
+										"await runtime.callFunction(\"refreshLimitedOffer\");",
+										"",
+										""
 									]
 								},
 								{

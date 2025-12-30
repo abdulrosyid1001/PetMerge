@@ -4131,7 +4131,15 @@
 														}
 													],
 													"sid": 911564723338429,
-													"disabled": true
+													"disabled": true,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [],
+															"sid": 283854617803164
+														}
+													]
 												},
 												{
 													"eventType": "block",
@@ -24948,6 +24956,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "tornado_activated",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 939759912929257
+		},
+		{
+			"eventType": "variable",
 			"name": "brush_activated",
 			"type": "boolean",
 			"initialValue": "false",
@@ -26639,6 +26657,19 @@
 							"sid": 980807526891516
 						}
 					]
+				},
+				{
+					"functionName": "tornado_booster",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 167417939083739
 				},
 				{
 					"functionName": "boosters_ev",
@@ -30906,6 +30937,21 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 502440794149288,
+							"parameters": {
+								"variable": "tornado_activated"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 560351738607537
 				},
 				{
 					"eventType": "block",
