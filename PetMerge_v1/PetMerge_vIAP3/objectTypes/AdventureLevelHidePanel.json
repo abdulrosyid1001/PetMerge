@@ -1,32 +1,38 @@
 {
-	"name": "tornadoJoint",
+	"name": "AdventureLevelHidePanel",
 	"plugin-id": "Sprite",
-	"sid": 553798551105419,
+	"sid": 998872131009822,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 844330716320316
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 100,
-						"height": 100,
+						"width": 266,
+						"height": 158,
 						"originX": 0.5,
-						"originY": 0.495,
+						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7635950,
+						"imageSpriteId": 191639,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 957494823962105,
+				"sid": 269845571119999,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
