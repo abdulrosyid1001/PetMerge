@@ -195,7 +195,7 @@ export const limitedOffer = {
       "subitems": {
         "sub001": { "name":"coins", "id": "0", "value": "100" },
         "sub002": { "name":"skip", "id": "1", "value": "3" },
-        "sub002": { "name":"hammer", "id": "2", "value": "3" }
+        "sub003": { "name":"hammer", "id": "2", "value": "3" }
       }
     },
     "item005": {

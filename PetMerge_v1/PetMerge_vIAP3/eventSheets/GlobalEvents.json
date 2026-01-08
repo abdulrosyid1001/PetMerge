@@ -5783,7 +5783,16 @@
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 709318080338125,
+							"sid": 310168761424572,
+							"parameters": {
+								"variable": "tornado_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 381497553219420,
 							"parameters": {
 								"variable": "shake_activated"
 							},
@@ -11625,6 +11634,33 @@
 								}
 							],
 							"sid": 191565954719529
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "blueButton",
+									"sid": 487677448162215,
+									"parameters": {
+										"instance-variable": "ID",
+										"comparison": 0,
+										"value": "\"tornado\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "boosters_ev",
+									"sid": 864527491563925,
+									"parameters": [
+										"\"tornado\"",
+										"\"run\"",
+										"0"
+									]
+								}
+							],
+							"sid": 486509202756082
 						}
 					]
 				},

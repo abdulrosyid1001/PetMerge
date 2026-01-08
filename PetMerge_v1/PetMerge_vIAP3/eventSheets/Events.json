@@ -628,6 +628,15 @@
 						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
+							"sid": 104995685211057,
+							"parameters": {
+								"variable": "tornado_activated",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
 							"sid": 567536456857517,
 							"parameters": {
 								"variable": "is_showed_levelup",
@@ -2032,6 +2041,15 @@
 																"variable": "shake_activated"
 															},
 															"isInverted": true
+														},
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 659339850735638,
+															"parameters": {
+																"variable": "tornado_activated"
+															},
+															"isInverted": true
 														}
 													],
 													"actions": [
@@ -2162,6 +2180,14 @@
 													"parameters": {
 														"variable": "shake_activated"
 													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 161480699838105,
+													"parameters": {
+														"variable": "tornado_activated"
+													}
 												}
 											],
 											"actions": [
@@ -2175,7 +2201,8 @@
 													}
 												}
 											],
-											"sid": 285210645287539
+											"sid": 285210645287539,
+											"isOrBlock": true
 										},
 										{
 											"eventType": "block",
@@ -2186,6 +2213,15 @@
 													"sid": 675289648877265,
 													"parameters": {
 														"variable": "shake_activated"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 256505426879292,
+													"parameters": {
+														"variable": "tornado_activated"
 													},
 													"isInverted": true
 												}
@@ -4442,6 +4478,107 @@
 						{
 							"id": "on-touched-object",
 							"objectClass": "Touch",
+							"sid": 255253917202070,
+							"parameters": {
+								"object": "boosterTornadoButton",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "tornadoSprite",
+							"sid": 472417972631354
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 356175667279074
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 786582561095384,
+							"parameters": {
+								"object-to-create": "tornadoSprite",
+								"layer": "\"Game\"",
+								"x": "LayoutWidth/2",
+								"y": "(LayoutHeight/2)-100",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "tornadoSprite",
+							"sid": 792737462045576,
+							"parameters": {
+								"opacity": "0"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "tornadoSprite",
+							"sid": 560216544829584,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"start\"",
+								"property": "offsetOpacity",
+								"end-value": "100",
+								"time": "0.2",
+								"ease": "default",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 843058715953667
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "tornadoSprite",
+							"sid": 952138821611216,
+							"parameters": {
+								"instance-variable": "phase",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "tornadoSprite",
+							"sid": 873817546024755,
+							"parameters": {
+								"instance-variable": "active",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 855009417241952,
+							"parameters": {
+								"variable": "tornado_activated",
+								"value": "true"
+							}
+						},
+						{
+							"callFunction": "tornado_booster",
+							"sid": 524080653993058
+						}
+					],
+					"sid": 216424682324951
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
 							"sid": 357658556830402,
 							"parameters": {
 								"object": "boostersButton",
@@ -6407,6 +6544,7 @@
 										}
 									],
 									"sid": 138165360448319,
+									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -6438,7 +6576,8 @@
 													]
 												}
 											],
-											"sid": 888684029994866
+											"sid": 888684029994866,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -6470,7 +6609,8 @@
 													]
 												}
 											],
-											"sid": 130658871054249
+											"sid": 130658871054249,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -6566,7 +6706,8 @@
 													}
 												}
 											],
-											"sid": 235579220120581
+											"sid": 235579220120581,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -6592,7 +6733,8 @@
 													}
 												}
 											],
-											"sid": 221133030071661
+											"sid": 221133030071661,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -6619,6 +6761,7 @@
 												}
 											],
 											"sid": 137273982869237,
+											"disabled": true,
 											"children": [
 												{
 													"eventType": "block",
@@ -6643,7 +6786,8 @@
 															}
 														}
 													],
-													"sid": 349698385260810
+													"sid": 349698385260810,
+													"disabled": true
 												}
 											]
 										},
@@ -6662,7 +6806,315 @@
 													"sid": 324749760824319
 												}
 											],
-											"sid": 625908696291052
+											"sid": 625908696291052,
+											"disabled": true
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 637293613344289,
+											"parameters": {
+												"variable": "ID",
+												"comparison": 0,
+												"value": "4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 858685283179295,
+											"parameters": {
+												"variable": "tutorial_case",
+												"value": "\"booster\""
+											}
+										},
+										{
+											"callFunction": "create_tutorial",
+											"sid": 145416227079121,
+											"parameters": [
+												"LayoutWidth/2",
+												"LayoutHeight/2",
+												"LayoutWidth-40",
+												"220",
+												"\"[color=red]\"&JSON.Get(curr_lang&\".tuto_shake_unlocked.0\")&\"[/color]\"&\" \"&JSON.Get(curr_lang&\".tuto_shake_unlocked.1\")&newline&JSON.Get(curr_lang&\".tuto_shake_unlocked.2\")",
+												"\"\"",
+												"1",
+												"ID"
+											]
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"boosterDataArr[\"tornado\"] += 3;",
+												"runtime.callFunction(\"save_storage\", storageType, \"boosters_data\", JSON.stringify(boosterDataArr));"
+											]
+										}
+									],
+									"sid": 729697343270735,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 375090881702832,
+													"parameters": {
+														"variable": "game_mode",
+														"comparison": 0,
+														"value": "\"classic\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"pe_start\", \"funnel\", \"ftue_clas_shake_show\");"
+													]
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"source\", \"tutorial\", \"clas_tut_shake\", \"shake\", 3);"
+													]
+												}
+											],
+											"sid": 176007910762534
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 940416436006105,
+													"parameters": {
+														"variable": "game_mode",
+														"comparison": 0,
+														"value": "\"adventure\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"pe_start\", \"funnel\", \"ftue_adv_shake_show\");"
+													]
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"source\", \"tutorial\", \"adv_tut_shake\", \"shake\", 3);"
+													]
+												}
+											],
+											"sid": 356569009873684
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "boostersFrame",
+													"sid": 369291916143255,
+													"parameters": {
+														"instance-variable": "ID",
+														"comparison": 0,
+														"value": "\"tornado\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 455013292712577,
+													"parameters": {
+														"variable": "boosters_activated",
+														"value": "boostersFrame.ID"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 352631952727361,
+													"parameters": {
+														"object-to-create": "shine",
+														"layer": "\"Tutorial\"",
+														"x": "boostersFrame.X",
+														"y": "boostersFrame.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-size",
+													"objectClass": "shine",
+													"sid": 273117081636026,
+													"parameters": {
+														"width": "boostersFrame.Width+100",
+														"height": "boostersFrame.Height+100"
+													}
+												},
+												{
+													"id": "move-to-layer",
+													"objectClass": "boostersFrame",
+													"sid": 928420343074902,
+													"parameters": {
+														"layer": "\"Tutorial\""
+													}
+												},
+												{
+													"id": "add-child",
+													"objectClass": "Fader",
+													"sid": 965574059645300,
+													"parameters": {
+														"child": "shine",
+														"transform-x": false,
+														"transform-y": false,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": false,
+														"transform-o": false,
+														"transform-z-elevation": true,
+														"transform-visibility": false,
+														"destroy-with-parent": true
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 293371328969777,
+													"parameters": {
+														"object-to-create": "cursorIcon",
+														"layer": "\"Tutorial\"",
+														"x": "boostersFrame.X+30",
+														"y": "boostersFrame.Y+30",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-active",
+													"objectClass": "cursorIcon",
+													"sid": 404658032103304,
+													"behaviorType": "Sine2",
+													"parameters": {
+														"state": "active"
+													}
+												}
+											],
+											"sid": 137971326969966
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "boostersButton",
+													"sid": 199701683257503,
+													"parameters": {
+														"instance-variable": "ID",
+														"comparison": 0,
+														"value": "\"tornado\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-layer",
+													"objectClass": "boostersButton",
+													"sid": 823678563630195,
+													"parameters": {
+														"layer": "\"Tutorial\""
+													}
+												}
+											],
+											"sid": 313738575432960
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "boosterPlus",
+													"sid": 116434450794935,
+													"parameters": {
+														"instance-variable": "ID",
+														"comparison": 0,
+														"value": "\"tornado\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-layer",
+													"objectClass": "boosterPlus",
+													"sid": 985786271267403,
+													"parameters": {
+														"layer": "\"Tutorial\""
+													}
+												}
+											],
+											"sid": 966113541360012,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-children",
+															"objectClass": "boosterPlus",
+															"sid": 357479196816149,
+															"parameters": {
+																"child": "boosters_value",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "move-to-layer",
+															"objectClass": "boosters_value",
+															"sid": 582059651985583,
+															"parameters": {
+																"layer": "\"Tutorial\""
+															}
+														}
+													],
+													"sid": 616194985009060
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 157832305187553
+												},
+												{
+													"id": "move-to-top",
+													"objectClass": "cursorIcon",
+													"sid": 797498223280952
+												}
+											],
+											"sid": 127563882867967
 										}
 									]
 								},
@@ -12780,6 +13232,15 @@
 									"isInverted": true
 								},
 								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 893193348560044,
+									"parameters": {
+										"variable": "tornado_activated"
+									},
+									"isInverted": true
+								},
+								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
 									"sid": 999663990848692,
@@ -12905,6 +13366,15 @@
 							"sid": 464019133762728,
 							"parameters": {
 								"variable": "brush_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 496356295356724,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						},
@@ -13095,6 +13565,15 @@
 							"isInverted": true
 						},
 						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 600608870065179,
+							"parameters": {
+								"variable": "tornado_activated"
+							},
+							"isInverted": true
+						},
+						{
 							"id": "compare-x",
 							"objectClass": "nextTile",
 							"sid": 626006397405901,
@@ -13246,6 +13725,15 @@
 							"sid": 558742034768003,
 							"parameters": {
 								"variable": "brush_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 786361226373434,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						},
@@ -13424,6 +13912,15 @@
 							"isInverted": true
 						},
 						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 177702846293325,
+							"parameters": {
+								"variable": "tornado_activated"
+							},
+							"isInverted": true
+						},
+						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
 							"sid": 655920216536585,
@@ -13553,6 +14050,15 @@
 							"sid": 802857198577422,
 							"parameters": {
 								"variable": "brush_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 325825438263994,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						},
@@ -13741,6 +14247,15 @@
 							"sid": 536975732051965,
 							"parameters": {
 								"variable": "brush_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 429162769084806,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						},
@@ -13938,6 +14453,15 @@
 							"isInverted": true
 						},
 						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 446286932839519,
+							"parameters": {
+								"variable": "tornado_activated"
+							},
+							"isInverted": true
+						},
+						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
 							"sid": 160178841370450,
@@ -13956,6 +14480,15 @@
 								"comparison": 1,
 								"value": "\"run\""
 							}
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 581272329014806,
+							"parameters": {
+								"object": "boosterTornadoButton"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
@@ -17562,6 +18095,15 @@
 							"sid": 708257020611043,
 							"parameters": {
 								"variable": "shake_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 586245887833815,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						},
@@ -24359,6 +24901,219 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "buttonPopUp",
+									"sid": 999153291214488,
+									"parameters": {
+										"instance-variable": "ID",
+										"comparison": 0,
+										"value": "\"use_tornado\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 746778462893261,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 527275882101605,
+											"parameters": {
+												"variable": "coin",
+												"comparison": 5,
+												"value": "100"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "subtract-from-eventvar",
+											"objectClass": "System",
+											"sid": 763175956876177,
+											"parameters": {
+												"variable": "coin",
+												"value": "100"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 975781793314836,
+											"parameters": {
+												"variable": "tornado_activated",
+												"value": "true"
+											}
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"runtime.callFunction(\"save_storage\", storageType, \"coin\", runtime.globalVars.coin);"
+											]
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"boosterDataArr[\"tornado\"] += 1;",
+												"runtime.callFunction(\"save_storage\", storageType, \"boosters_data\", JSON.stringify(boosterDataArr));"
+											]
+										},
+										{
+											"callFunction": "set_boosters_text",
+											"sid": 744083261872062
+										},
+										{
+											"callFunction": "subtract_coins_anim",
+											"sid": 152949955873342,
+											"parameters": [
+												"100"
+											]
+										}
+									],
+									"sid": 233113283454021,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 538669860549654,
+													"parameters": {
+														"variable": "game_mode",
+														"comparison": 0,
+														"value": "\"classic\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"design_event\", \"Coins_Performance\", \"Sink_Free_Coins:Classic_Shake:\"+String(100));"
+													],
+													"disabled": true
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"source\", \"add_booster_pop\", \"clas_pop_tornado\", \"tornado\", 1);"
+													]
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"sink\", \"buy_booster_pop\", \"clas_buy_tornado\", \"coins\", 100);"
+													]
+												}
+											],
+											"sid": 838814047082436
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 900002023934988,
+													"parameters": {
+														"variable": "game_mode",
+														"comparison": 0,
+														"value": "\"adventure\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"design_event\", \"Coins_Performance\", \"Sink_Free_Coins:Adventure_Shake:\"+String(100));"
+													],
+													"disabled": true
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"source\", \"add_booster_pop\", \"adv_pop_tornado\", \"tornado\", 1);"
+													]
+												},
+												{
+													"type": "script",
+													"language": "javascript",
+													"script": [
+														"runtime.callFunction(\"resource_event\", \"sink\", \"buy_booster_pop\", \"adv_buy_tornado\", \"coins\", 100);"
+													]
+												}
+											],
+											"sid": 579339633179658
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 432747305538147
+										}
+									],
+									"actions": [
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 278817461288794,
+											"parameters": {
+												"group-name": "\"Controls\"",
+												"state": "deactivated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 916290762580373,
+											"parameters": {
+												"group-name": "\"Fruit Collision\"",
+												"state": "deactivated"
+											}
+										},
+										{
+											"callFunction": "show_popup",
+											"sid": 269900820088487,
+											"parameters": [
+												"\"insufficient\""
+											]
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 448839194931364
+										},
+										{
+											"callFunction": "create_list_item_store",
+											"sid": 842981018779669,
+											"parameters": [
+												"\"gameplay\""
+											]
+										}
+									],
+									"sid": 711552715153981
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "buttonPopUp",
 									"sid": 966281331790109,
 									"parameters": {
 										"instance-variable": "ID",
@@ -24953,6 +25708,46 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 824314440309043
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_TORNADO_RADIUS",
+			"type": "number",
+			"initialValue": "130",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 347313664201933
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_TORNADO_RADIUS",
+			"type": "number",
+			"initialValue": "28",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 468955080889341
+		},
+		{
+			"eventType": "variable",
+			"name": "OUTER_RADIUS",
+			"type": "number",
+			"initialValue": "150",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 144780048184345
+		},
+		{
+			"eventType": "variable",
+			"name": "INNER_RADIUS",
+			"type": "number",
+			"initialValue": "55",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 516406706322031
 		},
 		{
 			"eventType": "variable",
@@ -26207,6 +27002,15 @@
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
+									"sid": 548121594293425,
+									"parameters": {
+										"variable": "tornado_activated"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
 									"sid": 544862776563233,
 									"parameters": {
 										"variable": "brush_activated"
@@ -26366,6 +27170,14 @@
 									"sid": 187470670913696,
 									"parameters": {
 										"variable": "rainbow_activated"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 173367825414842,
+									"parameters": {
+										"variable": "tornado_activated"
 									}
 								}
 							],
@@ -26677,14 +27489,960 @@
 								{
 									"id": "for-each",
 									"objectClass": "System",
-									"sid": 988695031951021,
+									"sid": 900648128642684,
 									"parameters": {
 										"object": "FruitFamily"
 									}
 								}
 							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 187976549290376,
+									"parameters": {
+										"instance-variable": "baseY",
+										"value": "Self.Y"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 111121702743806,
+									"parameters": {
+										"instance-variable": "liftProgress",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 155143744816814,
+									"parameters": {
+										"instance-variable": "angleSpeed",
+										"value": "random(4.5, 7.5)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 375614612543576,
+									"parameters": {
+										"instance-variable": "radiusNoise",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 561757461525301,
+									"parameters": {
+										"instance-variable": "sprialAngle",
+										"value": "angle(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 200462746358192,
+									"parameters": {
+										"instance-variable": "spiralRadius",
+										"value": "distance(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 324317009966434,
+									"parameters": {
+										"instance-variable": "ringOffset",
+										"value": "random(-40, 40)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 521036693701659,
+									"parameters": {
+										"instance-variable": "heightOffset",
+										"value": "random(30, 70)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 452198072332492,
+									"parameters": {
+										"instance-variable": "tornadoAngle",
+										"value": "angle(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 847306123146632,
+									"parameters": {
+										"instance-variable": "tornadoRadius",
+										"value": "distance(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 679798035484619,
+									"parameters": {
+										"instance-variable": "targetRadius",
+										"value": "clamp(Self.spiralRadius+Self.ringOffset, 100, 160)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 314842561780441,
+									"parameters": {
+										"instance-variable": "angleSpeed",
+										"value": "random(5, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 644836714310956,
+									"parameters": {
+										"instance-variable": "liftStrength",
+										"value": "random(0.85, 1.15)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 819308831703671,
+									"parameters": {
+										"instance-variable": "targetTopY",
+										"value": "tornadoSprite.BBoxTop"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 610081578463245,
+									"parameters": {
+										"instance-variable": "tempX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "FruitFamily",
+									"sid": 738948203953565,
+									"parameters": {
+										"instance-variable": "isTornado",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "FruitFamily",
+									"sid": 522678962700567,
+									"disabled": true,
+									"behaviorType": "Physics",
+									"parameters": {
+										"mode": "disabled"
+									}
+								}
+							],
+							"sid": 563950373373466
+						}
+					]
+				},
+				{
+					"eventType": "variable",
+					"name": "liftCurve",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 767811946833977
+				},
+				{
+					"eventType": "variable",
+					"name": "t",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 188467347377586
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "tornadoSprite",
+							"sid": 120904981711002,
+							"parameters": {
+								"instance-variable": "active"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 175222499478541,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "FruitFamily",
+									"sid": 814886781337612
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 194624708018158,
+									"parameters": {
+										"instance-variable": "baseY",
+										"value": "Self.Y"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 528292016549817,
+									"parameters": {
+										"instance-variable": "liftProgress",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 902486736842660,
+									"parameters": {
+										"instance-variable": "angleSpeed",
+										"value": "random(4.5, 7.5)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 504222458123326,
+									"parameters": {
+										"instance-variable": "radiusNoise",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 883070884204899,
+									"parameters": {
+										"instance-variable": "sprialAngle",
+										"value": "angle(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 735893848108684,
+									"parameters": {
+										"instance-variable": "spiralRadius",
+										"value": "distance(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 929664488431478,
+									"parameters": {
+										"instance-variable": "ringOffset",
+										"value": "random(-40, 40)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 380044508030206,
+									"parameters": {
+										"instance-variable": "heightOffset",
+										"value": "random(30, 70)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 296309879565063,
+									"parameters": {
+										"instance-variable": "tornadoAngle",
+										"value": "angle(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 521713316638191,
+									"parameters": {
+										"instance-variable": "tornadoRadius",
+										"value": "distance(tornadoSprite.X, tornadoSprite.Y, Self.X, Self.Y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 142908648584760,
+									"parameters": {
+										"instance-variable": "targetRadius",
+										"value": "clamp(Self.spiralRadius+Self.ringOffset, 100, 160)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 567576014175919,
+									"parameters": {
+										"instance-variable": "angleSpeed",
+										"value": "random(5, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 934980758817612,
+									"parameters": {
+										"instance-variable": "liftStrength",
+										"value": "random(0.85, 1.15)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 491189316140865,
+									"parameters": {
+										"instance-variable": "targetTopY",
+										"value": "tornadoSprite.BBoxTop"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "FruitFamily",
+									"sid": 522302313513646,
+									"parameters": {
+										"instance-variable": "tempX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "FruitFamily",
+									"sid": 442902119963466,
+									"parameters": {
+										"instance-variable": "isTornado",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "FruitFamily",
+									"sid": 685555756128056,
+									"disabled": true,
+									"behaviorType": "Physics",
+									"parameters": {
+										"mode": "disabled"
+									}
+								}
+							],
+							"sid": 145304153183072
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tornadoSprite",
+									"sid": 633646040261329,
+									"parameters": {
+										"instance-variable": "phase",
+										"comparison": 4,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "tornadoSprite",
+									"sid": 904387929854490,
+									"parameters": {
+										"instance-variable": "timer",
+										"value": "dt"
+									}
+								}
+							],
+							"sid": 331824416098010
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tornadoSprite",
+									"sid": 848361650807045,
+									"parameters": {
+										"instance-variable": "phase",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
 							"actions": [],
-							"sid": 603349070644946
+							"sid": 417216921177355,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "tornadoSprite",
+											"sid": 711675234917956,
+											"parameters": {
+												"instance-variable": "timer",
+												"comparison": 5,
+												"value": "2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "tornadoSprite",
+											"sid": 772192440276598,
+											"parameters": {
+												"instance-variable": "phase",
+												"value": "2"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "tornadoSprite",
+											"sid": 664650724221015,
+											"parameters": {
+												"instance-variable": "active",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 551328129752903
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 491509137523777,
+											"parameters": {
+												"object": "FruitFamily"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 510811916302670,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "FruitFamily",
+													"sid": 168485849475412,
+													"parameters": {
+														"instance-variable": "isTornado"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "FruitFamily",
+													"sid": 544028981507510,
+													"parameters": {
+														"instance-variable": "sprialAngle",
+														"value": "Self.angleSpeed * dt * 60"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "FruitFamily",
+													"sid": 437273102611032,
+													"parameters": {
+														"instance-variable": "liftProgress",
+														"value": "min(Self.liftProgress + dt*1, 0.9)"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 385535757191772,
+													"parameters": {
+														"variable": "t",
+														"value": "FruitFamily.liftProgress"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 970050876136229,
+													"parameters": {
+														"variable": "liftCurve",
+														"value": "t*t*(3 - 2*t)"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "FruitFamily",
+													"sid": 473246475140444,
+													"disabled": true,
+													"parameters": {
+														"instance-variable": "spiralRadius",
+														"value": "lerp(Self.spiralRadius, Self.targetRadius, 0.08)"
+													}
+												},
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "FruitFamily",
+													"sid": 121061150417848,
+													"parameters": {
+														"instance-variable": "spiralRadius",
+														"value": "dt * 120"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "FruitFamily",
+													"sid": 767392225389496,
+													"parameters": {
+														"instance-variable": "spiralRadius",
+														"value": "max(Self.spiralRadius, Self.targetRadius)"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "FruitFamily",
+													"sid": 197887695208613,
+													"parameters": {
+														"instance-variable": "tornadoRadius",
+														"value": "lerp(Self.tornadoRadius, Self.targetRadius + Self.radiusNoise, 0.1)"
+													}
+												},
+												{
+													"id": "set-x",
+													"objectClass": "FruitFamily",
+													"sid": 169464042544797,
+													"parameters": {
+														"x": "tornadoSprite.X + cos(Self.sprialAngle) * Self.spiralRadius"
+													}
+												},
+												{
+													"id": "set-y",
+													"objectClass": "FruitFamily",
+													"sid": 268033780471814,
+													"parameters": {
+														"y": "lerp(Self.baseY, Self.targetTopY, liftCurve)\r\n    + sin(Self.sprialAngle*0.5)*10"
+													}
+												}
+											],
+											"sid": 725396474178465,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "FruitFamily",
+															"sid": 422884037999292,
+															"parameters": {
+																"instance-variable": "tempX",
+																"comparison": 4,
+																"value": "Self.X+10"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-instvar-value",
+															"objectClass": "FruitFamily",
+															"sid": 191561652314177,
+															"parameters": {
+																"instance-variable": "tempX",
+																"value": "Self.X+10"
+															}
+														},
+														{
+															"id": "set-visible",
+															"objectClass": "FruitFamily",
+															"sid": 982585341330280,
+															"parameters": {
+																"visibility": "invisible"
+															}
+														}
+													],
+													"sid": 731959619935940
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "FruitFamily",
+															"sid": 556900776930196,
+															"parameters": {
+																"instance-variable": "tempX",
+																"comparison": 2,
+																"value": "Self.X-10"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-instvar-value",
+															"objectClass": "FruitFamily",
+															"sid": 184254896716216,
+															"parameters": {
+																"instance-variable": "tempX",
+																"value": "Self.X-10"
+															}
+														},
+														{
+															"id": "set-visible",
+															"objectClass": "FruitFamily",
+															"sid": 888884427328193,
+															"parameters": {
+																"visibility": "visible"
+															}
+														}
+													],
+													"sid": 658058103755924
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 683417967868265
+						}
+					],
+					"actions": [],
+					"sid": 747430108144266,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tornadoSprite",
+									"sid": 670882410383016,
+									"parameters": {
+										"instance-variable": "phase",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 808475230649418,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 367472580761025,
+											"parameters": {
+												"object": "FruitFamily"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "FruitFamily",
+											"sid": 427043952465659,
+											"parameters": {
+												"instance-variable": "isTornado",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-x",
+											"objectClass": "FruitFamily",
+											"sid": 822279791356794,
+											"parameters": {
+												"x": "clamp(Self.X, 16, 430-16)"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "FruitFamily",
+											"sid": 533135328714756,
+											"disabled": true,
+											"parameters": {
+												"y": "clamp(Self.Y, 16, 932-16)"
+											}
+										},
+										{
+											"id": "set-angular-velocity",
+											"objectClass": "FruitFamily",
+											"sid": 298270549742280,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"angular-velocity": "0"
+											}
+										},
+										{
+											"id": "set-velocity",
+											"objectClass": "FruitFamily",
+											"sid": 362322740361856,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"x-component": "0",
+												"y-component": "0"
+											}
+										},
+										{
+											"id": "apply-torque",
+											"objectClass": "FruitFamily",
+											"sid": 173824994832722,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"torque": "0"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "FruitFamily",
+											"sid": 732651808368752,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"mode": "enabled"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "FruitFamily",
+											"sid": 241091827106588,
+											"parameters": {
+												"y": "Self.Y+dt*90"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "FruitFamily",
+											"sid": 146284589828393,
+											"disabled": true,
+											"parameters": {
+												"angle": "lerp(Self.Angle, 0, 0.15)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "FruitFamily",
+											"sid": 366281688087691,
+											"parameters": {
+												"instance-variable": "sprialAngle",
+												"value": "Self.sprialAngle + Self.angleSpeed * dt * 20"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "FruitFamily",
+											"sid": 742985316255305,
+											"parameters": {
+												"instance-variable": "angleSpeed",
+												"value": "lerp(Self.angleSpeed, 0, 0.5)"
+											}
+										},
+										{
+											"id": "add-to-instvar",
+											"objectClass": "FruitFamily",
+											"sid": 775571090192349,
+											"parameters": {
+												"instance-variable": "releaseTimer",
+												"value": "dt"
+											}
+										}
+									],
+									"sid": 892589586306566
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "FruitFamily",
+											"sid": 957657551035145,
+											"parameters": {
+												"instance-variable": "releaseTimer",
+												"comparison": 4,
+												"value": "0.35"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-velocity",
+											"objectClass": "FruitFamily",
+											"sid": 919449428370473,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"x-component": "0",
+												"y-component": "0"
+											}
+										},
+										{
+											"id": "set-angular-velocity",
+											"objectClass": "FruitFamily",
+											"sid": 210473068368697,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"angular-velocity": "0"
+											}
+										},
+										{
+											"id": "apply-torque",
+											"objectClass": "FruitFamily",
+											"sid": 823406271027862,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"torque": "0"
+											}
+										},
+										{
+											"id": "set-world-gravity",
+											"objectClass": "FruitFamily",
+											"sid": 279287528896131,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"gravity": "0.8"
+											}
+										},
+										{
+											"id": "set-prevent-rotation",
+											"objectClass": "FruitFamily",
+											"sid": 191403928256200,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"setting": "prevent-rotations"
+											}
+										},
+										{
+											"id": "set-linear-damping",
+											"objectClass": "FruitFamily",
+											"sid": 554464361015256,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"linear-damping": "0"
+											}
+										},
+										{
+											"id": "set-angular-damping",
+											"objectClass": "FruitFamily",
+											"sid": 662801005185707,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"angular-damping": "0"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "FruitFamily",
+											"sid": 661795905886724,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"mode": "enabled"
+											}
+										},
+										{
+											"id": "set-prevent-rotation",
+											"objectClass": "FruitFamily",
+											"sid": 317608085178390,
+											"disabled": true,
+											"behaviorType": "Physics",
+											"parameters": {
+												"setting": "dont-prevent-rotations"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "FruitFamily",
+											"sid": 850356045669022,
+											"parameters": {
+												"instance-variable": "releaseTimer",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 808136055945690,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 300945652054716,
+													"parameters": {
+														"variable": "tornado_activated",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "tornadoSprite",
+													"sid": 354735113590943,
+													"parameters": {
+														"instance-variable": "phase",
+														"value": "3"
+													}
+												},
+												{
+													"id": "restart-fade",
+													"objectClass": "tornadoSprite",
+													"sid": 575472023612652,
+													"behaviorType": "Fade"
+												}
+											],
+											"sid": 846328756225238
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -26889,6 +28647,9 @@
 														"\t\t\truntime.globalVars.brush_activated = true;",
 														"\t\t\tbreak;",
 														"\t\tcase \"rainbow\":",
+														"\t\t\truntime.globalVars.rainbow_activated = true;",
+														"\t\t\tbreak;",
+														"\t\tcase \"tornado\":",
 														"\t\t\truntime.globalVars.rainbow_activated = true;",
 														"\t\t\tbreak;",
 														"\t}",
@@ -27929,6 +29690,172 @@
 														}
 													],
 													"sid": 586071329475736
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 251196545020355,
+											"parameters": {
+												"variable": "boosters_ID",
+												"comparison": 0,
+												"value": "\"tornado\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "contentPopUp",
+											"sid": 430052096747886,
+											"parameters": {
+												"frame-number": "2"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "headPanelPopUp",
+											"sid": 206279736116214,
+											"parameters": {
+												"frame-number": "1"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "subTextPopUp",
+											"sid": 249322992536558,
+											"parameters": {
+												"text": "JSON.Get(curr_lang&\".tornado\")"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "labelContentPopUp",
+											"sid": 702051905871620,
+											"parameters": {
+												"text": "JSON.Get(curr_lang&\".tornado_info_1\")"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "labelContentPopUp",
+											"sid": 326990134949225,
+											"parameters": {
+												"y": "(LayoutHeight/6)"
+											}
+										}
+									],
+									"sid": 502593956704878,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 435820722476716
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 236832117084849,
+													"parameters": {
+														"object-to-create": "blueButton",
+														"layer": "\"UI\"",
+														"x": "LayoutWidth/2",
+														"y": "(LayoutHeight/2)+50",
+														"create-hierarchy": true,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-text",
+													"objectClass": "labelButton",
+													"sid": 689071438438859,
+													"parameters": {
+														"text": "JSON.Get(curr_lang&\".tornado\")"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "blueButton",
+													"sid": 417370949751478,
+													"parameters": {
+														"instance-variable": "ID",
+														"value": "\"tornado\""
+													}
+												}
+											],
+											"sid": 762186904552298,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 159475919506073,
+															"parameters": {
+																"variable": "tutorial_case",
+																"comparison": 0,
+																"value": "\"booster\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "wait-for-previous-actions",
+															"objectClass": "System",
+															"sid": 203560818057811
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 497831715373918,
+															"parameters": {
+																"object-to-create": "cursorIcon",
+																"layer": "blueButton.LayerName",
+																"x": "blueButton.X+60",
+																"y": "blueButton.Y+30",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-active",
+															"objectClass": "cursorIcon",
+															"sid": 415675246295922,
+															"behaviorType": "Sine2",
+															"parameters": {
+																"state": "active"
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "black_shadow",
+															"sid": 721873902284384,
+															"parameters": {
+																"child": "cursorIcon",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": true,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														}
+													],
+													"sid": 988222949508578
 												}
 											]
 										}
@@ -29595,6 +31522,15 @@
 											}
 										},
 										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 244503730399820,
+											"parameters": {
+												"variable": "tornado_activated",
+												"value": "false"
+											}
+										},
+										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 978022806957131,
@@ -30968,7 +32904,33 @@
 						}
 					],
 					"actions": [],
-					"sid": 560351738607537
+					"sid": 560351738607537,
+					"disabled": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 213410724086031
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "boosters_ev",
+									"sid": 336369895302536,
+									"parameters": [
+										"\"tornado\"",
+										"\"start\"",
+										"0"
+									]
+								}
+							],
+							"sid": 655504708615642,
+							"disabled": true
+						}
+					]
 				},
 				{
 					"eventType": "block",
@@ -32110,6 +34072,15 @@
 													"sid": 574814568380330,
 													"parameters": {
 														"variable": "shake_activated"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 379997636951887,
+													"parameters": {
+														"variable": "tornado_activated"
 													},
 													"isInverted": true
 												}
@@ -35057,6 +37028,15 @@
 							"sid": 420398924136834,
 							"parameters": {
 								"variable": "shake_activated"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 270181717119234,
+							"parameters": {
+								"variable": "tornado_activated"
 							},
 							"isInverted": true
 						}

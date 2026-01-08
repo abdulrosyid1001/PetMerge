@@ -135,6 +135,104 @@
 			"desc": "",
 			"show": true,
 			"sid": 788376276355860
+		},
+		{
+			"name": "targetRadius",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 535555350687969
+		},
+		{
+			"name": "ringOffset",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 320433169279842
+		},
+		{
+			"name": "angleSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 637105830607136
+		},
+		{
+			"name": "radiusNoise",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 226873963869182
+		},
+		{
+			"name": "sprialAngle",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 492518567453113
+		},
+		{
+			"name": "spiralRadius",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 663336417370213
+		},
+		{
+			"name": "baseY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 727624275964838
+		},
+		{
+			"name": "heightOffset",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 999625663952965
+		},
+		{
+			"name": "zLayer",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 612314966040367
+		},
+		{
+			"name": "liftProgress",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 456654248527456
+		},
+		{
+			"name": "liftStrength",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 404695896187881
+		},
+		{
+			"name": "targetTopY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 196506530696617
+		},
+		{
+			"name": "releaseTimer",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 639695393430506
+		},
+		{
+			"name": "tempX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 126092224962582
 		}
 	],
 	"behaviorTypes": [
