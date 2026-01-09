@@ -1158,6 +1158,8 @@
 										"return;",
 										"}",
 										"else{",
+										"\ttempExpTimeLimitedOffer.splice(localVars.IDNumber, 1);",
+										"\truntime.globalVars.limitedOfferperDay--;",
 										"\tconsole.log(limitedOffer);",
 										"\tconsole.log(limitedOffer[itemID][itemNumber].collected);",
 										"\tlimitedOffer[itemID][itemNumber].collected = true;",

@@ -256,6 +256,16 @@
 			"sid": 974575267674980
 		},
 		{
+			"eventType": "variable",
+			"name": "limitedOfferperDay",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 932299239989902
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "INITIALIZATION",
@@ -2674,7 +2684,8 @@
 													}
 												}
 											],
-											"sid": 812693254873455
+											"sid": 812693254873455,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -2722,7 +2733,8 @@
 													}
 												}
 											],
-											"sid": 222633847915245
+											"sid": 222633847915245,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -14198,12 +14210,92 @@
 			"sid": 534044289920281
 		},
 		{
+			"eventType": "variable",
+			"name": "is_IAP_showed",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 348551534476081
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Limited Offer",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 669381894522392
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "refreshLimitedOffer",
+							"sid": 245574912588195
+						}
+					],
+					"sid": 658189325662651,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 668266157347424,
+									"parameters": {
+										"variable": "is_daily_bonus",
+										"comparison": 0,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 695074716034030,
+									"parameters": {
+										"variable": "is_IAP_showed",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 608433719819849
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 118133064325340,
+									"parameters": {
+										"seconds": "1",
+										"use-timescale": true
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"if(tempDataLimitedOffer.length > 0){",
+										"\truntime.callFunction(\"show_popup_pack\", \"limited_offer\", 0);",
+										"}"
+									]
+								}
+							],
+							"sid": 420631939906430
+						}
+					]
+				},
 				{
 					"functionName": "refreshLimitedOffer",
 					"functionDescription": "",
@@ -14282,15 +14374,19 @@
 										"\t\t\tvar rightitemPriority = runtime.callFunction(\"checkedLimitedOffer\", itemID, itemNumber);",
 										"\t\t\tconsole.log(\"rightitemPriority\", rightitemPriority);",
 										"\t\t\tif(rightitemPriority == \"true\"){",
-										"\t\t\t\ttempDataLimitedOffer[foundAmount] = [itemID, itemNumber, limitedOffer[itemID][itemNumber].subitems, limitedOffer[itemID][itemNumber].countdown];",
-										"\t\t\t\tfoundAmount++;",
-										"\t\t\t\tconsole.log(\"tempdatalimitedoffer\", tempDataLimitedOffer);",
-										"\t\t\t\truntime.callFunction(\"createLimitedOfferIcon\", i, foundAmount);",
-										"\t\t\t\tfound = true;",
-										"\t\t\t\tif(foundAmount >= 2){",
+										"\t\t\t\tif(runtime.globalVars.limitedOfferperDay > 0){",
+										"\t\t\t\t\ttempDataLimitedOffer[foundAmount] = [itemID, itemNumber, limitedOffer[itemID][itemNumber].subitems, limitedOffer[itemID][itemNumber].countdown];",
+										"\t\t\t\t\tfoundAmount++;",
+										"\t\t\t\t\tconsole.log(\"tempdatalimitedoffer\", tempDataLimitedOffer);",
+										"\t\t\t\t\truntime.callFunction(\"createLimitedOfferIcon\", i, foundAmount);",
+										"\t\t\t\t\tfound = true;",
+										"\t\t\t\t\tif(foundAmount >= runtime.globalVars.limitedOfferperDay){",
+										"\t\t\t\t\t\treturn;",
+										"\t\t\t\t\t}",
+										"\t\t\t\t}",
+										"\t\t\t\telse{",
 										"\t\t\t\t\treturn;",
 										"\t\t\t\t}",
-										"\t\t\t\t\t",
 										"\t\t\t}",
 										"\t\t\telse{",
 										"\t\t\t\tconsole.log(\"not priority\");",
@@ -14717,67 +14813,6 @@
 						}
 					],
 					"sid": 625003851511756
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 382450085274657
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"let itemID = \"whale\";",
-								"let itemNumber = \"item001\";",
-								"var limitedOfferID = \"\";",
-								"var foundAmount = 0;",
-								"var found = false;",
-								"tempDataLimitedOffer = [];",
-								"console.log(\"limitedOfferID\", limitedOfferID);",
-								"for (var i = 0; i < itemPriority.length; i++){",
-								"\titemID = itemPriority[i];",
-								"\tfor (var j = 1; j <= 5; j++){",
-								"\t\titemNumber = \"item00\"+String(j);",
-								"\t\tvar collStatus = limitedOffer[itemID][itemNumber].collected;",
-								"\t\tconsole.log(\"itempriority\", itemID, itemNumber, collStatus);",
-								"\t\tif(!collStatus){",
-								"\t\t\tconsole.log(\"itemID\", itemID);",
-								"\t\t\tconsole.log(\"itemNumber\", itemNumber);",
-								"\t\t\tvar rightitemPriority = runtime.callFunction(\"checkedLimitedOffer\", itemID, itemNumber);",
-								"\t\t\tconsole.log(\"rightitemPriority\", rightitemPriority);",
-								"\t\t\tif(rightitemPriority == \"true\"){",
-								"\t\t\t\ttempDataLimitedOffer[foundAmount] = [itemID, itemNumber, limitedOffer[itemID][itemNumber].subitems, limitedOffer[itemID][itemNumber].countdown];",
-								"\t\t\t\tfoundAmount++;",
-								"\t\t\t\tconsole.log(\"tempdatalimitedoffer\", tempDataLimitedOffer);",
-								"\t\t\t\truntime.callFunction(\"createLimitedOfferIcon\", i, foundAmount);",
-								"\t\t\t\tfound = true;",
-								"\t\t\t\tif(foundAmount >= 2){",
-								"\t\t\t\t\treturn;",
-								"\t\t\t\t}",
-								"\t\t\t\t\t",
-								"\t\t\t}",
-								"\t\t\telse{",
-								"\t\t\t\tconsole.log(\"not priority\");",
-								"\t\t\t}",
-								"\t\t}",
-								"\t}\t",
-								"}",
-								"if (!found) {",
-								"    console.log(\"nothing limited offer\");",
-								"}",
-								"console.log(\"limitedOfferID\", limitedOfferID);",
-								"",
-								"// var limitedOfferID = runtime.callFunction(\"checkedLimitedOffer\", \"coins\");",
-								""
-							]
-						}
-					],
-					"sid": 896857005268066
 				},
 				{
 					"functionName": "checkedLimitedOffer",
