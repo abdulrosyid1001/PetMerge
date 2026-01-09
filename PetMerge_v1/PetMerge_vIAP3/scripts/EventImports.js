@@ -355,4 +355,4 @@ var tempExpTimeLimitedOffer = [0, 0];
 //     }
 // });
 
-
+var is_tornado = true;

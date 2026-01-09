@@ -129,7 +129,7 @@
 			"eventType": "variable",
 			"name": "screenflow_version",
 			"type": "string",
-			"initialValue": "IAP",
+			"initialValue": "ADS",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -9774,6 +9774,11 @@
 							"id": "destroy",
 							"objectClass": "framePopUp",
 							"sid": 754821119036718
+						},
+						{
+							"id": "destroy",
+							"objectClass": "start_Pack_subpanel",
+							"sid": 865003930300056
 						}
 					],
 					"sid": 383664261613067,
@@ -12321,6 +12326,16 @@
 					"sid": 358754232571126,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "new_flow",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 293177650510336
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -12445,74 +12460,212 @@
 										"group-name": "\"Fruit Collision\"",
 										"state": "activated"
 									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 153445152847329,
-									"parameters": {
-										"variable": "boosters_activated",
-										"value": "\"brush\""
-									}
-								},
-								{
-									"callFunction": "boosters_ev",
-									"sid": 734059812258472,
-									"parameters": [
-										"\"brush\"",
-										"\"run\"",
-										"1"
-									]
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"runtime.callFunction(\"event_start_gameplay\");"
-									]
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"runtime.callFunction(\"design_event\", \"Rewarded_Ads\", \"Ads_Success_Classic_Continue\");"
-									],
-									"disabled": true
-								},
-								{
-									"type": "comment",
-									"text": "ads source"
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"ad_event_GA(\"RewardReceived\", \"RewardedVideo\", platform_ad.toLowerCase(), \"clas_continue\")"
-									]
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"runtime.callFunction(\"design_event\", \"ads_continue\", \"rewarded_ads\"+\":is_\"+runtime.globalVars.analytics_tracking_ads_status);"
-									],
-									"disabled": true
-								},
-								{
-									"callFunction": "show_popup",
-									"sid": 449396965802035,
-									"disabled": true,
-									"parameters": [
-										"\"brush\""
-									]
-								},
-								{
-									"id": "destroy",
-									"objectClass": "frameButtonGameOver",
-									"sid": 816935847887538
 								}
 							],
-							"sid": 219842911696920
+							"sid": 219842911696920,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 502093390818192,
+											"parameters": {
+												"variable": "new_flow"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 565421690760575,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for-each",
+													"objectClass": "System",
+													"sid": 265649734451613,
+													"parameters": {
+														"object": "FruitFamily"
+													}
+												},
+												{
+													"id": "is-immovable",
+													"objectClass": "FruitFamily",
+													"sid": 422936578324406,
+													"behaviorType": "Physics",
+													"isInverted": true
+												}
+											],
+											"actions": [],
+											"sid": 897824565797935,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-y",
+															"objectClass": "FruitFamily",
+															"sid": 664463027231424,
+															"parameters": {
+																"comparison": 2,
+																"y-co-ordinate": "(BoundaryLine.Y+(fruitBox.Height/3))-(Self.ImageHeight/2)"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "spawn-another-object",
+															"objectClass": "FruitFamily",
+															"sid": 214178729509811,
+															"parameters": {
+																"object": "smoke_brush_seq",
+																"layer": "Self.LayerName",
+																"image-point": "0",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-size",
+															"objectClass": "smoke_brush_seq",
+															"sid": 588555271015958,
+															"parameters": {
+																"width": "FruitFamily.Width*(1.5)",
+																"height": "FruitFamily.Height*(3/4)*(1.5)"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "smoke_brush_seq",
+															"sid": 642828070076284,
+															"parameters": {
+																"angle": "0"
+															}
+														},
+														{
+															"id": "set-enabled",
+															"objectClass": "FruitFamily",
+															"sid": 706263167185430,
+															"behaviorType": "Physics",
+															"parameters": {
+																"mode": "disabled"
+															}
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "FruitFamily",
+															"sid": 615117601860807,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"brush\"",
+																"property": "scale",
+																"end-x": "0",
+																"end-y": "0",
+																"time": "0.4",
+																"ease": "easeinback",
+																"destroy-on-complete": "yes",
+																"loop": "no",
+																"ping-pong": "no",
+																"repeat-count": "1"
+															}
+														},
+														{
+															"id": "move-to-object",
+															"objectClass": "smoke_brush_seq",
+															"sid": 831675689956060,
+															"parameters": {
+																"where": "behind",
+																"object": "brushAnim"
+															}
+														}
+													],
+													"sid": 962796719382689
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 117843485957540
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 421606228942307,
+											"parameters": {
+												"variable": "boosters_activated",
+												"value": "\"brush\""
+											}
+										},
+										{
+											"callFunction": "boosters_ev",
+											"sid": 224640393350188,
+											"parameters": [
+												"\"brush\"",
+												"\"run\"",
+												"1"
+											]
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"runtime.callFunction(\"event_start_gameplay\");"
+											]
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"runtime.callFunction(\"design_event\", \"Rewarded_Ads\", \"Ads_Success_Classic_Continue\");"
+											],
+											"disabled": true
+										},
+										{
+											"type": "comment",
+											"text": "ads source"
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"ad_event_GA(\"RewardReceived\", \"RewardedVideo\", platform_ad.toLowerCase(), \"clas_continue\")"
+											]
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"runtime.callFunction(\"design_event\", \"ads_continue\", \"rewarded_ads\"+\":is_\"+runtime.globalVars.analytics_tracking_ads_status);"
+											],
+											"disabled": true
+										},
+										{
+											"callFunction": "show_popup",
+											"sid": 863072895784615,
+											"disabled": true,
+											"parameters": [
+												"\"brush\""
+											]
+										},
+										{
+											"id": "destroy",
+											"objectClass": "frameButtonGameOver",
+											"sid": 932924177049793
+										}
+									],
+									"sid": 472047661218026
+								}
+							]
 						}
 					]
 				}

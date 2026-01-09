@@ -2793,14 +2793,14 @@
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 385410712372850,
+											"sid": 838634325999227,
 											"parameters": {
 												"object-to-create": "bannerBundle",
 												"layer": "\"UI_Banner_Slider\"",
 												"x": "LayoutWidth/2",
 												"y": "205",
 												"create-hierarchy": true,
-												"template-name": "\"slider_\"&1"
+												"template-name": "\"slider_\"&\"1_ads\""
 											}
 										},
 										{
@@ -6884,9 +6884,9 @@
 														{
 															"id": "set-animation-frame",
 															"objectClass": "subitemImage",
-															"sid": 514927175778681,
+															"sid": 542209019044908,
 															"parameters": {
-																"frame-number": "len(labelSubItemValue.Text)-1"
+																"frame-number": "len(labelSubItemValue.Text)-2"
 															}
 														},
 														{
@@ -8970,9 +8970,9 @@
 														{
 															"id": "set-animation-frame",
 															"objectClass": "subitemImage",
-															"sid": 628972797618040,
+															"sid": 270877085069802,
 															"parameters": {
-																"frame-number": "len(labelSubItemValue.Text)-1"
+																"frame-number": "len(labelSubItemValue.Text)-2"
 															}
 														},
 														{

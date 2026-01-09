@@ -444,8 +444,7 @@
 			"animalsGoClassic",
 			"Info_panel",
 			"Browser",
-			"tornadoSprite",
-			"boosterTornadoButton"
+			"tornadoSprite"
 		],
 		"subfolders": [
 			{
