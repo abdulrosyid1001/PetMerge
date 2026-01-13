@@ -233,6 +233,20 @@
 			"desc": "",
 			"show": true,
 			"sid": 126092224962582
+		},
+		{
+			"name": "hitCount",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 864850274750837
+		},
+		{
+			"name": "percentageChance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 665488231977788
 		}
 	],
 	"behaviorTypes": [

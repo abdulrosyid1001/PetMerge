@@ -4844,11 +4844,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 180361810394248,
+											"sid": 429621659619589,
 											"parameters": {
 												"variable": "screenflow_version",
 												"comparison": 0,
-												"value": "\"IAP\""
+												"value": "\"OLD VERSION\""
 											}
 										}
 									],
@@ -7484,11 +7484,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 967318877841385,
+											"sid": 736717576078421,
 											"parameters": {
 												"variable": "screenflow_version",
 												"comparison": 0,
-												"value": "\"NEW_SYSTEM\""
+												"value": "\"IAP\""
 											}
 										}
 									],

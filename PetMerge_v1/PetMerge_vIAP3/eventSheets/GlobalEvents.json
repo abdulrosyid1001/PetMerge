@@ -11877,7 +11877,17 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"CLAIM ITEM\");",
+										"console.log(\"ID CASE\", localVars.ID_case);",
+										"console.log(\"ADS SUCCESS\", localVars.ads_success);"
+									]
+								}
+							],
 							"sid": 840951440331426,
 							"children": [
 								{
@@ -14235,12 +14245,7 @@
 							"sid": 669381894522392
 						}
 					],
-					"actions": [
-						{
-							"callFunction": "refreshLimitedOffer",
-							"sid": 245574912588195
-						}
-					],
+					"actions": [],
 					"sid": 658189325662651,
 					"children": [
 						{
@@ -14249,50 +14254,83 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 668266157347424,
+									"sid": 596106706373918,
 									"parameters": {
-										"variable": "is_daily_bonus",
+										"variable": "screenflow_version",
 										"comparison": 0,
-										"value": "0"
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 695074716034030,
-									"parameters": {
-										"variable": "is_IAP_showed",
-										"comparison": 0,
-										"value": "1"
+										"value": "\"IAP\""
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 608433719819849
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 118133064325340,
-									"parameters": {
-										"seconds": "1",
-										"use-timescale": true
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"if(tempDataLimitedOffer.length > 0){",
-										"\truntime.callFunction(\"show_popup_pack\", \"limited_offer\", 0);",
-										"}"
-									]
+									"callFunction": "refreshLimitedOffer",
+									"sid": 339305323159149
 								}
 							],
-							"sid": 420631939906430
+							"sid": 115674588581242,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 242711658545564,
+											"parameters": {
+												"variable": "is_daily_bonus",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 266448102660041,
+											"parameters": {
+												"variable": "is_IAP_showed",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 727867378935172
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 982712026236297,
+											"parameters": {
+												"seconds": "1",
+												"use-timescale": true
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 413320853997210,
+											"parameters": {
+												"variable": "is_IAP_showed",
+												"value": "0"
+											}
+										},
+										{
+											"type": "script",
+											"language": "javascript",
+											"script": [
+												"if(tempDataLimitedOffer.length > 0){",
+												"\truntime.callFunction(\"show_popup_pack\", \"limited_offer\", 0);",
+												"}"
+											]
+										}
+									],
+									"sid": 431520759227306
+								}
+							]
 						}
 					]
 				},
@@ -17673,6 +17711,39 @@
 							"sid": 641487548778872
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 168273788373570,
+							"parameters": {
+								"object": "Sprite4",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 797638651010325,
+							"parameters": {
+								"variable": "item_choose",
+								"value": "1"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"requestPayment();"
+							]
+						}
+					],
+					"sid": 824330237854403
 				}
 			],
 			"sid": 943966525536009,

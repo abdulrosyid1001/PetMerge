@@ -15,6 +15,10 @@ import{
 } from './IAP.js'
 
 import{
+    requestPayment
+} from './payments.js'
+
+import{
 	is_have_ad,
 	tracking_ad_status,
 	none_tracking_ad_status,

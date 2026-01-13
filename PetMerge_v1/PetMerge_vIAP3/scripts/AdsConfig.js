@@ -1,3 +1,7 @@
+import{
+    initPayment
+} from './payments.js'
+
 // Configuration and state variables
 export let platform_ad = "Stagging";
 export let parent = window.parent.window;
@@ -106,7 +110,6 @@ export function init_ad() {
         case "Lagged":
         case "Test":
         case "Xiaomi":
-        case "Gopay":
             is_game_analytics = true;
             const analyticsKeys = {
                 Glance: { game_key: "8ad2240137c6836d8352e4ced5020990", secret_key: "9543332977347ba142231b8e349fc9ec048a64c4" },
@@ -125,6 +128,39 @@ export function init_ad() {
                 // document.head.appendChild(script_tag);
                 setTimeout(() => LaggedAPI.init('lagdev_14489', 'ca-pub-2609959643441983'), 100);
             }
+            break;
+        case "Gopay":
+            window.addEventListener('message', function(event) {
+                const message = event.data
+                if (!message || typeof message !== 'object') return
+
+                // Handle payment response
+                // if (message.type === 'PAYMENT_RESPONSE') {
+                //     handlePaymentResponse(message)
+                // }
+
+                // Handle ad starting (pause game, mute audio)
+                if (message.type === 'AD_STARTING') {
+                    is_done_ad = false;
+					tracking_ad_status = "started";
+                }
+
+                // Handle ad viewed (user watched full rewarded ad - grant reward!)
+                if (message.type === 'AD_VIEWED') {
+                    tracking_ad_status = "completed";
+                }
+
+                // Handle ad dismissed (user skipped rewarded ad - no reward)
+                if (message.type === 'AD_DISMISSED') {
+                    tracking_ad_status = "skipped";
+                }
+
+                // Handle ad response (resume game)
+                if (message.type === 'AD_RESPONSE') {
+                    handleAdResponse(message)
+                }
+            })
+            initPayment();
             break;
         case "Azerion":
             window["GD_OPTIONS"] = {
@@ -833,79 +869,23 @@ export function show_ad(_ad_format, _ad_reward_state = -1) {
                     tracking_ad_status = "skipped"; 
 				  	break;
 				case "interstitial":
-					window.adBreak({
-							type: "start",
-							name: "my_interstitial",
-					beforeAd: (result_ad) => {
-                        console.log("result_ad", result_ad)
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-                        ad_event_GA("Show", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "skipped";
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						console.log("dismissed");
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "skipped";
-                        ad_event_GA("FailedShow", "Interstitial", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-
-					}
-					else{
-							//NOTE: grant reward here
-							tracking_ad_status = "skipped";
-					} 
-					},
-					});
+					window.parent.postMessage({
+                        type: 'SHOW_AD',
+                        payload:{
+                            adType: 'interstitial',
+                            placementName: 'interstitial'
+                        }
+                    }, '*')
 				  	break;
 				case "rewarded":
-					window.adBreak({
-					type: "reward",
-					name: "my_reward",
-					beforeAd: () => {
-					console.log("beforeAd");
-						is_done_ad = false;
-						tracking_ad_status = "started";
-					},
-					afterAd: () => {
-					console.log("afterAd");
-						tracking_ad_status = "completed";
-					},
-					adDismissed: () => {
-					console.log("adDismissed");
-					},
-					adViewed: () => {
-					console.log("adViewed");
-                    ad_event_GA("Show", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-					tracking_ad_status = "started";
-
-					},
-					beforeReward: (showAdFn) => {
-					console.log("beforeReward");
-					showAdFn();
-					},
-					adBreakDone: (placementInfo) => {
-					if (placementInfo.breakStatus === "dismissed") {
-						tracking_ad_status = "skipped";
-
-					} else if (placementInfo.breakStatus !== "viewed") {
-                        tracking_ad_status = "error";
-                        ad_event_GA("FailedShow", "RewardedVideo", platform_ad.toLowerCase(), ad_placement);
-						console.log("NOTviewed", placementInfo.breakStatus);
-						return;
-					}
-					else{
-						tracking_ad_status = "completed";
-					} 
-					},
-					});
+					window.parent.postMessage({
+                    type: 'SHOW_AD',
+                        payload: {
+                        adType: 'rewarded',
+                        placementName: 'rewarded',
+                        rewardType: 'rewarded'
+                        }
+                    }, '*')
 					break;	
 			}
             break;

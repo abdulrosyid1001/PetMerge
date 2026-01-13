@@ -280,6 +280,26 @@
 			"sid": 499406305405106
 		},
 		{
+			"eventType": "variable",
+			"name": "hitMaximumTile",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 558557662557772
+		},
+		{
+			"eventType": "variable",
+			"name": "percentageChanceLimitTile",
+			"type": "number",
+			"initialValue": "20",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 705918088784694
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Setup",
@@ -6421,13 +6441,13 @@
 										},
 										{
 											"callFunction": "create_tutorial",
-											"sid": 506083851699390,
+											"sid": 408231753288718,
 											"parameters": [
 												"LayoutWidth/2",
 												"LayoutHeight/2",
 												"LayoutWidth-40",
 												"220",
-												"\"[color=red]\"&JSON.Get(curr_lang&\".tuto_shake_unlocked.0\")&\"[/color]\"&\" \"&JSON.Get(curr_lang&\".tuto_shake_unlocked.1\")&newline&JSON.Get(curr_lang&\".tuto_shake_unlocked.2\")",
+												"\"[color=red]\"&JSON.Get(curr_lang&\".tuto_tornado_unlocked.0\")&\"[/color]\"&\" \"&JSON.Get(curr_lang&\".tuto_tornado_unlocked.1\")&newline&JSON.Get(curr_lang&\".tuto_tornado_unlocked.2\")",
 												"\"\"",
 												"1",
 												"ID"
@@ -16215,6 +16235,35 @@
 										"instance-variable": "collided"
 									},
 									"isInverted": true
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "FruitFamily",
+									"sid": 854333757125860,
+									"parameters": {
+										"instance-variable": "freeze"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Fruit",
+									"sid": 461848649418500,
+									"parameters": {
+										"instance-variable": "percentageChance",
+										"comparison": 3,
+										"value": "percentageChanceLimitTile"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Fruit",
+									"sid": 434976836501908,
+									"parameters": {
+										"instance-variable": "hitCount",
+										"comparison": 3,
+										"value": "10"
+									}
 								}
 							],
 							"actions": [],
@@ -16271,6 +16320,16 @@
 									"sid": 776059681723430
 								},
 								{
+									"eventType": "variable",
+									"name": "tempHitCount",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "Mean Y position",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 586623596012536
+								},
+								{
 									"eventType": "comment",
 									"text": "Calculate position between the two fruits colliding."
 								},
@@ -16303,6 +16362,15 @@
 											"parameters": {
 												"variable": "meanY",
 												"value": "(Fruit.Y + FruitFamily.Y)/2"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 148446392720045,
+											"parameters": {
+												"variable": "tempHitCount",
+												"value": "max(Fruit.hitCount, FruitFamily.hitCount)"
 											}
 										}
 									],
@@ -16976,6 +17044,24 @@
 											"sid": 505709120932418,
 											"parameters": {
 												"frame-number": "1"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Fruit",
+											"sid": 607674407940716,
+											"parameters": {
+												"instance-variable": "hitCount",
+												"value": "shake_activated ? tempHitCount : 0"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Fruit",
+											"sid": 125220359015865,
+											"parameters": {
+												"instance-variable": "percentageChance",
+												"value": "shake_activated ? round(random(0, 100)) : 0"
 											}
 										},
 										{
@@ -28061,8 +28147,17 @@
 													"id": "set-text",
 													"objectClass": "TextNotification",
 													"sid": 630356684296034,
+													"disabled": true,
 													"parameters": {
 														"text": "JSON.Get(curr_lang&\".shake_info_3\")"
+													}
+												},
+												{
+													"id": "set-text",
+													"objectClass": "TextNotification",
+													"sid": 116295190968092,
+													"parameters": {
+														"text": "JSON.Get(curr_lang&\".tornado_info_3\")"
 													}
 												}
 											],
@@ -28587,9 +28682,9 @@
 												{
 													"id": "set-text",
 													"objectClass": "labelButton",
-													"sid": 737986909362501,
+													"sid": 107485317755025,
 													"parameters": {
-														"text": "JSON.Get(curr_lang&\".tornado\")"
+														"text": "JSON.Get(curr_lang&\".start\")"
 													}
 												},
 												{
@@ -36284,6 +36379,14 @@
 									}
 								},
 								{
+									"callFunction": "audio_settings",
+									"sid": 439284225601079,
+									"parameters": [
+										"\"play\"",
+										"\"Booster_Tornado\""
+									]
+								},
+								{
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
 									"sid": 158100038533406
@@ -36344,6 +36447,15 @@
 											"parameters": {
 												"object": "FruitFamily"
 											}
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "FruitFamily",
+											"sid": 278870865285225,
+											"parameters": {
+												"instance-variable": "freeze"
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
@@ -36758,11 +36870,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "tornadoSprite",
-													"sid": 182951776352960,
+													"sid": 174409310300927,
 													"parameters": {
 														"instance-variable": "timer",
 														"comparison": 5,
-														"value": "2"
+														"value": "3"
 													}
 												}
 											],
@@ -37153,6 +37265,24 @@
 															"parameters": {
 																"variable": "tornado_activated",
 																"value": "false"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "FruitFamily",
+															"sid": 559665689979463,
+															"parameters": {
+																"instance-variable": "percentageChance",
+																"value": "0"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "FruitFamily",
+															"sid": 763334793750076,
+															"parameters": {
+																"instance-variable": "hitCount",
+																"value": "0"
 															}
 														},
 														{
