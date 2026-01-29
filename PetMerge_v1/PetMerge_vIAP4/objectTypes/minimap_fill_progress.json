@@ -1,0 +1,37 @@
+{
+	"name": "minimap_fill_progress",
+	"plugin-id": "NinePatch",
+	"sid": 451636828396825,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "ID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 840283025010357
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 314528282599148
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 45,
+		"height": 34,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 8442560,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

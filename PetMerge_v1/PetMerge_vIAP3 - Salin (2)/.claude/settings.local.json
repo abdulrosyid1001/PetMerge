@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__construct3__get_eventsheet_details",
+      "mcp__construct3__get_layout_details",
+      "mcp__construct3__get_object_details",
+      "mcp__construct3__get_project_summary",
+      "mcp__construct3__list_layouts",
+      "mcp__construct3__list_eventsheets"
+    ]
+  }
+}

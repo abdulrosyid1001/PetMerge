@@ -1,0 +1,31 @@
+{
+	"name": "TextSubtractTicket",
+	"plugin-id": "Text",
+	"sid": 780093362499725,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 340596700236785
+		},
+		{
+			"behaviorId": "Flash",
+			"name": "Flash",
+			"sid": 349059330843547
+		},
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 464004971990605
+		}
+	],
+	"effectTypes": [
+		{
+			"effectId": "skymen_BetterOutline",
+			"name": "BetterOutline"
+		}
+	]
+}

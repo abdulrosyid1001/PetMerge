@@ -1,0 +1,31 @@
+{
+	"name": "TextSubtractCoins",
+	"plugin-id": "Text",
+	"sid": 358369586829510,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 690491552442806
+		},
+		{
+			"behaviorId": "Flash",
+			"name": "Flash",
+			"sid": 460293443438839
+		},
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 751691508550976
+		}
+	],
+	"effectTypes": [
+		{
+			"effectId": "skymen_BetterOutline",
+			"name": "BetterOutline"
+		}
+	]
+}

@@ -3,10 +3,10 @@ import{
 } from './payments.js'
 
 // Configuration and state variables
-export let platform_ad = "Stagging";
+export let platform_ad = "Gopay";
 export let parent = window.parent.window;
-export let get_lang = new URLSearchParams(window.location.search).get('lang') || "en"; // Default to English ("en")
-export let god_mode = new URLSearchParams(window.location.search).get('gm') || "on"; // Default to "off"
+export let get_lang = new URLSearchParams(window.location.search).get('lang') || "id"; // Default to English ("en")
+export let god_mode = new URLSearchParams(window.location.search).get('gm') || "off"; // Default to "off"
 export let tracking_ad_status = "none"; // Tracks ad status (e.g., started, completed, skipped)
 export let is_done_ad = false; // Prevents multiple ad calls on single button click
 export let is_have_ad = false; // True: use platform ads, False: use sample ads
@@ -80,7 +80,6 @@ function init_config_ad() {
             break;
         case "Gopay":
             is_have_ad = true;
-            is_fullscreen = true;
             break;
         case "Yandex":
             is_have_ad = true;
@@ -95,7 +94,7 @@ function init_config_ad() {
             is_have_ad = true;
             break;
         case "Stagging":
-            is_fullscreen = true;
+            is_fullscreen = false;
             break;
         case "Test":
             is_fullscreen = true;
@@ -157,7 +156,7 @@ export function init_ad() {
 
                 // Handle ad response (resume game)
                 if (message.type === 'AD_RESPONSE') {
-                    handleAdResponse(message)
+                    // handleAdResponse(message)
                 }
             })
             initPayment();

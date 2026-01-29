@@ -445,8 +445,9 @@
 			"Info_panel",
 			"Browser",
 			"tornadoSprite",
-			"Sprite4",
-			"Text"
+			"Smoke_brush_seq_3",
+			"MagicStick",
+			"ticketAnim"
 		],
 		"subfolders": [
 			{
@@ -521,7 +522,9 @@
 					"labelNoAds",
 					"labelMapMini",
 					"labelLevelStage",
-					"TextSubtractCoins"
+					"TextSubtractCoins",
+					"TextSubtractTicket",
+					"TextAddTicket"
 				],
 				"subfolders": [],
 				"name": "Texts"
@@ -1055,12 +1058,12 @@
 		"gpuPreference": "default",
 		"framerateMode": "vsync",
 		"sampling": "bilinear",
-		"downscaling": "medium",
-		"renderingMode": "auto",
-		"anisotropicFiltering": "auto",
+		"downscaling": "high",
+		"renderingMode": "2d",
+		"anisotropicFiltering": "off",
 		"zNear": 1,
 		"zFar": 10000,
-		"maxSpriteSheetSize": 2048,
+		"maxSpriteSheetSize": 512,
 		"loaderStyle": "progress",
 		"preloadSounds": true,
 		"uidAllocationMode": "increment",

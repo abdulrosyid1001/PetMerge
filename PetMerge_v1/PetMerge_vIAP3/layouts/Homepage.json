@@ -2724,8 +2724,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 930,
-						"y": -664,
+						"x": 286,
+						"y": 72,
 						"width": 86,
 						"height": 30,
 						"originX": 0.5,
@@ -2753,12 +2753,33 @@
 					"sid": 889300529508284,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"effects": {
 						"Brightness": {
 							"isEnabled": true,
 							"parameters": {
 								"brightness": 1
+							}
+						},
+						"BetterOutline": {
+							"isEnabled": false,
+							"parameters": {
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"width": 2,
+								"precision-step": 2,
+								"samples": 16,
+								"opacity": 1
 							}
 						}
 					},
@@ -2797,8 +2818,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 895,
-						"y": -664,
+						"x": 241,
+						"y": 70,
 						"width": 60,
 						"height": 62,
 						"originX": 0.5,
@@ -2830,12 +2851,12 @@
 							1
 						],
 						"horizontal-alignment": "center",
-						"vertical-alignment": "top",
+						"vertical-alignment": "center",
 						"wrapping": "word",
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "top",
+						"origin": "center",
 						"read-aloud": false
 					},
 					"uid": 249,
@@ -2888,12 +2909,12 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 939,
-						"y": -676,
+						"x": 291,
+						"y": 72,
 						"width": 61.84736922563053,
 						"height": 33,
 						"originX": 0.5,
-						"originY": 0,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,
@@ -2995,8 +3016,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 224.5,
-						"y": 82,
+						"x": 161,
+						"y": 72,
 						"width": 86,
 						"height": 30,
 						"originX": 0.5,
@@ -3040,7 +3061,7 @@
 					"sid": 820468984585851,
 					"tags": "",
 					"instanceVariables": {
-						"lang_ID": "play"
+						"lang_ID": ""
 					},
 					"behaviors": {},
 					"effects": {
@@ -3086,8 +3107,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 235,
-						"y": 81,
+						"x": 167,
+						"y": 72,
 						"width": 60,
 						"height": 33,
 						"originX": 0.5,
@@ -3186,10 +3207,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 189.5,
-						"y": 82,
-						"width": 54,
-						"height": 56,
+						"x": 121,
+						"y": 70,
+						"width": 39.34285714285714,
+						"height": 41.04109589041096,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

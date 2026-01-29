@@ -1,0 +1,31 @@
+{
+	"name": "TextAddTicket",
+	"plugin-id": "Text",
+	"sid": 348703751627191,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 387999610425218
+		},
+		{
+			"behaviorId": "Flash",
+			"name": "Flash",
+			"sid": 143354084246343
+		},
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 214611291825452
+		}
+	],
+	"effectTypes": [
+		{
+			"effectId": "skymen_BetterOutline",
+			"name": "BetterOutline"
+		}
+	]
+}
